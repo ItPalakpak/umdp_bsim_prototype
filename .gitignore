@@ -1,0 +1,7 @@
+# Exclude Local AI agent cache & log data
+.gemini/
+.git/
+
+# Exclude large documentation/temp files
+*.docx
+*.zip
