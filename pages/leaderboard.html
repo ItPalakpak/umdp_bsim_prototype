@@ -28,29 +28,31 @@
       <div class="grid-2 leaderboard-grid mb-20">
         <!-- Main Leaderboard -->
         <div class="card card-no-padding">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th onclick="sortTable(this, 0)" class="table-cell-pad"># Rank ↕</th>
-                <th onclick="sortTable(this, 1)">Team Name ↕</th>
-                <th onclick="sortTable(this, 2)">Revenue ↕</th>
-                <th onclick="sortTable(this, 3)">Net Profit ↕</th>
-                <th onclick="sortTable(this, 4)">Mkt Share ↕</th>
-                <th onclick="sortTable(this, 5)">ESG ↕</th>
-                <th onclick="sortTable(this, 6)">Score ↕</th>
-              </tr>
-            </thead>
-            <tbody id="leaderboardBody">
-              <tr><td class="rank-cell"><span class="rank-num rank-1">🥇 1</span></td><td class="table-cell-name">TeamAlpha</td><td>$21.2M</td><td>$5.1M</td><td>26.8%</td><td class="score-cell-amber">71</td><td class="score-cell-teal">94.2</td></tr>
-              <tr class="highlight"><td class="rank-cell"><span class="rank-num rank-2">🥈 2</span></td><td class="team-name-self">NovaTech ← You</td><td>$18.4M</td><td>$4.2M</td><td>23.4%</td><td class="text-green">78</td><td class="score-cell-teal">87.6</td></tr>
-              <tr><td class="rank-cell"><span class="rank-num rank-3">🥉 3</span></td><td class="table-cell-name">Stratosphere</td><td>$17.8M</td><td>$3.9M</td><td>21.1%</td><td class="text-green">82</td><td class="score-cell-teal">85.1</td></tr>
-              <tr><td class="rank-cell"><span class="rank-num">4</span></td><td class="table-cell-name">Team Omega</td><td>$16.1M</td><td>$3.4M</td><td>18.9%</td><td class="score-cell-amber">64</td><td class="score-cell-teal">79.3</td></tr>
-              <tr><td class="rank-cell"><span class="rank-num">5</span></td><td class="table-cell-name">BlueStar Inc</td><td>$14.7M</td><td>$2.8M</td><td>16.4%</td><td class="text-gray">58</td><td class="score-cell-amber">72.1 ⚠</td></tr>
-              <tr><td class="rank-cell"><span class="rank-num">6</span></td><td class="table-cell-name">Vertex Group</td><td>$13.2M</td><td>$2.1M</td><td>14.2%</td><td class="text-gray">55</td><td class="score-cell-amber">68.4 ⚠</td></tr>
-              <tr><td class="rank-cell"><span class="rank-num">7</span></td><td class="table-cell-name">Peak Dynamics</td><td>$11.8M</td><td>$1.6M</td><td>11.1%</td><td class="score-cell-red">44</td><td class="score-cell-red">58.2 ✗</td></tr>
-              <tr><td class="rank-cell"><span class="rank-num">8</span></td><td class="table-cell-name">Kestrel Co</td><td>$10.4M</td><td>$0.9M</td><td>8.8%</td><td class="score-cell-red">38</td><td class="score-cell-red">52.0 ✗</td></tr>
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th onclick="sortTable(this, 0)" class="table-cell-pad"># Rank ↕</th>
+                  <th onclick="sortTable(this, 1)">Team Name ↕</th>
+                  <th onclick="sortTable(this, 2)">Revenue ↕</th>
+                  <th onclick="sortTable(this, 3)">Net Profit ↕</th>
+                  <th onclick="sortTable(this, 4)">Mkt Share ↕</th>
+                  <th onclick="sortTable(this, 5)">ESG ↕</th>
+                  <th onclick="sortTable(this, 6)">Score ↕</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboardBody">
+                <tr><td class="rank-cell"><span class="rank-num rank-1">🥇 1</span></td><td class="table-cell-name">TeamAlpha</td><td>$21.2M</td><td>$5.1M</td><td>26.8%</td><td class="score-cell-amber">71</td><td class="score-cell-teal">94.2</td></tr>
+                <tr class="highlight"><td class="rank-cell"><span class="rank-num rank-2">🥈 2</span></td><td class="team-name-self">NovaTech ← You</td><td>$18.4M</td><td>$4.2M</td><td>23.4%</td><td class="text-green">78</td><td class="score-cell-teal">87.6</td></tr>
+                <tr><td class="rank-cell"><span class="rank-num rank-3">🥉 3</span></td><td class="table-cell-name">Stratosphere</td><td>$17.8M</td><td>$3.9M</td><td>21.1%</td><td class="text-green">82</td><td class="score-cell-teal">85.1</td></tr>
+                <tr><td class="rank-cell"><span class="rank-num">4</span></td><td class="table-cell-name">Team Omega</td><td>$16.1M</td><td>$3.4M</td><td>18.9%</td><td class="score-cell-amber">64</td><td class="score-cell-teal">79.3</td></tr>
+                <tr><td class="rank-cell"><span class="rank-num">5</span></td><td class="table-cell-name">BlueStar Inc</td><td>$14.7M</td><td>$2.8M</td><td>16.4%</td><td class="text-gray">58</td><td class="score-cell-amber">72.1 ⚠</td></tr>
+                <tr><td class="rank-cell"><span class="rank-num">6</span></td><td class="table-cell-name">Vertex Group</td><td>$13.2M</td><td>$2.1M</td><td>14.2%</td><td class="text-gray">55</td><td class="score-cell-amber">68.4 ⚠</td></tr>
+                <tr><td class="rank-cell"><span class="rank-num">7</span></td><td class="table-cell-name">Peak Dynamics</td><td>$11.8M</td><td>$1.6M</td><td>11.1%</td><td class="score-cell-red">44</td><td class="score-cell-red">58.2 ✗</td></tr>
+                <tr><td class="rank-cell"><span class="rank-num">8</span></td><td class="table-cell-name">Kestrel Co</td><td>$10.4M</td><td>$0.9M</td><td>8.8%</td><td class="score-cell-red">38</td><td class="score-cell-red">52.0 ✗</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <!-- ESG Leaders Panel -->

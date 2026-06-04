@@ -40,11 +40,13 @@ function renderTopBar(config) {
   }
 
   if (config.actions && config.actions.length > 0) {
+    html += '<div class="top-bar-actions">';
     for (var j = 0; j < config.actions.length; j++) {
       var action = config.actions[j];
       var clickAttr = action.onclick ? ' onclick="' + action.onclick + '"' : '';
       html += '<button class="' + action.className + '"' + clickAttr + '>' + action.text + '</button>';
     }
+    html += '</div>';
   }
 
   html += '</div>';

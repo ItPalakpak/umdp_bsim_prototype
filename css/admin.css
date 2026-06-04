@@ -23,8 +23,6 @@
 .quick-link-icon { font-size: 24px; margin-bottom: 8px; }
 .quick-link-title { font-weight: 600; margin-bottom: 4px; }
 .quick-link-desc { font-size: 12px; color: var(--gray-400); }
-.instructor-table-header { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; }
-.instructor-table-title { font-size: 14px; font-weight: 700; }
 .instructor-email-cell { font-family: var(--mono); font-size: 12px; }
 
 /* ===================== SHARED ADMIN DATA STRUCTURES ===================== */

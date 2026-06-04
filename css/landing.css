@@ -386,14 +386,17 @@
 }
 
 @media (max-width: 992px) {
+  .landing-nav { padding: 16px 24px; }
+  .landing-nav-links { display: none !important; }
+  .features-strip { grid-template-columns: 1fr; padding: 0 24px 40px; }
+  .login-portals { grid-template-columns: 1fr; padding: 0 24px 60px; }
+  .pricing-grid { grid-template-columns: 1fr; gap: 24px; }
   .faculty-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 768px) {
   .landing-section { padding: 40px 24px; }
-  .pricing-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: 1fr; }
-  .login-portals { grid-template-columns: 1fr; padding: 0 24px 60px; }
 }
 

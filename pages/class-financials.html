@@ -27,6 +27,17 @@
     /* Column Highlight class */
     .highlight-col { background: rgba(0, 240, 255, 0.08) !important; color: var(--teal) !important; border-left: 1px solid var(--teal-glow); border-right: 1px solid var(--teal-glow); }
     th.highlight-col { background: var(--teal-dim) !important; color: var(--teal) !important; font-weight: 800 !important; }
+
+    @media (max-width: 768px) {
+      .comparison-table th:first-child,
+      .comparison-table td:first-child {
+        width: 120px !important;
+        min-width: 120px !important;
+        max-width: 120px !important;
+        white-space: normal;
+        word-wrap: break-word;
+      }
+    }
   </style>
 </head>
 <body>

@@ -59,14 +59,16 @@
           <div class="instructor-table-title">Instructor Management</div>
           <button class="btn btn-primary btn-sm" onclick="openAddInstructorModal()">+ Add Instructor</button>
         </div>
-        <table class="data-table">
-          <thead><tr><th class="table-cell-pad">Name</th><th>Email</th><th>Active Courses</th><th>Students</th><th>Status</th><th>Actions</th></tr></thead>
-          <tbody>
-            <tr><td class="table-cell-pad table-cell-name">Dr. Ana Reyes</td><td class="instructor-email-cell">a.reyes@dlsu.edu.ph</td><td>3</td><td>72</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-sm btn-ghost" onclick="toggleInstructorStatus(this, 'Dr. Ana Reyes')">Deactivate</button></td></tr>
-            <tr><td class="table-cell-pad table-cell-name">Prof. Marco Santos</td><td class="instructor-email-cell">m.santos@dlsu.edu.ph</td><td>2</td><td>48</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-sm btn-ghost" onclick="toggleInstructorStatus(this, 'Prof. Marco Santos')">Deactivate</button></td></tr>
-            <tr><td class="table-cell-pad table-cell-name">Dr. Luz Hernandez</td><td class="instructor-email-cell">l.hernandez@dlsu.edu.ph</td><td>1</td><td>32</td><td><span class="badge badge-gray">Inactive</span></td><td><button class="btn btn-sm btn-ghost" onclick="toggleInstructorStatus(this, 'Dr. Luz Hernandez')">Activate</button></td></tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead><tr><th class="table-cell-pad">Name</th><th>Email</th><th>Active Courses</th><th>Students</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td class="table-cell-pad table-cell-name">Dr. Ana Reyes</td><td class="instructor-email-cell">a.reyes@dlsu.edu.ph</td><td>3</td><td>72</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-sm btn-ghost" onclick="toggleInstructorStatus(this, 'Dr. Ana Reyes')">Deactivate</button></td></tr>
+              <tr><td class="table-cell-pad table-cell-name">Prof. Marco Santos</td><td class="instructor-email-cell">m.santos@dlsu.edu.ph</td><td>2</td><td>48</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-sm btn-ghost" onclick="toggleInstructorStatus(this, 'Prof. Marco Santos')">Deactivate</button></td></tr>
+              <tr><td class="table-cell-pad table-cell-name">Dr. Luz Hernandez</td><td class="instructor-email-cell">l.hernandez@dlsu.edu.ph</td><td>1</td><td>32</td><td><span class="badge badge-gray">Inactive</span></td><td><button class="btn btn-sm btn-ghost" onclick="toggleInstructorStatus(this, 'Dr. Luz Hernandez')">Activate</button></td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <!-- Quick Links -->

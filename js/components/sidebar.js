@@ -14,8 +14,9 @@ function renderSidebar(config) {
   var isInPages = window.location.pathname.indexOf('/pages/') !== -1;
   var prefix = isInPages ? '' : 'pages/';
 
-  // Read collapsed state from localStorage
-  var isCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+  // Read collapsed state from localStorage (default to collapsed on mobile screens <= 768px)
+  var isMobile = window.innerWidth <= 768;
+  var isCollapsed = localStorage.getItem('sidebar-collapsed') === 'true' || isMobile;
   if (isCollapsed) {
     root.classList.add('collapsed');
   } else {
@@ -83,7 +84,7 @@ function renderSidebar(config) {
   for (var i = 0; i < items.length; i++) {
     var item = items[i];
     var isActive = item.key === activePage ? ' active' : '';
-    html += '<a class="nav-item' + isActive + '" href="' + item.href + '">';
+    html += '<a class="nav-item' + isActive + '" href="' + item.href + '" data-tooltip="' + item.label + '">';
     html += item.icon ? item.icon : '';
     html += '<span class="nav-label">' + item.label + '</span>';
     html += '</a>';

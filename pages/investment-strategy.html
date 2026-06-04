@@ -117,85 +117,86 @@
               <div class="instructor-table-title" id="strategy-title">Investment allocations (% of Assets under Management)</div>
               <button class="btn btn-primary btn-sm" onclick="saveInvestmentStrategy()">💾 Save Strategy</button>
             </div>
-            
-            <table class="allocation-table">
-              <thead>
-                <tr>
-                  <th style="width: 30%;">Asset Class</th>
-                  <th style="width: 23%;">Strategic %</th>
-                  <th style="width: 23%;">Tactical %</th>
-                  <th style="width: 12%;">Current %</th>
-                  <th style="width: 12%;">Projected %</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Government Bonds -->
-                <tr class="category-row">
-                  <td colspan="5">Government Bonds</td>
-                </tr>
-                <tr>
-                  <td>USD Bonds</td>
-                  <td><input type="number" class="allocation-input strat-val" data-field="gov-usd" step="0.5" value="7.00" onchange="calculateProjectedAllocations()"></td>
-                  <td><input type="number" class="allocation-input tact-val" data-field="gov-usd" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
-                  <td class="text-mono">7.00%</td>
-                  <td class="text-mono text-teal" id="proj-gov-usd">7.00%</td>
-                </tr>
-                <tr>
-                  <td>GBP Bonds</td>
-                  <td><input type="number" class="allocation-input strat-val" data-field="gov-gbp" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
-                  <td><input type="number" class="allocation-input tact-val" data-field="gov-gbp" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
-                  <td class="text-mono">0.00%</td>
-                  <td class="text-mono text-teal" id="proj-gov-gbp">0.00%</td>
-                </tr>
-                <tr>
-                  <td>EUR Bonds</td>
-                  <td><input type="number" class="allocation-input strat-val" data-field="gov-eur" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
-                  <td><input type="number" class="allocation-input tact-val" data-field="gov-eur" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
-                  <td class="text-mono">0.00%</td>
-                  <td class="text-mono text-teal" id="proj-gov-eur">0.00%</td>
-                </tr>
-                <tr>
-                  <td>CHF Bonds</td>
-                  <td><input type="number" class="allocation-input strat-val" data-field="gov-chf" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
-                  <td><input type="number" class="allocation-input tact-val" data-field="gov-chf" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
-                  <td class="text-mono">0.00%</td>
-                  <td class="text-mono text-teal" id="proj-gov-chf">0.00%</td>
-                </tr>
-                <tr>
-                  <td>JPY Bonds</td>
-                  <td><input type="number" class="allocation-input strat-val" data-field="gov-jpy" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
-                  <td><input type="number" class="allocation-input tact-val" data-field="gov-jpy" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
-                  <td class="text-mono">0.00%</td>
-                  <td class="text-mono text-teal" id="proj-gov-jpy">0.00%</td>
-                </tr>
+            <div class="table-responsive">
+              <table class="allocation-table">
+                <thead>
+                  <tr>
+                    <th style="width: 30%;">Asset Class</th>
+                    <th style="width: 23%;">Strategic %</th>
+                    <th style="width: 23%;">Tactical %</th>
+                    <th style="width: 12%;">Current %</th>
+                    <th style="width: 12%;">Projected %</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Government Bonds -->
+                  <tr class="category-row">
+                    <td colspan="5">Government Bonds</td>
+                  </tr>
+                  <tr>
+                    <td>USD Bonds</td>
+                    <td><input type="number" class="allocation-input strat-val" data-field="gov-usd" step="0.5" value="7.00" onchange="calculateProjectedAllocations()"></td>
+                    <td><input type="number" class="allocation-input tact-val" data-field="gov-usd" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                    <td class="text-mono">7.00%</td>
+                    <td class="text-mono text-teal" id="proj-gov-usd">7.00%</td>
+                  </tr>
+                  <tr>
+                    <td>GBP Bonds</td>
+                    <td><input type="number" class="allocation-input strat-val" data-field="gov-gbp" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                    <td><input type="number" class="allocation-input tact-val" data-field="gov-gbp" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                    <td class="text-mono">0.00%</td>
+                    <td class="text-mono text-teal" id="proj-gov-gbp">0.00%</td>
+                  </tr>
+                  <tr>
+                    <td>EUR Bonds</td>
+                    <td><input type="number" class="allocation-input strat-val" data-field="gov-eur" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                    <td><input type="number" class="allocation-input tact-val" data-field="gov-eur" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                    <td class="text-mono">0.00%</td>
+                    <td class="text-mono text-teal" id="proj-gov-eur">0.00%</td>
+                  </tr>
+                  <tr>
+                    <td>CHF Bonds</td>
+                    <td><input type="number" class="allocation-input strat-val" data-field="gov-chf" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                    <td><input type="number" class="allocation-input tact-val" data-field="gov-chf" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                    <td class="text-mono">0.00%</td>
+                    <td class="text-mono text-teal" id="proj-gov-chf">0.00%</td>
+                  </tr>
+                  <tr>
+                    <td>JPY Bonds</td>
+                    <td><input type="number" class="allocation-input strat-val" data-field="gov-jpy" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                    <td><input type="number" class="allocation-input tact-val" data-field="gov-jpy" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                    <td class="text-mono">0.00%</td>
+                    <td class="text-mono text-teal" id="proj-gov-jpy">0.00%</td>
+                  </tr>
 
-                <!-- Corporate Bonds -->
-                <tr class="category-row">
-                  <td colspan="5">Corporate Bonds</td>
-                </tr>
-                <tr>
-                  <td>USD Corporate</td>
-                  <td><input type="number" class="allocation-input strat-val" data-field="corp-usd" step="0.5" value="5.00" onchange="calculateProjectedAllocations()"></td>
-                  <td><input type="number" class="allocation-input tact-val" data-field="corp-usd" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
-                  <td class="text-mono">5.00%</td>
-                  <td class="text-mono text-teal" id="proj-corp-usd">5.00%</td>
-                </tr>
-                <tr>
-                  <td>GBP Corporate</td>
-                  <td><input type="number" class="allocation-input strat-val" data-field="corp-gbp" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
-                  <td><input type="number" class="allocation-input tact-val" data-field="corp-gbp" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
-                  <td class="text-mono">0.00%</td>
-                  <td class="text-mono text-teal" id="proj-corp-gbp">0.00%</td>
-                </tr>
-                <tr>
-                  <td>EUR Corporate</td>
-                  <td><input type="number" class="allocation-input strat-val" data-field="corp-eur" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
-                  <td><input type="number" class="allocation-input tact-val" data-field="corp-eur" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
-                  <td class="text-mono">0.00%</td>
-                  <td class="text-mono text-teal" id="proj-corp-eur">0.00%</td>
-                </tr>
-              </tbody>
-            </table>
+                  <!-- Corporate Bonds -->
+                  <tr class="category-row">
+                    <td colspan="5">Corporate Bonds</td>
+                  </tr>
+                  <tr>
+                    <td>USD Corporate</td>
+                    <td><input type="number" class="allocation-input strat-val" data-field="corp-usd" step="0.5" value="5.00" onchange="calculateProjectedAllocations()"></td>
+                    <td><input type="number" class="allocation-input tact-val" data-field="corp-usd" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                    <td class="text-mono">5.00%</td>
+                    <td class="text-mono text-teal" id="proj-corp-usd">5.00%</td>
+                  </tr>
+                  <tr>
+                    <td>GBP Corporate</td>
+                    <td><input type="number" class="allocation-input strat-val" data-field="corp-gbp" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                    <td><input type="number" class="allocation-input tact-val" data-field="corp-gbp" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                    <td class="text-mono">0.00%</td>
+                    <td class="text-mono text-teal" id="proj-corp-gbp">0.00%</td>
+                  </tr>
+                  <tr>
+                    <td>EUR Corporate</td>
+                    <td><input type="number" class="allocation-input strat-val" data-field="corp-eur" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                    <td><input type="number" class="allocation-input tact-val" data-field="corp-eur" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                    <td class="text-mono">0.00%</td>
+                    <td class="text-mono text-teal" id="proj-corp-eur">0.00%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
@@ -208,30 +209,32 @@
               <canvas id="infoRatioChart"></canvas>
             </div>
             
-            <table class="data-table" style="margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); width: 100%;">
-              <tbody>
-                <tr>
-                  <td class="table-cell-text" style="text-align: left;">Fund Return, %</td>
-                  <td class="text-mono text-red" style="text-align: right; padding-right: 8px;">-3.08%</td>
-                  <td class="text-mono text-gray" style="text-align: right; font-size: 11px; width: 30%;">Prev: 11.18%</td>
-                </tr>
-                <tr>
-                  <td class="table-cell-text" style="text-align: left;">Benchmark Return, %</td>
-                  <td class="text-mono text-red" style="text-align: right; padding-right: 8px;">-2.65%</td>
-                  <td class="text-mono text-gray" style="text-align: right; font-size: 11px; width: 30%;">Prev: 15.27%</td>
-                </tr>
-                <tr>
-                  <td class="table-cell-text" style="text-align: left;">Tracking Error, %</td>
-                  <td class="text-mono" style="text-align: right; padding-right: 8px;">1.06%</td>
-                  <td class="text-mono text-gray" style="text-align: right; font-size: 11px; width: 30%;">Prev: 1.06%</td>
-                </tr>
-                <tr>
-                  <td class="table-cell-text" style="text-align: left;">Information Ratio</td>
-                  <td class="text-mono text-red" style="text-align: right; padding-right: 8px;">-0.45</td>
-                  <td class="text-mono text-gray" style="text-align: right; font-size: 11px; width: 30%;">Prev: -4.34</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="table-responsive">
+              <table class="data-table" style="margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); width: 100%;">
+                <tbody>
+                  <tr>
+                    <td class="table-cell-text" style="text-align: left;">Fund Return, %</td>
+                    <td class="text-mono text-red" style="text-align: right; padding-right: 8px;">-3.08%</td>
+                    <td class="text-mono text-gray" style="text-align: right; font-size: 11px; width: 30%;">Prev: 11.18%</td>
+                  </tr>
+                  <tr>
+                    <td class="table-cell-text" style="text-align: left;">Benchmark Return, %</td>
+                    <td class="text-mono text-red" style="text-align: right; padding-right: 8px;">-2.65%</td>
+                    <td class="text-mono text-gray" style="text-align: right; font-size: 11px; width: 30%;">Prev: 15.27%</td>
+                  </tr>
+                  <tr>
+                    <td class="table-cell-text" style="text-align: left;">Tracking Error, %</td>
+                    <td class="text-mono" style="text-align: right; padding-right: 8px;">1.06%</td>
+                    <td class="text-mono text-gray" style="text-align: right; font-size: 11px; width: 30%;">Prev: 1.06%</td>
+                  </tr>
+                  <tr>
+                    <td class="table-cell-text" style="text-align: left;">Information Ratio</td>
+                    <td class="text-mono text-red" style="text-align: right; padding-right: 8px;">-0.45</td>
+                    <td class="text-mono text-gray" style="text-align: right; font-size: 11px; width: 30%;">Prev: -4.34</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
 
           <!-- Pie allocation visual -->
