@@ -1,0 +1,2289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B-Sim AI — Pitch Cheat Sheet</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1410;
+            --ink-mid: #3d3530;
+            --ink-soft: #6b5f55;
+            --paper: #faf7f2;
+            --paper-warm: #f4efe6;
+            --rule: #d9cec0;
+            --rule-soft: #ede6d8;
+            --accent: #8b2e12;
+            --accent-mid: #b54a28;
+            --accent-soft: #f0e4dc;
+            --gold: #c9922a;
+            --gold-soft: #fdf3e0;
+            --teal: #1a5c6e;
+            --teal-soft: #ddf0f4;
+            --chip-bg: #2d2520;
+            --chip-fg: #f4efe6;
+            --green: #1e6b3e;
+            --green-soft: #e0f4ea;
+            --purple: #5a2d7a;
+            --purple-soft: #f0e8f8;
+            --orange: #b84a00;
+            --orange-soft: #fdeede;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-weight: 400;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.75;
+            font-size: 17px;
+        }
+
+        /* ── MASTHEAD ── */
+        .masthead {
+            background: var(--chip-bg);
+            color: var(--paper-warm);
+            padding: 48px 48px 40px;
+            border-bottom: 4px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+        .masthead::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 320px; height: 100%;
+            background: repeating-linear-gradient(-55deg, transparent, transparent 12px, rgba(255,255,255,.025) 12px, rgba(255,255,255,.025) 13px);
+            pointer-events: none;
+        }
+        .masthead-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--accent-mid);
+            margin-bottom: 14px;
+        }
+        .masthead h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(22px, 3.5vw, 38px);
+            font-weight: 900;
+            line-height: 1.15;
+            color: var(--paper-warm);
+            max-width: 820px;
+            margin-bottom: 18px;
+        }
+        .masthead-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            font-size: 13px;
+            color: rgba(244,239,230,.65);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .masthead-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .masthead-meta span::before {
+            content: '▸';
+            color: var(--accent-mid);
+        }
+
+        /* ── STICKY NAV ── */
+        .tab-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(250,247,242,.96);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--rule);
+            display: flex;
+            gap: 0;
+            padding: 0 48px;
+            overflow-x: auto;
+        }
+        .tab-btn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: 14px 22px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: var(--ink-soft);
+            border-bottom: 3px solid transparent;
+            transition: all .2s;
+            white-space: nowrap;
+        }
+        .tab-btn:hover { color: var(--ink); }
+        .tab-btn.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* ── MAIN LAYOUT ── */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 48px 48px 80px;
+        }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+
+        /* ── CHAPTER SECTIONS ── */
+        .chapter-block { margin-bottom: 60px; }
+        .chapter-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--ink);
+            border-left: 5px solid var(--accent);
+            padding-left: 18px;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        .chapter-desc {
+            font-size: 14px;
+            color: var(--ink-soft);
+            font-family: 'JetBrains Mono', monospace;
+            padding-left: 23px;
+            margin-bottom: 28px;
+            letter-spacing: .04em;
+        }
+        .subsection-heading {
+            font-family: 'Source Serif 4', serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin: 32px 0 16px;
+            padding-bottom: 6px;
+            border-bottom: 1px dashed var(--rule);
+        }
+
+        /* ── CARDS ── */
+        .stmt-card {
+            background: white;
+            border: 1px solid var(--rule);
+            border-radius: 8px;
+            margin-bottom: 14px;
+            overflow: hidden;
+            transition: box-shadow .2s, border-color .2s;
+        }
+        .stmt-card:hover {
+            box-shadow: 0 4px 18px rgba(0,0,0,.08);
+            border-color: var(--rule-soft);
+        }
+        .stmt-card.expanded { border-color: var(--accent); }
+
+        .stmt-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 18px 20px;
+            cursor: pointer;
+        }
+        .stmt-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--ink-soft);
+            min-width: 28px;
+            padding-top: 3px;
+            flex-shrink: 0;
+        }
+        .stmt-body { flex: 1; }
+        .stmt-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--ink);
+        }
+        .stmt-text mark {
+            background: var(--gold-soft);
+            color: var(--accent);
+            padding: 0 2px;
+            border-radius: 2px;
+            font-style: italic;
+        }
+        .stmt-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 10px;
+        }
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            background: var(--chip-bg);
+            color: var(--chip-fg);
+            border-radius: 3px;
+            padding: 3px 8px;
+            letter-spacing: .04em;
+        }
+        .chip.cat-basic { background: var(--teal-soft); color: var(--teal); }
+        .chip.cat-technical { background: var(--accent-soft); color: var(--accent); }
+        .chip.cat-chain { background: var(--gold-soft); color: var(--gold); }
+        .chip.cat-trap { background: var(--purple-soft); color: var(--purple); }
+        .chip.cat-tip { background: var(--green-soft); color: var(--green); }
+        .chip.cat-warn { background: var(--orange-soft); color: var(--orange); }
+
+        .stmt-toggle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--ink-soft);
+            flex-shrink: 0;
+            padding-top: 2px;
+            transition: transform .2s;
+        }
+        .stmt-card.expanded .stmt-toggle { transform: rotate(45deg); }
+
+        /* ── EXPANDED PANEL ── */
+        .stmt-refs {
+            display: none;
+            background: var(--paper-warm);
+            border-top: 1px solid var(--rule);
+            padding: 20px 22px 22px;
+        }
+        .stmt-card.expanded .stmt-refs { display: block; }
+        .stmt-refs-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            margin-bottom: 14px;
+        }
+
+        /* ── ANSWER BOX ── */
+        .answer-box {
+            background: white;
+            border: 1px solid var(--rule);
+            border-radius: 6px;
+            padding: 16px 18px;
+            margin-bottom: 10px;
+        }
+        .answer-box p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--ink-mid);
+            margin-bottom: 8px;
+        }
+        .answer-box p:last-child { margin-bottom: 0; }
+        .answer-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            margin-bottom: 8px;
+        }
+        .answer-box.highlight {
+            border-left: 3px solid var(--gold);
+            background: var(--gold-soft);
+        }
+        .answer-box.warning {
+            border-left: 3px solid var(--purple);
+            background: var(--purple-soft);
+        }
+        .answer-box.tip {
+            border-left: 3px solid var(--green);
+            background: var(--green-soft);
+        }
+
+        /* ── OVERVIEW STAT CARDS ── */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .stat-card {
+            background: white;
+            border: 1px solid var(--rule);
+            border-radius: 8px;
+            padding: 20px 20px 18px;
+        }
+        .stat-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            margin-bottom: 6px;
+        }
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.2;
+        }
+        .stat-sub {
+            font-size: 13px;
+            color: var(--ink-soft);
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+
+        /* ── OVERVIEW TABLE ── */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+        .info-table th {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            background: var(--paper-warm);
+            padding: 10px 14px;
+            text-align: left;
+            border: 1px solid var(--rule);
+        }
+        .info-table td {
+            padding: 12px 14px;
+            border: 1px solid var(--rule);
+            vertical-align: top;
+            line-height: 1.6;
+            color: var(--ink-mid);
+        }
+        .info-table tr:hover td { background: #fbf9f6; }
+
+        /* ── SCRIPT SECTION ── */
+        .script-block {
+            background: white;
+            border: 1px solid var(--rule);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .script-head {
+            background: var(--chip-bg);
+            color: var(--chip-fg);
+            padding: 12px 18px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .script-head .dur {
+            margin-left: auto;
+            color: var(--accent-mid);
+            font-size: 11px;
+        }
+        .script-body {
+            padding: 20px 22px;
+        }
+        .script-line {
+            font-size: 16px;
+            line-height: 1.85;
+            color: var(--ink);
+            margin-bottom: 12px;
+            border-left: 3px solid transparent;
+            padding-left: 14px;
+        }
+        .script-line.key {
+            border-left-color: var(--accent);
+            font-weight: 600;
+        }
+        .script-line.note {
+            font-size: 13px;
+            color: var(--ink-soft);
+            font-style: italic;
+            border-left-color: var(--gold);
+            background: var(--gold-soft);
+            padding: 8px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+        .script-line.transition {
+            border-left-color: var(--teal);
+            color: var(--teal);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+        }
+
+        /* ── FILTER ── */
+        .filter-bar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+            align-items: center;
+        }
+        .filter-input {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            padding: 9px 14px;
+            border: 1px solid var(--rule);
+            border-radius: 5px;
+            background: white;
+            color: var(--ink);
+            outline: none;
+            flex: 1;
+            min-width: 200px;
+            transition: border-color .2s;
+        }
+        .filter-input:focus { border-color: var(--accent); }
+        .filter-select {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            padding: 9px 12px;
+            border: 1px solid var(--rule);
+            border-radius: 5px;
+            background: white;
+            color: var(--ink);
+            cursor: pointer;
+            outline: none;
+        }
+        .stats-bar {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--ink-soft);
+            margin-bottom: 24px;
+            letter-spacing: .04em;
+        }
+        .stats-bar span { color: var(--accent); font-weight: 500; }
+
+        hr.section-rule {
+            border: none;
+            border-top: 1px solid var(--rule-soft);
+            margin: 40px 0;
+        }
+
+        /* ── LEGEND ── */
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 28px;
+            padding: 14px 16px;
+            background: white;
+            border: 1px solid var(--rule);
+            border-radius: 6px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--ink-soft);
+        }
+
+        /* ── GLOSSARY ── */
+        .glossary-search-bar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+            align-items: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 14px;
+            margin-bottom: 40px;
+        }
+        .glos-card {
+            background: white;
+            border: 1px solid var(--rule);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow .2s, border-color .2s;
+        }
+        .glos-card:hover { box-shadow: 0 3px 14px rgba(0,0,0,.07); border-color: var(--rule-soft); }
+        .glos-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 16px 10px;
+            border-bottom: 1px solid var(--rule-soft);
+        }
+        .glos-abbr {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent);
+            min-width: 72px;
+            flex-shrink: 0;
+        }
+        .glos-full {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ink);
+            line-height: 1.3;
+        }
+        .glos-tag {
+            margin-left: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 500;
+            padding: 3px 7px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+        .glos-tag.finance   { background: var(--teal-soft);   color: var(--teal); }
+        .glos-tag.market    { background: var(--gold-soft);   color: var(--gold); }
+        .glos-tag.ops       { background: var(--green-soft);  color: var(--green); }
+        .glos-tag.strategy  { background: var(--accent-soft); color: var(--accent); }
+        .glos-tag.esg       { background: var(--purple-soft); color: var(--purple); }
+        .glos-tag.tech      { background: var(--orange-soft); color: var(--orange); }
+        .glos-body {
+            padding: 12px 16px 14px;
+        }
+        .glos-def {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--ink-mid);
+            margin-bottom: 7px;
+        }
+        .glos-pitch {
+            font-size: 13px;
+            font-style: italic;
+            color: var(--ink-soft);
+            border-left: 3px solid var(--gold);
+            padding-left: 10px;
+            line-height: 1.6;
+        }
+        .glos-pitch::before {
+            content: 'Say it as: ';
+            font-style: normal;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+        .glos-section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            margin: 32px 0 14px;
+            padding-bottom: 6px;
+            border-bottom: 1px dashed var(--rule);
+        }
+
+        @media (max-width: 700px) {
+            .masthead { padding: 32px 20px 28px; }
+            .tab-nav { padding: 0 12px; }
+            .container { padding: 32px 16px 60px; }
+            .masthead h1 { font-size: 22px; }
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="masthead">
+    <div class="masthead-label">Pitch Prep · Business Plan Competition · Indonesia · Team 7</div>
+    <h1>B-Sim AI — Pitch Cheat Sheet</h1>
+    <div class="masthead-meta">
+        <span>Strategic Business Simulation Platform for Higher Education</span>
+        <span>Panel Q&amp;A · Script · Overview</span>
+        <span>Team 7 · June 2026</span>
+    </div>
+</div>
+
+<nav class="tab-nav">
+    <button class="tab-btn active" data-tab="overview">Project Overview</button>
+    <button class="tab-btn" data-tab="script">Pitch Script</button>
+    <button class="tab-btn" data-tab="script-fg">Script: F &amp; G</button>
+    <button class="tab-btn" data-tab="questions">Panel Questions</button>
+    <button class="tab-btn" data-tab="glossary">Term Glossary</button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════
+     PANEL 1 — OVERVIEW
+═══════════════════════════════════════════════════════ -->
+<div id="tab-overview" class="tab-panel active">
+    <div class="container">
+
+        <div class="chapter-block">
+            <div class="chapter-heading">What It Is</div>
+            <div class="chapter-desc">One-sentence clarity · Core mechanic · Why it exists</div>
+
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Product</div>
+                    <div class="stat-value">B-Sim AI</div>
+                    <div class="stat-sub">AI-powered macroeconomic business simulation for universities</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Model</div>
+                    <div class="stat-value">B2B SaaS</div>
+                    <div class="stat-sub">Institutional licensing · Annual recurring revenue</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Target Market</div>
+                    <div class="stat-value">4,400+</div>
+                    <div class="stat-sub">Universities in Indonesia alone · Second largest globally</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Seed Budget</div>
+                    <div class="stat-value">$7,000</div>
+                    <div class="stat-sub">8-week prototype · Phase 1 only</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Year 2 Revenue</div>
+                    <div class="stat-value">$1.5M</div>
+                    <div class="stat-sub">80–150 institutions at $6K–$15K/year</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Retention Rate</div>
+                    <div class="stat-value">~85%</div>
+                    <div class="stat-sub">Typical institutional EdTech once embedded in curriculum</div>
+                </div>
+            </div>
+
+            <div class="subsection-heading">Core Concept</div>
+            <div class="stmt-card">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">01</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">B-Sim AI puts student teams in charge of virtual companies inside a shared economy. Every team's decisions — pricing, hiring, production — directly affect everyone else's market conditions in real time.</div>
+                        <div class="stmt-chips">
+                            <span class="chip cat-tip">Core mechanic</span>
+                            <span class="chip">Shared economy</span>
+                            <span class="chip">Real-time</span>
+                        </div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="stmt-refs-title">Why this matters</div>
+                    <div class="answer-box">
+                        <p>Traditional simulations are isolated — your decisions don't affect others. Here, if Team A floods the market with cheap products, Teams B and C lose market share. That's how real business works. No textbook captures that.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">02</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">After each simulation round, the AI automatically audits every team's decisions — not just scoring them, but explaining exactly what failed, why it failed, and what to change next round.</div>
+                        <div class="stmt-chips">
+                            <span class="chip cat-tip">AI differentiator</span>
+                            <span class="chip">Automated feedback</span>
+                        </div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="stmt-refs-title">Contrast with competitors</div>
+                    <div class="answer-box">
+                        <p>Capsim — the market leader with 1,000+ institutions — only gives you a score and ranking. It tells you <em>what</em> happened, not <em>why</em>. Our AI pinpoints the exact decision, the cause, and the fix. That's the gap we close.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">03</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">Sustainability is not an add-on module. It is a survival constraint built into every decision round, with delayed consequences that surface later — mirroring how ESG trade-offs play out in real companies.</div>
+                        <div class="stmt-chips">
+                            <span class="chip cat-tip">ESG integration</span>
+                            <span class="chip">Competition theme alignment</span>
+                        </div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="stmt-refs-title">Competition alignment</div>
+                    <div class="answer-box">
+                        <p>The competition theme is sustainable innovation through technology. We don't just teach about sustainability — we force students to live with the consequences of ignoring it inside the simulation. That's a direct, structural answer to the theme.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chapter-block">
+            <div class="chapter-heading">Market &amp; Financials</div>
+            <div class="chapter-desc">Key numbers to remember · Revenue roadmap · Competitive position</div>
+
+            <div class="subsection-heading">Numbers You Must Know</div>
+            <table class="info-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Figure</th>
+                        <th>Source / Context</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Global EdTech market (2025)</td>
+                        <td><strong>$404 billion</strong></td>
+                        <td>16.3% CAGR — HolonIQ</td>
+                    </tr>
+                    <tr>
+                        <td>Asia-Pacific share</td>
+                        <td><strong>~24%</strong></td>
+                        <td>Fastest-growing region, shifting from pilot to scale</td>
+                    </tr>
+                    <tr>
+                        <td>Indonesian universities</td>
+                        <td><strong>4,400</strong></td>
+                        <td>2nd globally; low EdTech penetration = opportunity</td>
+                    </tr>
+                    <tr>
+                        <td>UN PRME signatories</td>
+                        <td><strong>800+</strong></td>
+                        <td>Institutions already committed to responsible management education</td>
+                    </tr>
+                    <tr>
+                        <td>Pricing — per student</td>
+                        <td><strong>$15–$30</strong> / term</td>
+                        <td>Usage-based tier</td>
+                    </tr>
+                    <tr>
+                        <td>Pricing — institutional</td>
+                        <td><strong>$3,500–$15,000</strong> / year</td>
+                        <td>Benchmarked against Cesim</td>
+                    </tr>
+                    <tr>
+                        <td>Phase 1 budget</td>
+                        <td><strong>$7,000</strong></td>
+                        <td>Team contribution only · 8-week prototype</td>
+                    </tr>
+                    <tr>
+                        <td>Seed round (post-pilot)</td>
+                        <td><strong>$100K–$150K</strong></td>
+                        <td>Angel / VC after pilot data and testimonials secured</td>
+                    </tr>
+                    <tr>
+                        <td>Year 2 revenue ceiling</td>
+                        <td><strong>$1.5 million</strong></td>
+                        <td>80–150 institutions at top tier pricing</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="subsection-heading">Revenue Roadmap</div>
+            <table class="info-table">
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Timeframe</th>
+                        <th>Institutions</th>
+                        <th>Revenue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Prototype &amp; Pilot</td>
+                        <td>Week 1–8</td>
+                        <td>1–3 (subsidized)</td>
+                        <td>Non-monetary — feedback &amp; testimonials</td>
+                    </tr>
+                    <tr>
+                        <td>Early Adoption</td>
+                        <td>Month 3–6</td>
+                        <td>5–10</td>
+                        <td>$20,000–$60,000</td>
+                    </tr>
+                    <tr>
+                        <td>Growth</td>
+                        <td>Month 7–12</td>
+                        <td>20–40</td>
+                        <td>$100,000–$320,000</td>
+                    </tr>
+                    <tr>
+                        <td>Scale (Year 2)</td>
+                        <td>Month 13–24</td>
+                        <td>80–150</td>
+                        <td>$480,000–$1,500,000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="subsection-heading">Competitive Snapshot</div>
+            <table class="info-table">
+                <thead>
+                    <tr>
+                        <th>Competitor</th>
+                        <th>Their Gap</th>
+                        <th>Our Answer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Capsim</strong> (1,000+ institutions)</td>
+                        <td>Score/rank only — no AI explanation of why decisions failed</td>
+                        <td>AI post-round critique: exact decision → cause → correction</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Harvard Business Publishing</strong></td>
+                        <td>Pre-scripted scenarios — one team's actions don't affect others</td>
+                        <td>Shared live economy — every decision reshapes conditions for all</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Canvas / Moodle</strong></td>
+                        <td>Content delivery only — students consume, not run businesses</td>
+                        <td>Students manage live virtual companies with real P&amp;L across rounds</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ChatGPT / AI tutors</strong></td>
+                        <td>Can't simulate competition or evaluate actual team decisions in context</td>
+                        <td>AI evaluates real decisions by real teams inside a live environment</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="chapter-block">
+            <div class="chapter-heading">How It Works</div>
+            <div class="chapter-desc">6-step simulation cycle · Team structure · Tech stack summary</div>
+
+            <div class="subsection-heading">Simulation Cycle (Per Semester)</div>
+            <table class="info-table">
+                <thead>
+                    <tr>
+                        <th>Step</th>
+                        <th>Who Acts</th>
+                        <th>What Happens</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1 · Setup</td><td>Instructor</td><td>Configures rounds, market scenarios, scoring weights, sustainability constraints</td></tr>
+                    <tr><td>2 · Onboarding</td><td>Platform</td><td>Teams receive identical starting resources and baseline market conditions</td></tr>
+                    <tr><td>3 · Decision Round</td><td>Student Teams</td><td>Review market brief → submit decisions across pricing, ops, finance, hiring, ESG</td></tr>
+                    <tr><td>4 · Engine Run</td><td>AI Engine</td><td>Calculates outcomes for all teams simultaneously; applies competitive dynamics and market events</td></tr>
+                    <tr><td>5 · Feedback</td><td>AI Engine</td><td>Each team receives financial results + personalized critique: what failed, why, what to adjust</td></tr>
+                    <tr><td>6 · Repeat / Final</td><td>All</td><td>Cycle continues to final round; produces cumulative rankings and AI strategic summary per team</td></tr>
+                </tbody>
+            </table>
+
+            <div class="subsection-heading">Tech Stack (Keep It Simple in the Pitch)</div>
+            <div class="stmt-card">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">T1</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">Backend: Node.js / Python · Database: PostgreSQL · AI Feedback: LLM API (Anthropic / OpenAI) · Frontend: React.js + Tailwind · Cloud: AWS / GCP / Azure · QA: Jest</div>
+                        <div class="stmt-chips">
+                            <span class="chip cat-technical">Tech</span>
+                            <span class="chip">No in-house model training needed</span>
+                        </div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="stmt-refs-title">Key talking point on tech</div>
+                    <div class="answer-box">
+                        <p>We use existing LLM APIs rather than training our own model. This keeps development scope realistic, cost manageable, and quality high. The AI doesn't need to be custom-built to deliver personalized, context-aware feedback after each round.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <p><strong>If asked about scale:</strong> Cloud infrastructure scales proportionally with usage. Early-stage costs stay low. No institution needs to install anything — fully browser-based.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PANEL 2 — SCRIPT
+═══════════════════════════════════════════════════════ -->
+<div id="tab-script" class="tab-panel">
+    <div class="container">
+
+        <div class="chapter-block">
+            <div class="chapter-heading">Presentation Script</div>
+            <div class="chapter-desc">Conversational · Academic · Spartan · ~5–7 minutes delivery</div>
+
+            <div class="answer-box highlight" style="margin-bottom:28px;">
+                <div class="answer-label">Before you begin</div>
+                <p>This script is a guide, not a transcript. Know the ideas. Adjust pacing to the room. Bold lines are the ones worth memorizing exactly. Notes in italics are stage directions — don't say them aloud.</p>
+            </div>
+
+            <!-- OPENING -->
+            <div class="script-block">
+                <div class="script-head">
+                    Opening Hook
+                    <span class="dur">~45 sec</span>
+                </div>
+                <div class="script-body">
+                    <div class="script-line note">Stand still. Let the room settle. Then open with the question — no preamble.</div>
+                    <div class="script-line key">Here's a question worth sitting with: when business students graduate, what have they actually practiced?</div>
+                    <div class="script-line">They've read cases. They've written reports. They've analyzed decisions that someone else already made. But they have almost never made a consequential decision themselves — one where a wrong call costs them market share, kills their margins, or forces layoffs in the next round.</div>
+                    <div class="script-line key">That gap between knowing and doing — that's the problem we're here to close.</div>
+                </div>
+            </div>
+
+            <!-- PROBLEM -->
+            <div class="script-block">
+                <div class="script-head">
+                    The Problem
+                    <span class="dur">~40 sec</span>
+                </div>
+                <div class="script-body">
+                    <div class="script-line">Business education is theoretically strong and experientially weak. Instructors know this. They run simulations — but the tools available are either expensive, static, or both. The leading platform, Capsim, is used in over a thousand institutions. It's good. But it tells you your score. It doesn't tell you why you lost.</div>
+                    <div class="script-line key">Students get a ranking, not an education.</div>
+                    <div class="script-line">And none of these platforms treat sustainability as anything more than an optional add-on. In a world where ESG is a core business constraint, that's a structural failure in the curriculum.</div>
+                </div>
+            </div>
+
+            <!-- SOLUTION -->
+            <div class="script-block">
+                <div class="script-head">
+                    Our Solution
+                    <span class="dur">~60 sec</span>
+                </div>
+                <div class="script-body">
+                    <div class="script-line note">Slow down here. This is the product. Let each point land.</div>
+                    <div class="script-line key">B-Sim AI is a macroeconomic business simulation platform built for universities. Students run virtual companies. The companies compete inside a shared economy.</div>
+                    <div class="script-line">That word — shared — matters. When your team cuts prices to gain market share, every other team feels it. The market shifts. They have to respond. That's what real competitive pressure looks like. No simulation we know of does this at this level.</div>
+                    <div class="script-line key">After every round, our AI doesn't just score the teams. It audits them.</div>
+                    <div class="script-line">It identifies the exact decision that failed — say, you overproduced in Q2 and sat on inventory — explains why that decision caused the outcome, and tells the team what to change before Q3. That's not feedback. That's coaching at scale.</div>
+                    <div class="script-line">And sustainability is embedded from day one. Not a checkbox. Not a penalty. A survival constraint. Teams that ignore ESG trade-offs pay for it three rounds later. Exactly as they would in a real company.</div>
+                    <div class="script-line transition">→ This directly addresses the competition theme: sustainable innovation through technology.</div>
+                </div>
+            </div>
+
+            <!-- MARKET -->
+            <div class="script-block">
+                <div class="script-head">
+                    Market Opportunity
+                    <span class="dur">~40 sec</span>
+                </div>
+                <div class="script-body">
+                    <div class="script-line">The global EdTech market is on track to hit $404 billion by 2025. Asia-Pacific is about 24% of that, and it's the fastest-growing region. Indonesia alone has 4,400 universities — the second most in the world — with low penetration of institutional simulation tools.</div>
+                    <div class="script-line key">That's not a niche. That's a runway.</div>
+                    <div class="script-line">There are also 800+ institutions in the UN PRME network already committed to responsible management education. They are actively looking for tools that embed sustainability into core curricula. We are exactly that tool.</div>
+                </div>
+            </div>
+
+            <!-- BUSINESS MODEL -->
+            <div class="script-block">
+                <div class="script-head">
+                    Business Model
+                    <span class="dur">~40 sec</span>
+                </div>
+                <div class="script-body">
+                    <div class="script-line">We operate on B2B SaaS. Institutions pay annual licensing — between $3,500 and $15,000 depending on cohort size. There's also a per-student usage option at $15 to $30 per term for smaller pilots.</div>
+                    <div class="script-line">Once a platform is embedded in course structure, institutions don't switch. The data shows about 85% annual retention for institutional EdTech. Early adoption is disproportionately valuable because of that compounding effect.</div>
+                    <div class="script-line key">We're not selling software. We're selling a recurring relationship with the curriculum.</div>
+                </div>
+            </div>
+
+            <!-- FINANCIALS -->
+            <div class="script-block">
+                <div class="script-head">
+                    Financials &amp; Roadmap
+                    <span class="dur">~45 sec</span>
+                </div>
+                <div class="script-body">
+                    <div class="script-line">Phase one runs on $7,000 — team contribution only. That funds an 8-week prototype and deploys to 1 to 3 pilot universities. We're not burning capital trying to build everything at once. We're building enough to prove the concept and gather data.</div>
+                    <div class="script-line">After the pilot, we raise a seed round of $100,000 to $150,000 from angel investors or venture capital, backed by real performance data and institutional testimonials.</div>
+                    <div class="script-line key">By year two, at 80 to 150 institutions, the revenue ceiling is $1.5 million. That's conservative — we're not projecting viral growth. We're projecting institutional adoption, which is slower but stickier.</div>
+                    <div class="script-line transition">→ Transition to close.</div>
+                </div>
+            </div>
+
+            <!-- CLOSE -->
+            <div class="script-block">
+                <div class="script-head">
+                    Close
+                    <span class="dur">~30 sec</span>
+                </div>
+                <div class="script-body">
+                    <div class="script-line note">Come back to the opening. Don't summarize — land.</div>
+                    <div class="script-line">We said earlier that students have never practiced making real decisions. B-Sim AI changes that — at scale, affordably, and with feedback that actually teaches.</div>
+                    <div class="script-line key">Business education has been telling students what happened. We're building the platform where they have to figure out what to do next.</div>
+                    <div class="script-line">Thank you. We're ready for your questions.</div>
+                    <div class="script-line note">Make eye contact. Stay calm. The Q&A is where the real pitch happens.</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PANEL 2b — SCRIPT: SECTIONS F & G
+═══════════════════════════════════════════════════════ -->
+<div id="tab-script-fg" class="tab-panel">
+    <div class="container">
+
+        <div class="chapter-block">
+            <div class="chapter-heading">Script: Section F — Demand &amp; Competitor Analysis</div>
+            <div class="chapter-desc">One script per slide · Each block is exactly one slide's worth of talk · ~40 seconds each</div>
+
+            <div class="answer-box highlight" style="margin-bottom:28px;">
+                <div class="answer-label">Timing rule</div>
+                <p>40 seconds = roughly 80–90 words delivered at a calm, confident pace. Each block below is calibrated to that. Do not add lines — choose one or the other if you need to cut. Bold lines are the ones worth memorizing exactly.</p>
+            </div>
+
+            <!-- SLIDE F — 40 sec -->
+            <div class="script-block">
+                <div class="script-head">
+                    Slide F: Demand &amp; Competitor Analysis
+                    <span class="dur">~40 sec</span>
+                </div>
+                <div class="script-body">
+                    <div class="script-line note">Start with the number. Then pivot straight to the gap.</div>
+                    <div class="script-line key">The global EdTech market hits $404 billion this year. Asia-Pacific is 24% of that. Indonesia alone has 4,400 universities — second in the world — with almost no penetration of institutional simulation tools.</div>
+                    <div class="script-line">Every competitor we've mapped has the same blind spot: Capsim scores you, it doesn't teach you. Harvard BP scripted scenarios don't react to what other teams do. LMS platforms deliver content — they don't put students in charge of anything.</div>
+                    <div class="script-line key">Nobody combines a live shared economy, AI-driven feedback, and sustainability as a built-in constraint. That's the position we're building into.</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="chapter-block">
+            <div class="chapter-heading">Script: Section G — Operational Plan</div>
+            <div class="chapter-desc">One script per slide · Each block is exactly one slide's worth of talk · ~40 seconds each</div>
+
+            <!-- SLIDE G — 40 sec -->
+            <div class="script-block">
+                <div class="script-head">
+                    Slide G: Operational Plan
+                    <span class="dur">~40 sec</span>
+                </div>
+                <div class="script-body">
+                    <div class="script-line note">Walk the cycle in one breath — don't pause on each step. Land on the feedback point. That's the differentiator.</div>
+                    <div class="script-line">The simulation runs in rounds. Instructor configures once. Teams receive identical starting conditions, submit decisions across pricing, operations, hiring, and ESG — simultaneously, in the same economy.</div>
+                    <div class="script-line key">The AI engine processes all decisions at once, calculates outcomes, then delivers a personalized critique to each team: what failed, why, and what to fix. Not a score — a diagnosis.</div>
+                    <div class="script-line">Five roles, cloud-hosted, no installation needed. The instructor hasn't graded a single paper by the time the semester ends.</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PANEL 3 — QUESTIONS
+═══════════════════════════════════════════════════════ -->
+<div id="tab-questions" class="tab-panel">
+    <div class="container">
+
+        <div class="legend">
+            <div class="legend-item"><span class="chip cat-basic">Basic</span> Factual · Definitional</div>
+            <div class="legend-item"><span class="chip cat-technical">Technical</span> Architecture · Feasibility</div>
+            <div class="legend-item"><span class="chip cat-chain">Chain</span> Follow-up · Requires depth</div>
+            <div class="legend-item"><span class="chip cat-trap">Trap</span> Loaded · Designed to expose weakness</div>
+            <div class="legend-item"><span class="chip cat-tip">✓ Strategy</span> Recommended approach</div>
+            <div class="legend-item"><span class="chip cat-warn">⚠ Avoid</span> Common mistake</div>
+        </div>
+
+        <div class="filter-bar">
+            <input class="filter-input" id="qSearch" type="text" placeholder="Search questions…" oninput="filterQuestions()">
+            <select class="filter-select" id="qCat" onchange="filterQuestions()">
+                <option value="">All Categories</option>
+                <option value="basic">Basic</option>
+                <option value="technical">Technical</option>
+                <option value="chain">Chain</option>
+                <option value="trap">Trap</option>
+                <option value="fg">Section F &amp; G</option>
+            </select>
+        </div>
+        <div class="stats-bar">Showing <span id="qCount">all</span> questions</div>
+
+        <!-- ─── BASIC ─── -->
+        <div class="chapter-block" data-qcat="basic">
+            <div class="chapter-heading">Basic Questions</div>
+            <div class="chapter-desc">What is it · Who's it for · How does it work</div>
+
+            <div class="stmt-card q-card" data-cat="basic">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">B1</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"What exactly is B-Sim AI? Explain it simply."</div>
+                        <div class="stmt-chips"><span class="chip cat-basic">Basic</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>It's a simulation platform where university students manage virtual companies that compete in the same economy. When one team makes a move — say, drops prices — it ripples through the whole market and affects everyone else. After each round, the AI explains exactly what each team did wrong and why, rather than just showing them a score. Sustainability is built into every decision. Ignore it now, pay for it later.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>Use the analogy: "It's like running a business, but the consequences are real within the simulation, and the feedback is immediate." Keep it concrete.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="basic">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">B2</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"Who is your customer? The student or the university?"</div>
+                        <div class="stmt-chips"><span class="chip cat-basic">Basic</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>The paying customer is the institution — the university or business school. They buy an annual license. Students are the users. The key dynamic is that the institution mandates the tool; individual students don't choose it. That's why institutional adoption creates predictable, recurring revenue without needing to acquire each student separately.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="basic">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">B3</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"What problem does this solve that existing tools don't?"</div>
+                        <div class="stmt-chips"><span class="chip cat-basic">Basic</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>Three things no existing tool combines: one, a live shared economy where team decisions affect each other; two, AI-generated feedback that explains <em>why</em> a decision failed, not just that it did; three, sustainability embedded as a structural constraint, not a checkbox. Capsim solves the simulation piece. Nobody solves all three together.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="basic">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">B4</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"Why focus on Indonesia specifically?"</div>
+                        <div class="stmt-chips"><span class="chip cat-basic">Basic</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>Indonesia has 4,400 universities — second globally — with relatively low penetration of institutional simulation tools. The region is also shifting from early experimentation to scaled digital adoption. It's a large, addressable, underserved market with institutional infrastructure already in place. It's the logical beachhead for Asia-Pacific expansion.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="basic">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">B5</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"What does the AI actually do in this platform?"</div>
+                        <div class="stmt-chips"><span class="chip cat-basic">Basic</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>Two things. First, it runs the simulation engine — calculating outcomes for all teams simultaneously when a round closes, applying competitive dynamics across the shared economy. Second, it generates personalized feedback per team — identifying what decision went wrong, what caused the outcome (e.g., inventory piled up because you overproduced), and what to adjust in the next round.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── TECHNICAL ─── -->
+        <div class="chapter-block" data-qcat="technical">
+            <div class="chapter-heading">Technical Questions</div>
+            <div class="chapter-desc">Architecture · Feasibility · Build plan</div>
+
+            <div class="stmt-card q-card" data-cat="technical">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">T1</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"How does the AI generate feedback? Is this a custom model or an API?"</div>
+                        <div class="stmt-chips"><span class="chip cat-technical">Technical</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>We use an existing LLM API — Anthropic or OpenAI — not a custom-trained model. The simulation engine calculates outcomes. Those outcomes, combined with the team's decision data, are passed as structured context to the LLM, which generates the qualitative feedback. This keeps development scope realistic and quality high without requiring massive ML infrastructure.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>Frame this as a deliberate architectural choice, not a limitation. "We use proven API infrastructure to focus our build on what differentiates us: the simulation logic and decision structure."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="technical">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">T2</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"How does the shared economy work technically? What ensures one team's decision actually affects others?"</div>
+                        <div class="stmt-chips"><span class="chip cat-technical">Technical</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>All teams submit decisions before the round closes. The simulation engine then runs a single simultaneous calculation pass — not sequential — applying all decisions together to a shared market state. Price changes shift supply-demand curves for all participants. Hiring decisions affect labor market dynamics. The market state that each team sees at the start of the next round is the output of everyone's combined moves, not just their own.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="technical">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">T3</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"Can your team actually build this in 8 weeks with $7,000?"</div>
+                        <div class="stmt-chips"><span class="chip cat-technical">Technical</span><span class="chip cat-trap">Trap</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>The 8-week sprint produces a functional prototype — not a commercial product. The goal is a working simulation with AI feedback deployed to 1–3 pilot universities. Scope is deliberately constrained: core decision rounds, basic shared economy mechanics, LLM feedback. The $7,000 covers cloud infrastructure, design tools, and outreach. Full commercial build is funded by the seed round, which the pilot data makes possible.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>Don't oversell the prototype. Be precise: "We're building a proof of concept that's deployable, not a finished product. That's what $7,000 and 8 weeks can do well."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="technical">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">T4</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"How does the sustainability constraint work mechanically? Who decides what counts as ESG failure?"</div>
+                        <div class="stmt-chips"><span class="chip cat-technical">Technical</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>Instructors configure the sustainability parameters at session setup — emission thresholds, labor standards, governance scores. The simulation engine tracks these as running metrics alongside financial ones. Teams don't see immediate penalties for ESG decisions; consequences are delayed by design, surfacing 2–3 rounds later. This replicates real-world trade-off dynamics. The delayed consequence structure is what makes it a learning mechanism rather than a simple rule-check.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="technical">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">T5</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"What's your tech stack and why those choices?"</div>
+                        <div class="stmt-chips"><span class="chip cat-technical">Technical</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>Backend: Node.js and Python for flexibility between web API layer and data-heavy simulation logic. Database: PostgreSQL for relational data — simulation state, team decisions, round history. AI layer: LLM API via Python. Frontend: React.js with Tailwind — fast to build, easy to maintain. Cloud: AWS, GCP, or Azure, usage-based pricing to keep early costs low. Everything browser-based — no installation required for institutions or students.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── CHAIN ─── -->
+        <div class="chapter-block" data-qcat="chain">
+            <div class="chapter-heading">Chain Questions</div>
+            <div class="chapter-desc">Follow-up questions that probe deeper · Expect these after initial answers</div>
+
+            <div class="stmt-card q-card" data-cat="chain">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">C1</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"You mentioned 85% retention. Where does that number come from, and why should we believe it applies to you?"</div>
+                        <div class="stmt-chips"><span class="chip cat-chain">Chain</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>85% is the documented industry benchmark for institutional EdTech platforms embedded in formal academic curricula — cited in sector research including Culta.ai benchmarks and HolonIQ data. It applies when a platform is integrated into course structure, not just used optionally. Our go-to-market strategy is curriculum integration — we pitch to faculty and administrators, not individual students. That's the structural condition that makes the retention rate relevant.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>Acknowledge it's a benchmark, not a guarantee. "We don't claim to hit 85% on day one. We're citing it as the structural reality of curriculum-embedded tools, which is why we pursue institutional adoption rather than consumer-facing growth."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="chain">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">C2</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"If Capsim already has 1,000 institutions, why would a university switch to an unproven platform?"</div>
+                        <div class="stmt-chips"><span class="chip cat-chain">Chain</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>We're not asking Capsim's existing users to switch. We're targeting the institutions — thousands in Indonesia and Southeast Asia — that have never adopted a simulation platform at all. The beachhead is the unserved market, not the contested one. For institutions already using Capsim, we offer a differentiated value proposition: AI feedback, shared economy dynamics, ESG integration. That's a different product, not just a cheaper version of the same thing.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>Reframe the comparison: "We're not pitching against Capsim's installed base. We're building for the market that Capsim hasn't reached." Then, if pressed, articulate the genuine differentiation clearly.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="chain">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">C3</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"Walk me through what happens to a team's P&L in a single round. Specifically."</div>
+                        <div class="stmt-chips"><span class="chip cat-chain">Chain</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>Teams submit five categories of decisions: pricing, production volume, marketing spend, hiring, and ESG commitments. The engine runs: revenue = price × market-share-adjusted unit sales. Market share is affected by relative pricing and marketing spend across all teams. COGS is driven by production volume and hired workforce. EBITDA is the result. Carry costs for unsold inventory hit the balance sheet. ESG flags accumulate silently, surfacing as regulatory costs or market reputation penalties in later rounds.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="chain">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">C4</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"What happens if a university tries your platform and the simulation breaks mid-semester? What's your support model?"</div>
+                        <div class="stmt-chips"><span class="chip cat-chain">Chain</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>Each institution goes through a structured four-step onboarding: technical setup, instructor walkthrough, student orientation, end-of-semester debrief. During the pilot phase, we're in direct contact with every partner institution. Support is handled by the operations team, and feedback loops directly into the development sprint for the next cycle. We're small enough during Phase 1 that every partner gets close attention.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>Don't oversell a support infrastructure that doesn't exist yet. Be honest: "In Phase 1, we handle support directly. As we scale, we build a customer success function. That's a known growth challenge, not a hidden risk."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="chain">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">C5</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"You said instructors configure the platform. What if an instructor is not technical? How long does setup actually take?"</div>
+                        <div class="stmt-chips"><span class="chip cat-chain">Chain</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>Setup is a one-time configuration through a guided interface — not a technical task. Instructors set parameters: number of rounds, market scenario type, scoring weights, sustainability thresholds. Once configured, the AI engine runs the simulation fully automatically. The instructor's role during the semester is to facilitate discussion, not manage the platform. The automation is the point — it's designed to reduce instructor workload, not add to it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── TRAP ─── -->
+        <div class="chapter-block" data-qcat="trap">
+            <div class="chapter-heading">Trap Questions</div>
+            <div class="chapter-desc">Loaded questions · Designed to expose gaps · Requires careful framing</div>
+
+            <div class="stmt-card q-card" data-cat="trap">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">X1</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"$1.5 million by Year 2 — that's an optimistic number. What's your <em>realistic</em> worst case?"</div>
+                        <div class="stmt-chips"><span class="chip cat-trap">Trap</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>The $1.5 million is the ceiling at 150 institutions with top-tier pricing. The floor — 80 institutions at $6,000 — is $480,000. A realistic conservative scenario is somewhere between $200,000 and $480,000 if adoption runs slower or pricing settles lower. We present a range, not a guarantee. The critical variable is pilot success — if the pilot data is strong, early adoption accelerates. If it's weak, we adjust the model before scaling.</p>
+                    </div>
+                    <div class="answer-box warning">
+                        <div class="answer-label">⚠ Avoid</div>
+                        <p>Don't defend the $1.5M figure as certain. Don't be defensive. The panel wants to see you think in ranges and contingencies, not recite projections.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="trap">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">X2</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"What stops a large company — Microsoft, Google, or even Capsim — from just building this feature into their existing platforms?"</div>
+                        <div class="stmt-chips"><span class="chip cat-trap">Trap</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>Nothing, permanently. But nothing stops them right now either, and they haven't. Large platforms move slowly; features get added to roadmaps and delayed. Our advantage is the 18–24 month window to establish institutional relationships, gather performance data, and get embedded into curricula before any competitor ships something comparable. Switching costs are real — institutions don't migrate platforms mid-year. First-mover advantage in institutional EdTech compounds over time.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>Acknowledge the threat honestly. Don't claim you're defensible forever. Frame the window and the strategy for using it. Panels respect intellectual honesty more than false confidence.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="trap">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">X3</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"You're using LLM APIs for feedback. If API costs rise or a provider changes terms, your entire feedback system is at risk. How do you mitigate that?"</div>
+                        <div class="stmt-chips"><span class="chip cat-trap">Trap</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>Valid risk. Our architecture is provider-agnostic by design — the feedback module abstracts the LLM call so we can switch between Anthropic, OpenAI, or another provider without rebuilding the system. At current API pricing, feedback generation per student per round is negligible relative to our licensing revenue. Long-term, if the product proves out, we can invest in fine-tuned smaller models to reduce API dependency. But for Phase 1, the risk is real and managed, not eliminated.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="trap">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">X4</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"B2B sales to universities is notoriously slow. Procurement cycles can take 12–18 months. How do you survive that?"</div>
+                        <div class="stmt-chips"><span class="chip cat-trap">Trap</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>That's why we start with subsidized pilots rather than formal procurement. Faculty members can deploy a pilot tool for a single class without a procurement cycle — they just need a department head's approval. The commercial relationship formalizes after the pilot demonstrates value. We're also targeting entrepreneurship centers and incubators as early adopters, which have faster decision cycles than formal university procurement. The seed funding is designed to bridge the gap between pilot validation and first paid adoption.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>Show you've thought about this specifically. The panel is testing whether you understand institutional sales reality. "Pilot first, formalize second" is the right answer — and it's in our plan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="trap">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">X5</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"Your team is five people. Capsim has years of development and institutional relationships. Why are you the right team to compete with them?"</div>
+                        <div class="stmt-chips"><span class="chip cat-trap">Trap</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>Capsim built a simulation platform in a pre-AI era. Their product reflects that architecture. We're building AI-native from the ground up — not retrofitting AI onto an existing system. Small teams move faster in early-stage development. We're not trying to outscale Capsim immediately; we're trying to build something better than what exists and find the first 10 institutions who agree. From there, the model compounds.</p>
+                    </div>
+                    <div class="answer-box warning">
+                        <div class="answer-label">⚠ Avoid</div>
+                        <p>Don't dismiss Capsim. Don't overstate your team's credentials. Frame your advantage as architectural timing and agility, not team size or experience.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="trap">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">X6</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"The AI gives personalized feedback. But what if the AI is wrong? What if it gives bad strategic advice and students learn incorrectly?"</div>
+                        <div class="stmt-chips"><span class="chip cat-trap">Trap</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>The AI feedback is grounded in the simulation's own calculated outcomes — it's not giving generic business advice. It's saying: "You produced 500 units, sold 300, revenue was X, and here's the mechanical reason that happened." The qualitative layer interprets outcomes that are already computed. The factual basis is deterministic; the language is generative. Instructors can review feedback logs. The platform is a learning tool, not a replacement for instruction — the professor is still in the room.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>This is a good question. Treat it seriously. Distinguish between AI hallucination risk (generating false facts) and feedback grounded in simulation outputs (interpreting computed data). These are very different risk profiles.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="trap">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">X7</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"This competition theme is about sustainability. But B-Sim AI is a business tool — where's the real sustainability impact?"</div>
+                        <div class="stmt-chips"><span class="chip cat-trap">Trap</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>The sustainability impact is educational and systemic. Every student who runs our simulation has experienced — not just studied — the real cost of ignoring ESG. They've seen it damage their P&L. That's a different kind of knowledge than reading a case study. If those students become the managers and executives of the next decade, they make different decisions. The platform addresses sustainability at the level of business education — which is where values, frameworks, and instincts about trade-offs are formed.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>This is a philosophical question. Answer it philosophically, not defensively. The panel wants to see whether you've thought about impact beyond revenue. You have — say so clearly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── SECTION F & G QUESTIONS ─── -->
+        <div class="chapter-block" data-qcat="fg">
+            <div class="chapter-heading">Section F — Demand &amp; Competitor Questions</div>
+            <div class="chapter-desc">Market size · Competitive position · Revenue projections</div>
+
+            <div class="stmt-card q-card" data-cat="basic">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">F1</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"The $404B EdTech market is the total market. What's your actual serviceable market?"</div>
+                        <div class="stmt-chips"><span class="chip cat-basic">Basic</span><span class="chip">Section F</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>Fair point. The full $404B includes K-12, consumer apps, corporate training — most of which we're not targeting. Our serviceable market is institutional simulation tools for higher education in Asia-Pacific. Starting with Indonesia: 4,400 universities, low penetration, and a regulatory push toward practical learning outcomes. Even at 1% institutional penetration at mid-tier pricing, that's 44 institutions at $5,000–$8,000 per year. That's a $220,000–$350,000 beachhead. That's our actual near-term addressable market. We've projected conservatively from there.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>Panels respect founders who know the difference between TAM, SAM, and SOM. Don't defend the big number — narrow it credibly and show you've done the math from the bottom up, not the top down.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="basic">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">F2</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"Capsim has 1,000+ institutions and years of brand equity. Why would a university switch to an unknown startup?"</div>
+                        <div class="stmt-chips"><span class="chip cat-basic">Basic</span><span class="chip">Section F</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>They don't have to switch — they can pilot us alongside Capsim. Our entry point isn't a rip-and-replace. It's a subsidized pilot in one class, for one semester, with one faculty member who is already frustrated that Capsim gives students a ranking and not an explanation. If the pilot generates better learning outcomes and the instructor is happier, that's the case study we take to the next institution. We're not trying to unseat Capsim in year one. We're trying to find the first ten institutions who want something better.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>Don't position this as a direct fight with Capsim — you'll lose that framing. Position it as a better alternative for institutions that care about qualitative feedback and ESG integration. Capsim wasn't built for that. You were.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="chain">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">F3</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"Your revenue projection of $1.5M in year two assumes 80–150 institutions. What's your evidence that you can acquire that many in 24 months?"</div>
+                        <div class="stmt-chips"><span class="chip cat-chain">Chain</span><span class="chip">Section F</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>That's the ceiling, not the base case. The base case is 20–40 institutions by month 12, generating $100K–$320K. The 80–150 number is year-two scale assuming the pilot validates, we close an angel round, and we expand outreach. We don't have evidence for 150 institutions yet — that's why the pilot exists. The pilot is our evidence-generating event. What we do have evidence for is institutional willingness to try: we're already in conversation with faculty contacts who've expressed interest in a trial deployment.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>Don't defend the ceiling number as if it's guaranteed. Frame the roadmap as staged: pilot validates, seed funds growth, growth funds scale. The panel is testing whether you know the difference between a projection and a commitment.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="trap">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">F4</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"You list ChatGPT as a competitor. But any university could just use ChatGPT for free instead of paying you. Why wouldn't they?"</div>
+                        <div class="stmt-chips"><span class="chip cat-trap">Trap</span><span class="chip">Section F</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>ChatGPT can explain what overproduction is. It cannot simulate a market where overproduction by one team crashes prices for every other team in the room. It has no context for what your team actually decided versus what others decided — and no way to evaluate whether that decision was right given the competitive dynamics of that specific round. The feedback we generate is grounded in computed simulation data. ChatGPT generates text. These are architecturally different products. One simulates reality; the other describes it.</p>
+                    </div>
+                    <div class="answer-box warning">
+                        <div class="answer-label">⚠ Avoid</div>
+                        <p>Don't say ChatGPT isn't intelligent or sophisticated — it clearly is. The distinction is what it can and cannot do: it cannot run a multi-team competitive economy or evaluate real decisions in real context.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="chain">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">F5</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"The 85% retention rate you cite — is that your number or an industry benchmark? What makes you confident it applies to you?"</div>
+                        <div class="stmt-chips"><span class="chip cat-chain">Chain</span><span class="chip">Section F</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>It's an industry benchmark for institutional B2B EdTech — sourced from platforms like Cesim and consistent with EdTech retention data from HolonIQ and similar research. We haven't earned it yet. But it applies structurally because of how institutional adoption works: once a simulation tool is embedded in an official course syllabus, the switching cost is real — faculty have to redesign the course, students lose institutional familiarity, and procurement has to approve a replacement. That friction drives retention, not brand loyalty. We're designed to benefit from the same structural dynamic.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>Own the fact that it's a benchmark, not your number yet. Then explain why the logic holds for you specifically. Panels respect intellectual honesty paired with structural reasoning.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ─── SECTION G QUESTIONS ─── -->
+        <div class="chapter-block" data-qcat="fg">
+            <div class="chapter-heading">Section G — Operational Plan Questions</div>
+            <div class="chapter-desc">Simulation mechanics · Team capacity · Infrastructure · Execution risk</div>
+
+            <div class="stmt-card q-card" data-cat="technical">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">G1</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"How does the simulation engine actually calculate outcomes? What's the underlying model?"</div>
+                        <div class="stmt-chips"><span class="chip cat-technical">Technical</span><span class="chip">Section G</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>The core engine is a deterministic economic model: when all teams submit their decisions simultaneously, the engine applies standard market mechanics — supply and demand curves, competitive pricing dynamics, production capacity constraints, and labor cost calculations — to produce financial outcomes for each team. The sustainability layer adds delayed-consequence variables: decisions that ignore ESG constraints in early rounds generate compounding penalties (regulatory costs, talent attrition, supply chain disruption) in later rounds. The AI feedback layer sits on top of this deterministic output — it interprets the computed results in natural language, not generates fictional explanations. The facts come from the model; the language comes from the LLM.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>The key distinction to make is: deterministic model + generative language layer. This separates "AI hallucination risk" from "feedback quality risk." The numbers are always calculated; the AI is only explaining them.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="technical">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">G2</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"Five people. Eight weeks. $7,000. That's a very ambitious timeline for a full simulation platform. What can realistically be built?"</div>
+                        <div class="stmt-chips"><span class="chip cat-technical">Technical</span><span class="chip">Section G</span></div>
+                    </div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>In eight weeks and $7,000, we build a functional prototype — not a full commercial product. Specifically: a working simulation cycle for one market scenario, two to three decision categories (pricing, production, one ESG variable), and a single round of AI-generated feedback per team. That's enough to run a real pilot with a real class and collect real data. We're not trying to ship everything in phase one. We're trying to build enough to prove the core mechanic works and that faculty and students find it useful. Everything else gets built on the back of that evidence.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>Scope honesty is a strength here. Don't claim you're building a full enterprise platform in 8 weeks — you're building a proof of concept. The panel wants to see that you know the difference.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="chain">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">G3</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"What happens if two teams make the same decisions? Is the simulation still meaningful?"</div>
+                        <div class="stmt-chips"><span class="chip cat-chain">Chain</span><span class="chip">Section G</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>Even identical decisions produce different outcomes in a shared economy — because outcomes are determined by the aggregate of all teams' decisions, not each team's decisions in isolation. If two teams both choose to flood the market with low-price products, neither gains the market share they expected — they cancel each other out and compress margins for everyone. That's precisely how competitive markets work. Identical strategies don't produce identical results when the market is reactive. In fact, that's one of the most important lessons the simulation teaches: mimicking a competitor's strategy without accounting for what happens when they do the same thing is a strategic error.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="trap">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">G4</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"You mention 'sprint-based development with Git.' That's just standard software practice. What actually differentiates your development process?"</div>
+                        <div class="stmt-chips"><span class="chip cat-trap">Trap</span><span class="chip">Section G</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>Fair challenge. The differentiating element isn't our development process — it's what we've chosen to build within it. The simulation logic itself is the hard part: designing a multi-team economic model that produces internally consistent outcomes across all teams simultaneously, integrating that deterministic engine with an LLM feedback layer, and ensuring the feedback accurately reflects what the model calculated — not what the AI imagines. That's technically non-trivial. The sprints and Git are hygiene. The simulation architecture is the actual challenge, and it's what our AI integration developer is specifically scoped to solve.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>Don't defend your process — pivot to the hard technical problem. The panel is testing whether you know what's actually difficult in your own product. Show that you do.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stmt-card q-card" data-cat="chain">
+                <div class="stmt-header" onclick="toggleCard(this)">
+                    <div class="stmt-number">G5</div>
+                    <div class="stmt-body">
+                        <div class="stmt-text">"What's your plan if the AI feedback is inconsistent — if it gives different explanations for the same outcome across rounds?"</div>
+                        <div class="stmt-chips"><span class="chip cat-chain">Chain</span><span class="chip">Section G</span></div>
+                    </div>
+                    <div class="stmt-toggle">+</div>
+                </div>
+                <div class="stmt-refs">
+                    <div class="answer-label">Answer</div>
+                    <div class="answer-box">
+                        <p>Consistency is an architectural concern we're handling at the prompt engineering level. The AI feedback module receives a structured data payload — team decisions, calculated outcomes, round context — and is instructed to explain those specific computed values rather than generate general business advice. This grounds the language output in deterministic facts. Instructors also have access to feedback logs — they can flag inconsistencies and we can retrain the prompt. For the Phase 1 prototype, we'll also run human review of all AI feedback before any pilot class sees it, to catch quality issues before they become institutional trust issues.</p>
+                    </div>
+                    <div class="answer-box tip">
+                        <div class="answer-label">✓ Strategy</div>
+                        <p>This is a real risk and the panel knows it. Acknowledge it, explain the technical mitigation (structured prompts + computed data), and add the human review layer for early-stage safety. Don't claim the problem is solved — claim it's managed.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // ── TABS ──
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+        });
+    });
+
+    // ── TOGGLE CARD ──
+    function toggleCard(header) {
+        const card = header.closest('.stmt-card');
+        card.classList.toggle('expanded');
+    }
+
+    // ── FILTER QUESTIONS ──
+    function filterQuestions() {
+        const q = document.getElementById('qSearch').value.toLowerCase();
+        const cat = document.getElementById('qCat').value;
+        let count = 0;
+        document.querySelectorAll('.q-card').forEach(card => {
+            const text = card.querySelector('.stmt-text').textContent.toLowerCase();
+            const cardCat = card.dataset.cat;
+            const block = card.closest('.chapter-block[data-qcat]');
+            const blockCat = block ? block.dataset.qcat : '';
+            const matchQ = !q || text.includes(q);
+            // 'fg' filter: show cards belonging to fg blocks regardless of card category
+            const matchCat = !cat || cardCat === cat || (cat === 'fg' && blockCat === 'fg');
+            const show = matchQ && matchCat;
+            card.style.display = show ? '' : 'none';
+            if (show) count++;
+        });
+        document.querySelectorAll('.chapter-block[data-qcat]').forEach(block => {
+            const blockCat = block.dataset.qcat;
+            const catFilter = !cat || blockCat === cat || (cat !== 'fg' && blockCat !== 'fg');
+            const visible = block.querySelectorAll('.q-card:not([style*="none"])').length;
+            block.style.display = (catFilter && visible > 0) ? '' : 'none';
+        });
+        document.getElementById('qCount').textContent = count;
+    }
+    // ── FILTER GLOSSARY ──
+    function filterGlossary() {
+        const q = document.getElementById('glosSearch').value.toLowerCase();
+        const cat = document.getElementById('glosCat').value;
+        let count = 0;
+        document.querySelectorAll('.glos-card').forEach(card => {
+            const text = card.textContent.toLowerCase();
+            const cardCat = card.dataset.cat;
+            const matchQ = !q || text.includes(q);
+            const matchCat = !cat || cardCat === cat;
+            const show = matchQ && matchCat;
+            card.style.display = show ? '' : 'none';
+            if (show) count++;
+        });
+        // Hide/show section labels based on visible cards in each grid
+        document.querySelectorAll('.glos-section-label').forEach(label => {
+            const cat = label.dataset.cat;
+            const grid = label.nextElementSibling;
+            const visible = grid ? grid.querySelectorAll('.glos-card:not([style*="none"])').length : 0;
+            label.style.display = visible > 0 ? '' : 'none';
+            if (grid) grid.style.display = visible > 0 ? '' : 'none';
+        });
+        document.getElementById('glosCount').textContent = count || 'no';
+    }
+</script>
+<!-- ═══════════════════════════════════════════════════════
+     PANEL 4 — GLOSSARY
+═══════════════════════════════════════════════════════ -->
+<div id="tab-glossary" class="tab-panel">
+    <div class="container">
+
+        <div class="chapter-block">
+            <div class="chapter-heading">Term Glossary</div>
+            <div class="chapter-desc">Every abbreviation and concept used in the pitch · Know the definition · Know how to say it aloud</div>
+
+            <div class="answer-box highlight" style="margin-bottom:28px;">
+                <div class="answer-label">How to use this</div>
+                <p>The panel may ask you to clarify a term mid-pitch. These entries give you the definition (what it actually means), and a "Say it as" line — the exact phrasing to use in a live presentation so it sounds natural, not recited. Use the search box to find any term instantly.</p>
+            </div>
+
+            <div class="glossary-search-bar">
+                <input class="filter-input" id="glosSearch" type="text" placeholder="Search terms…" oninput="filterGlossary()" style="max-width:400px;">
+                <select class="filter-select" id="glosCat" onchange="filterGlossary()">
+                    <option value="">All Categories</option>
+                    <option value="finance">Finance</option>
+                    <option value="market">Market</option>
+                    <option value="ops">Operations</option>
+                    <option value="strategy">Strategy</option>
+                    <option value="esg">ESG</option>
+                    <option value="tech">Tech</option>
+                </select>
+                <span class="stats-bar" style="margin:0;">Showing <span id="glosCount">all</span> terms</span>
+            </div>
+
+            <!-- ── FINANCE ── -->
+            <div class="glos-section-label" data-cat="finance">Finance</div>
+            <div class="glossary-grid">
+
+                <div class="glos-card" data-cat="finance">
+                    <div class="glos-header">
+                        <div class="glos-abbr">P&amp;L</div>
+                        <div class="glos-full">Profit &amp; Loss Statement</div>
+                        <span class="glos-tag finance">Finance</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">A financial report that summarises a company's revenues, costs, and expenses over a period — showing whether the business made money or lost it. Also called the Income Statement.</div>
+                        <div class="glos-pitch">Students watch their revenue, costs, and net profit shift after every round — the P&L makes those consequences immediate and visible.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="finance">
+                    <div class="glos-header">
+                        <div class="glos-abbr">EBITDA</div>
+                        <div class="glos-full">Earnings Before Interest, Tax, Depreciation &amp; Amortisation</div>
+                        <span class="glos-tag finance">Finance</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">A measure of core operating profitability — how much cash a business generates from its operations before accounting for financing and accounting adjustments. Used by investors to compare companies across industries.</div>
+                        <div class="glos-pitch">The platform tracks EBITDA each round so students see whether their operational decisions are genuinely profitable — not just boosting revenue.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="finance">
+                    <div class="glos-header">
+                        <div class="glos-abbr">ARR</div>
+                        <div class="glos-full">Annual Recurring Revenue</div>
+                        <span class="glos-tag finance">Finance</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">The annualised revenue a SaaS business can reliably expect from its current paying customers. A key health metric for subscription businesses — it shows how predictable and sticky the revenue base is.</div>
+                        <div class="glos-pitch">Because institutions renew annually, our revenue compounds — each new institution adds to a growing ARR base rather than being a one-off sale.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="finance">
+                    <div class="glos-header">
+                        <div class="glos-abbr">SaaS</div>
+                        <div class="glos-full">Software as a Service</div>
+                        <span class="glos-tag finance">Finance</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">A software delivery model where the product is hosted in the cloud and customers pay a recurring subscription fee — rather than buying a one-time licence and installing it themselves. Enables predictable revenue and easy scaling.</div>
+                        <div class="glos-pitch">We operate on a B2B SaaS model — institutions pay an annual licence, and we handle all hosting, updates, and maintenance on our end.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="finance">
+                    <div class="glos-header">
+                        <div class="glos-abbr">B2B</div>
+                        <div class="glos-full">Business to Business</div>
+                        <span class="glos-tag finance">Finance</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">A commercial model where a company sells products or services to other businesses (rather than directly to consumers). B2B sales typically involve longer cycles, higher contract values, and institutional procurement processes.</div>
+                        <div class="glos-pitch">Our customer is the institution, not the individual student — that's what makes this B2B, and it's why retention compounds so strongly once we're embedded in a curriculum.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="finance">
+                    <div class="glos-header">
+                        <div class="glos-abbr">Seed Round</div>
+                        <div class="glos-full">Seed Funding Round</div>
+                        <span class="glos-tag finance">Finance</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">The first formal round of external investment in a startup — typically from angel investors or early-stage VCs. Used to build an MVP, hire initial team members, and gather early market data before a larger Series A raise.</div>
+                        <div class="glos-pitch">After the pilot validates the concept, we raise a seed round of $100K–$150K to fund the next growth phase — backed by real data, not just a pitch deck.</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── MARKET ── -->
+            <div class="glos-section-label" data-cat="market">Market</div>
+            <div class="glossary-grid">
+
+                <div class="glos-card" data-cat="market">
+                    <div class="glos-header">
+                        <div class="glos-abbr">CAGR</div>
+                        <div class="glos-full">Compound Annual Growth Rate</div>
+                        <span class="glos-tag market">Market</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">The rate at which a market or investment grows year-over-year, expressed as a percentage — assuming growth compounds (i.e., each year's growth is calculated on top of the previous year's total, not the original base).</div>
+                        <div class="glos-pitch">The global EdTech market is growing at 16.3% CAGR — meaning it roughly doubles in size every four to five years. That's the tailwind behind our timing.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="market">
+                    <div class="glos-header">
+                        <div class="glos-abbr">TAM</div>
+                        <div class="glos-full">Total Addressable Market</div>
+                        <span class="glos-tag market">Market</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">The total revenue opportunity available if a product captured 100% of its target market. Used to show the scale of the opportunity — but panels know you won't capture all of it, so always follow up with SAM and SOM.</div>
+                        <div class="glos-pitch">The $404B EdTech figure is TAM — the total ceiling. Our actual near-term target is much smaller: institutional simulation tools in Asia-Pacific.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="market">
+                    <div class="glos-header">
+                        <div class="glos-abbr">SAM / SOM</div>
+                        <div class="glos-full">Serviceable Addressable Market / Serviceable Obtainable Market</div>
+                        <span class="glos-tag market">Market</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">SAM is the slice of the TAM that your product can realistically serve (right geography, right segment). SOM is the portion of the SAM you can realistically capture in the near term given your resources and go-to-market strategy.</div>
+                        <div class="glos-pitch">Our SAM is higher education simulation tools in Asia-Pacific. Our SOM in year two is 80–150 institutions — that's the number we're actually building toward.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="market">
+                    <div class="glos-header">
+                        <div class="glos-abbr">EdTech</div>
+                        <div class="glos-full">Education Technology</div>
+                        <span class="glos-tag market">Market</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">The broad industry of technology products and services designed to improve or deliver education — ranging from K-12 apps to university platforms, corporate training tools, and simulation software.</div>
+                        <div class="glos-pitch">We sit in the institutional EdTech segment — specifically, simulation tools for higher education — which has very different dynamics from consumer-facing education apps.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="market">
+                    <div class="glos-header">
+                        <div class="glos-abbr">UN PRME</div>
+                        <div class="glos-full">Principles for Responsible Management Education</div>
+                        <span class="glos-tag market">Market</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">A United Nations initiative that encourages business schools and universities to integrate sustainability, ethics, and responsible leadership into their teaching and research. Over 800 institutions have signed up as formal members.</div>
+                        <div class="glos-pitch">Over 800 PRME-signatory institutions are already committed to embedding sustainability in their curricula — they're the most receptive early adopters for a platform like ours.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="market">
+                    <div class="glos-header">
+                        <div class="glos-abbr">Penetration</div>
+                        <div class="glos-full">Market Penetration</div>
+                        <span class="glos-tag market">Market</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">The percentage of potential customers in a target market that are currently using a product or service. "Low penetration" means few customers have adopted it yet — which signals both an opportunity and a need for market education.</div>
+                        <div class="glos-pitch">Indonesia has 4,400 universities and low penetration of simulation tools — that's not a saturated market, it's an open runway.</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── ESG ── -->
+            <div class="glos-section-label" data-cat="esg">ESG &amp; Sustainability</div>
+            <div class="glossary-grid">
+
+                <div class="glos-card" data-cat="esg">
+                    <div class="glos-header">
+                        <div class="glos-abbr">ESG</div>
+                        <div class="glos-full">Environmental, Social &amp; Governance</div>
+                        <span class="glos-tag esg">ESG</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">A framework for evaluating a company's impact and risk across three dimensions: Environmental (carbon, waste, resource use), Social (labour conditions, community impact), and Governance (board structure, transparency, ethics). Increasingly required by investors, regulators, and institutional buyers.</div>
+                        <div class="glos-pitch">ESG in our simulation isn't a checkbox — it's a survival constraint. Ignore it in early rounds and the penalties compound later, just like they do in real companies.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="esg">
+                    <div class="glos-header">
+                        <div class="glos-abbr">Sustainability</div>
+                        <div class="glos-full">Sustainable Business Practice</div>
+                        <span class="glos-tag esg">ESG</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">Operating a business in a way that meets present needs without compromising future ones — balancing financial performance with environmental and social responsibility. In business education, it refers to teaching students to consider long-term trade-offs, not just short-term profit.</div>
+                        <div class="glos-pitch">We don't teach sustainability as a theory. We force students to live with the consequences of ignoring it — inside the simulation, that cost shows up on their P&L three rounds later.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="esg">
+                    <div class="glos-header">
+                        <div class="glos-abbr">ESG Trade-off</div>
+                        <div class="glos-full">Short-term Profit vs. Long-term ESG Cost</div>
+                        <span class="glos-tag esg">ESG</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">The tension between maximising near-term financial performance and investing in environmental or social practices that reduce long-term risk. Most traditional simulations treat this as optional; B-Sim AI makes it structural — ignoring ESG creates delayed financial penalties.</div>
+                        <div class="glos-pitch">The simulation forces the trade-off in every round. Cut the ESG budget to boost margins now — and watch regulatory costs or talent attrition hit two rounds later.</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── STRATEGY ── -->
+            <div class="glos-section-label" data-cat="strategy">Strategy &amp; Business Model</div>
+            <div class="glossary-grid">
+
+                <div class="glos-card" data-cat="strategy">
+                    <div class="glos-header">
+                        <div class="glos-abbr">Go-to-Market</div>
+                        <div class="glos-full">Go-to-Market Strategy (GTM)</div>
+                        <span class="glos-tag strategy">Strategy</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">The plan for how a company will reach its target customers and achieve commercial traction — covering sales channels, pricing approach, marketing, and customer acquisition strategy.</div>
+                        <div class="glos-pitch">Our go-to-market is pilot-first: subsidised deployments generate data and testimonials before we ask any institution to commit to a paid licence.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="strategy">
+                    <div class="glos-header">
+                        <div class="glos-abbr">Retention Rate</div>
+                        <div class="glos-full">Annual Customer Retention Rate</div>
+                        <span class="glos-tag strategy">Strategy</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">The percentage of customers who renew their subscription or continue paying in a given year. A retention rate of 85% means 85 out of every 100 customers from last year are still paying this year. High retention is the foundation of compounding SaaS growth.</div>
+                        <div class="glos-pitch">Institutional EdTech retains at roughly 85% annually — once a simulation is built into a course syllabus, switching carries real cost. That's what makes early adoption so valuable.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="strategy">
+                    <div class="glos-header">
+                        <div class="glos-abbr">Switching Cost</div>
+                        <div class="glos-full">Cost of Switching to a Competing Product</div>
+                        <span class="glos-tag strategy">Strategy</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">The practical cost — in time, money, and disruption — that a customer would face by leaving one product for another. High switching costs are a structural competitive advantage: they make customers "sticky" even if a rival appears.</div>
+                        <div class="glos-pitch">Once we're in a course syllabus, the switching cost is real — faculty would have to redesign the course, procurement would need to approve a replacement, and students lose continuity. That inertia works in our favour.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="strategy">
+                    <div class="glos-header">
+                        <div class="glos-abbr">Beachhead</div>
+                        <div class="glos-full">Beachhead Market</div>
+                        <span class="glos-tag strategy">Strategy</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">A tightly defined initial market segment a startup targets first — chosen because it's winnable with limited resources, and because success there creates a credible base for expanding into adjacent segments later.</div>
+                        <div class="glos-pitch">Indonesia is our beachhead — 4,400 universities, low competition, and a regulatory push toward practical outcomes. Win here first, then use those case studies to move into the broader Asia-Pacific market.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="strategy">
+                    <div class="glos-header">
+                        <div class="glos-abbr">MVP</div>
+                        <div class="glos-full">Minimum Viable Product</div>
+                        <span class="glos-tag strategy">Strategy</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">The simplest version of a product that delivers enough core value to be tested with real users and generate meaningful feedback. The goal is to learn as fast as possible without building more than necessary before validation.</div>
+                        <div class="glos-pitch">Our Phase 1 build is an MVP — not everything, just enough to run a real round with a real class and prove the core mechanic works before we build the rest.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="strategy">
+                    <div class="glos-header">
+                        <div class="glos-abbr">First-mover</div>
+                        <div class="glos-full">First-mover Advantage</div>
+                        <span class="glos-tag strategy">Strategy</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">The competitive advantage gained by being the first to enter a new market or offer a new category of product. First-movers can establish brand recognition, lock in early customers, and accumulate data and relationships before competitors arrive.</div>
+                        <div class="glos-pitch">We have an 18–24 month window before larger platforms add AI-native feedback. That's the first-mover window — and institutional relationships compound once established.</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── OPERATIONS ── -->
+            <div class="glos-section-label" data-cat="ops">Operations</div>
+            <div class="glossary-grid">
+
+                <div class="glos-card" data-cat="ops">
+                    <div class="glos-header">
+                        <div class="glos-abbr">Simulation Round</div>
+                        <div class="glos-full">One Decision Cycle in the Simulation</div>
+                        <span class="glos-tag ops">Operations</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">A single iteration of the decision-feedback loop in B-Sim AI, representing one business quarter. Teams submit decisions, the engine processes outcomes across all teams simultaneously, and AI feedback is delivered before the next round opens.</div>
+                        <div class="glos-pitch">Each round is one quarter. Teams decide, the engine runs, feedback lands. The consequences of round two decisions show up in round three — that delayed causality is what makes the learning stick.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="ops">
+                    <div class="glos-header">
+                        <div class="glos-abbr">Shared Economy</div>
+                        <div class="glos-full">Shared Competitive Economy (Simulation)</div>
+                        <span class="glos-tag ops">Operations</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">In B-Sim AI, all student teams operate within the same simulated market. One team's decisions — pricing, production volume, hiring — directly change the market conditions for every other team. This is distinct from isolated simulations where each team's actions have no effect on others.</div>
+                        <div class="glos-pitch">The shared economy is the core differentiator — when your team floods the market with cheap products, every other team feels it. That's how real competition works, and no other platform does this at this level.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="ops">
+                    <div class="glos-header">
+                        <div class="glos-abbr">Sprint</div>
+                        <div class="glos-full">Development Sprint (Agile)</div>
+                        <span class="glos-tag ops">Operations</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">A short, time-boxed development cycle — typically one to two weeks — in which a team commits to completing a defined set of tasks. Part of Agile software methodology. Each sprint ends with a reviewable deliverable, keeping development accountable and fast-moving.</div>
+                        <div class="glos-pitch">We develop in sprints — each one ends with something reviewable. That discipline keeps us from building features nobody asked for and ensures every phase of the roadmap produces a concrete output.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="ops">
+                    <div class="glos-header">
+                        <div class="glos-abbr">LMS</div>
+                        <div class="glos-full">Learning Management System</div>
+                        <span class="glos-tag ops">Operations</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">A software platform universities use to deliver, manage, and track educational content — such as Canvas, Moodle, or Blackboard. LMS platforms handle course materials and assignments but do not run interactive simulations.</div>
+                        <div class="glos-pitch">LMS platforms like Canvas and Moodle are content delivery tools — students consume, they don't run anything. We integrate with LMS via SSO/LTI so adoption is frictionless, but the simulation is what they can't provide themselves.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="ops">
+                    <div class="glos-header">
+                        <div class="glos-abbr">SSO / LTI</div>
+                        <div class="glos-full">Single Sign-On / Learning Tools Interoperability</div>
+                        <span class="glos-tag ops">Operations</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">SSO allows users to log into multiple systems with one set of credentials. LTI is a technical standard that lets external tools (like B-Sim AI) plug into a university's existing LMS without requiring a separate login or installation. Together they eliminate friction for institutional adoption.</div>
+                        <div class="glos-pitch">LTI integration means a faculty member can embed our simulation directly inside their Canvas course — students click in without creating a new account. That removes the biggest barrier to institutional adoption.</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── TECH ── -->
+            <div class="glos-section-label" data-cat="tech">Technology</div>
+            <div class="glossary-grid">
+
+                <div class="glos-card" data-cat="tech">
+                    <div class="glos-header">
+                        <div class="glos-abbr">LLM</div>
+                        <div class="glos-full">Large Language Model</div>
+                        <span class="glos-tag tech">Tech</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">An AI model trained on vast amounts of text data that can generate human-like language, answer questions, summarise content, and explain concepts. Examples include GPT-4 (OpenAI) and Claude (Anthropic). B-Sim AI uses an LLM API to generate personalised feedback after each simulation round.</div>
+                        <div class="glos-pitch">We use an LLM API — not our own trained model — to generate the feedback. That keeps our development scope realistic while delivering high-quality, context-aware explanations after every round.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="tech">
+                    <div class="glos-header">
+                        <div class="glos-abbr">API</div>
+                        <div class="glos-full">Application Programming Interface</div>
+                        <span class="glos-tag tech">Tech</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">A set of defined rules that allows one software system to communicate with another. When B-Sim AI calls an LLM API, it sends the simulation data to an external AI model and receives generated feedback in return — without building or hosting the AI model itself.</div>
+                        <div class="glos-pitch">The feedback module calls an LLM API — we send the round data in, the AI explanation comes back out. Provider-agnostic by design, so we can switch between Anthropic, OpenAI, or others without rebuilding the system.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="tech">
+                    <div class="glos-header">
+                        <div class="glos-abbr">Cloud-hosted</div>
+                        <div class="glos-full">Cloud Infrastructure (AWS / GCP / Azure)</div>
+                        <span class="glos-tag tech">Tech</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">Running software on remote servers managed by a third-party provider (Amazon Web Services, Google Cloud Platform, or Microsoft Azure) rather than on hardware owned by the company. Enables usage-based cost scaling and eliminates client-side installation requirements.</div>
+                        <div class="glos-pitch">Fully cloud-hosted — no installation, no IT procurement needed from the university. Any device, any browser. Early-stage costs stay low because we only pay for what we use.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="tech">
+                    <div class="glos-header">
+                        <div class="glos-abbr">Provider-agnostic</div>
+                        <div class="glos-full">Vendor-independent Architecture</div>
+                        <span class="glos-tag tech">Tech</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">Designing a system so it doesn't depend on any single vendor or technology provider — meaning you can swap out one component (e.g. an AI provider or cloud host) without rebuilding the whole system. Reduces concentration risk and maintains negotiating leverage.</div>
+                        <div class="glos-pitch">Our feedback engine abstracts the LLM call — if API costs rise or a provider changes terms, we switch providers without touching the rest of the system. That's the mitigation for API dependency risk.</div>
+                    </div>
+                </div>
+
+                <div class="glos-card" data-cat="tech">
+                    <div class="glos-header">
+                        <div class="glos-abbr">Deterministic</div>
+                        <div class="glos-full">Deterministic Simulation Engine</div>
+                        <span class="glos-tag tech">Tech</span>
+                    </div>
+                    <div class="glos-body">
+                        <div class="glos-def">A system that always produces the same output given the same input — no randomness involved. In B-Sim AI, the simulation engine is deterministic: team decisions feed into a fixed economic model and produce consistent, explainable financial outcomes. The AI only adds natural language on top of those calculated results.</div>
+                        <div class="glos-pitch">The engine is deterministic — the numbers are always calculated, not generated. The AI explains what already happened. That's why feedback is grounded and accurate, not hallucinated.</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
