@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Economic Outlook — B-Sim AI</title>
+  <meta name="description" content="View global economic report, US/Europe/Asia outlook briefs, and equity market indices trends.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .outlook-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 20px; align-items: start; }
+    @media (max-width: 992px) { .outlook-grid { grid-template-columns: 1fr; } }
+    .outlook-section { margin-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 16px; }
+    .outlook-section:last-child { border-bottom: none; padding-bottom: 0; }
+    .outlook-section-title { font-size: 15px; font-weight: 700; color: var(--teal); margin-bottom: 8px; }
+    .outlook-section-body { font-size: 13px; color: var(--gray-300); line-height: 1.6; }
+    .outlook-highlight { background: rgba(0, 194, 203, 0.05); border-left: 3px solid var(--teal); padding: 12px 16px; border-radius: 0 4px 4px 0; margin-bottom: 20px; font-size: 13px; color: var(--teal); font-weight: 500; }
+  </style>
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+
+      <!-- Course alert warning -->
+      <div class="outlook-highlight">
+        ⚠ WARNING! Your course simulation is currently active. Decisions must be locked before round processing begins.
+      </div>
+
+      <div class="outlook-grid">
+        <!-- Left: Economic Briefings -->
+        <div class="card">
+          <div class="card-title" style="border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom:12px; margin-bottom:16px;">Global Economic Report — H1 / 2028</div>
+          
+          <div class="outlook-section">
+            <div class="outlook-section-title">Investment Perspectives</div>
+            <div class="outlook-section-body">
+              A revolutionary hydrogen-based energy solution has now been confirmed, promising virtually unlimited clean energy production. Companies worldwide are racing to pivot away from fossil fuels — converting transportation, manufacturing, and logistics systems to run on hydrogen — fueling a wave of optimism and massive new investment in this technology.
+            </div>
+          </div>
+
+          <div class="outlook-section">
+            <div class="outlook-section-title">US Economic Outlook</div>
+            <div class="outlook-section-body">
+              The US economy continues on an upward trajectory, with GDP expanding steadily. Inflation, which had been subdued, is now expected to climb back toward the 2% target level — an encouraging sign of balanced growth that indicates demand is strengthening in tandem with supply.
+            </div>
+          </div>
+
+          <div class="outlook-section">
+            <div class="outlook-section-title">Europe Economic Outlook</div>
+            <div class="outlook-section-body">
+              Europe's economic performance remains very strong, although a subtle downtrend in consumer and business confidence has emerged. Despite the solid growth figures, this dip in sentiment suggests that some in the region are growing cautious about the sustainability of the current boom and are bracing for possible challenges ahead.
+            </div>
+          </div>
+
+          <div class="outlook-section">
+            <div class="outlook-section-title">Asia Economic Outlook</div>
+            <div class="outlook-section-body">
+              Japan's economy is expected to keep growing at a modest pace, and its currency continues to appreciate against the US dollar. The yen's persistent strength reflects global investors' confidence in Japan's stability and performance, as the country navigates the worldwide shift toward renewable energy.
+            </div>
+          </div>
+
+          <div class="outlook-section">
+            <div class="outlook-section-title">Global Industry and Factor Outlook</div>
+            <div class="outlook-section-body">
+              Value-focused strategies are likely to continue underperforming as the market rewards bold growth themes. Meanwhile, alternative investments stand out as big winners in the ongoing renewable energy transition — they are attracting huge capital inflows and are poised to benefit significantly from the shift to hydrogen and other green technologies.
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Charts & Rates -->
+        <div>
+          <!-- Equity market performance chart -->
+          <div class="card mb-20">
+            <div class="card-title">Equity Market Performance</div>
+            <div class="chart-wrap" style="height: 200px;">
+              <canvas id="equityMarketChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Interest rates -->
+          <div class="card card-no-padding">
+            <div class="instructor-table-header">
+              <div class="instructor-table-title">Interest Rates, % (p.a.)</div>
+              <span class="badge badge-teal">Short-term (2 year)</span>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th class="table-cell-pad">Currency</th>
+                  <th>This Round</th>
+                  <th>Last Quarter</th>
+                  <th>Year to Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="table-cell-pad table-cell-name">USD</td>
+                  <td class="text-mono">4.05%</td>
+                  <td class="text-mono">4.04%</td>
+                  <td class="text-green">↗ Trend Up</td>
+                </tr>
+                <tr>
+                  <td class="table-cell-pad table-cell-name">GBP</td>
+                  <td class="text-mono">4.74%</td>
+                  <td class="text-mono">4.65%</td>
+                  <td class="text-green">↗ Trend Up</td>
+                </tr>
+                <tr>
+                  <td class="table-cell-pad table-cell-name">EUR</td>
+                  <td class="text-mono">4.19%</td>
+                  <td class="text-mono">4.27%</td>
+                  <td class="text-red">↘ Trend Down</td>
+                </tr>
+                <tr>
+                  <td class="table-cell-pad table-cell-name">CHF</td>
+                  <td class="text-mono">4.00%</td>
+                  <td class="text-mono">4.40%</td>
+                  <td class="text-red">↘ Trend Down</td>
+                </tr>
+                <tr>
+                  <td class="table-cell-pad table-cell-name">JPY</td>
+                  <td class="text-mono">1.15%</td>
+                  <td class="text-mono">1.35%</td>
+                  <td class="text-red">↘ Trend Down</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/actions.js"></script>
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script src="../js/charts.js"></script>
+<script>
+  renderSidebar({ variant: 'student', activePage: 'outlook' });
+  renderTopBar({ 
+    title: 'Economic Outlook Briefing', 
+    subtitle: 'Global economic indices, currencies yields reports, and interest rates trends' 
+  });
+  renderNavigator();
+  document.addEventListener('DOMContentLoaded', initOutlookCharts);
+</script>
+</body>
+</html>

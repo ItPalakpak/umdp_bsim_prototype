@@ -6,7 +6,7 @@
   <title>Submit Decision — B-Sim AI</title>
   <meta name="description" content="Submit your strategic decisions for pricing, operations, finance, HR, and sustainability.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/tokens.css">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/layout.css">
@@ -209,7 +209,7 @@
     <!-- Bottom Action Bar -->
     <div class="decision-bottom-bar">
       <span class="bottom-bar-status">Last auto-saved: 2 min ago</span>
-      <button class="btn btn-secondary">💾 Save Draft</button>
+      <button class="btn btn-secondary" onclick="saveStudentDraft()">💾 Save Draft</button>
       <button class="btn btn-primary" onclick="openSubmitModal()">✓ Submit Final Decision</button>
     </div>
   </div>
@@ -232,6 +232,7 @@
 
 <div id="navigator-root"></div>
 
+<script src="../js/components/actions.js"></script>
 <script src="../js/components/sidebar.js"></script>
 <script src="../js/components/top-bar.js"></script>
 <script src="../js/components/navigator.js"></script>

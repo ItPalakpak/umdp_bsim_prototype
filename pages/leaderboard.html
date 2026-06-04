@@ -6,7 +6,7 @@
   <title>Leaderboard — B-Sim AI</title>
   <meta name="description" content="Class rankings with sortable columns, ESG leaders, and score composition.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/tokens.css">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/layout.css">
@@ -21,9 +21,9 @@
     <div id="topbar-root"></div>
     <div class="page-content">
       <div class="tab-bar mb-20">
-        <button class="tab-btn active">Overall</button>
-        <button class="tab-btn">Revenue</button>
-        <button class="tab-btn">ESG</button>
+        <button class="tab-btn active" onclick="filterLeaderboardTable('Overall', this)">Overall</button>
+        <button class="tab-btn" onclick="filterLeaderboardTable('Revenue', this)">Revenue</button>
+        <button class="tab-btn" onclick="filterLeaderboardTable('ESG', this)">ESG</button>
       </div>
       <div class="grid-2 leaderboard-grid mb-20">
         <!-- Main Leaderboard -->
@@ -101,6 +101,7 @@
 
 <div id="navigator-root"></div>
 
+<script src="../js/components/actions.js"></script>
 <script src="../js/components/sidebar.js"></script>
 <script src="../js/components/top-bar.js"></script>
 <script src="../js/components/navigator.js"></script>

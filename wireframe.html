@@ -6,7 +6,7 @@
   <title>Wireframe — B-Sim AI</title>
   <meta name="description" content="B-Sim AI Prototype Wireframe — Visual sitemap of all screens and user flows.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -29,39 +29,298 @@
   <h1 class="wireframe-title">Prototype <span>Wireframe</span> — Screen Map</h1>
   <p class="wireframe-subtitle">B-Sim AI · All screens and user flows</p>
 
+  <!-- General & Flow Map -->
+  <div class="wireframe-section">
+    <div class="wireframe-section-title">General &amp; Flow Map</div>
+    <div class="wireframe-grid">
+      <a class="wireframe-card" href="index.html">
+        <div class="mini-wireframe wireframe-layout-landing">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-header"></div>
+          <div class="wireframe-block-hero">
+            <div class="wireframe-block-box"></div>
+            <div class="wireframe-block-box-teal"></div>
+          </div>
+          <div class="wireframe-block-features">
+            <div class="wireframe-block-box"></div>
+            <div class="wireframe-block-box"></div>
+            <div class="wireframe-block-box"></div>
+          </div>
+          <div class="wireframe-block-portals">
+            <div class="wireframe-block-box"></div>
+            <div class="wireframe-block-box"></div>
+          </div>
+        </div>
+        <div class="wireframe-card-number">1</div>
+        <div class="wireframe-card-title">Landing / Login</div>
+        <div class="wireframe-card-desc">Hero section, platform features, pricing tiers, research metrics, and portal links.</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="wireframe-flow">↓</div>
+
   <!-- Student Flow -->
   <div class="wireframe-section">
     <div class="wireframe-section-title">Student Flow</div>
     <div class="wireframe-grid">
-      <a class="wireframe-card" href="index.html">
-        <div class="wireframe-card-number">1</div>
-        <div class="wireframe-card-title">Landing / Login</div>
-        <div class="wireframe-card-desc">Entry point with hero section, platform features, and login portals for students and instructors.</div>
-      </a>
       <a class="wireframe-card" href="pages/student-dashboard.html">
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-kpis">
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box-green"></div>
+              </div>
+              <div class="wireframe-block-split">
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+              </div>
+              <div class="wireframe-block-split-3">
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="wireframe-card-number">2</div>
         <div class="wireframe-card-title">Student Dashboard</div>
-        <div class="wireframe-card-desc">KPI cards, revenue/profit trends, round status tracker, and quick stats overview.</div>
+        <div class="wireframe-card-desc">Top alerts banner, KPI performance metrics, revenue/profit chart, and round status.</div>
       </a>
       <a class="wireframe-card" href="pages/decision.html">
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-tabs">
+                <div class="wireframe-block-tab active"></div>
+                <div class="wireframe-block-tab"></div>
+                <div class="wireframe-block-tab"></div>
+                <div class="wireframe-block-tab"></div>
+              </div>
+              <div class="wireframe-block-split">
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-list">
+                  <div class="wireframe-block-list-item"></div>
+                  <div class="wireframe-block-list-item"></div>
+                  <div class="wireframe-block-list-item"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="wireframe-card-number">3</div>
         <div class="wireframe-card-title">Decision Submission</div>
-        <div class="wireframe-card-desc">Multi-tab form for pricing, operations, finance, HR, and ESG decisions with live sidebar summary.</div>
+        <div class="wireframe-card-desc">Form tabbed layout covering pricing, operations, finance, HR, and sustainability metrics.</div>
       </a>
       <a class="wireframe-card" href="pages/ai-feedback.html">
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-box height-18"></div>
+              <div class="wireframe-block-split-3 height-38">
+                <div class="wireframe-block-box-amber"></div>
+                <div class="wireframe-block-box-teal"></div>
+                <div class="wireframe-block-box-green"></div>
+              </div>
+              <div class="wireframe-block-split">
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="wireframe-card-number">4</div>
         <div class="wireframe-card-title">AI Feedback Report</div>
-        <div class="wireframe-card-desc">AI strategic debrief with diagnosis cards, market share chart, profit trends, and ESG breakdown.</div>
+        <div class="wireframe-card-desc">Quantitative financial changes list, qualitative AI audit diagnostic blocks, and market share charts.</div>
       </a>
       <a class="wireframe-card" href="pages/leaderboard.html">
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-tabs">
+                <div class="wireframe-block-tab active"></div>
+                <div class="wireframe-block-tab"></div>
+              </div>
+              <div class="wireframe-block-split">
+                <div class="wireframe-block-table">
+                  <div class="wireframe-block-table-row"><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div></div>
+                  <div class="wireframe-block-table-row"><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div></div>
+                  <div class="wireframe-block-table-row"><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div></div>
+                </div>
+                <div class="wireframe-block-box"></div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="wireframe-card-number">5</div>
         <div class="wireframe-card-title">Leaderboard</div>
-        <div class="wireframe-card-desc">Class rankings with sortable columns, ESG leaders panel, and score composition breakdown.</div>
+        <div class="wireframe-card-desc">Overall rankings, sustainability leaders ranking, and scoring metrics breakdown.</div>
       </a>
       <a class="wireframe-card" href="pages/financial.html">
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-split height-38">
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+              </div>
+              <div class="wireframe-block-split-3">
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+              </div>
+              <div class="wireframe-block-box height-18"></div>
+            </div>
+          </div>
+        </div>
         <div class="wireframe-card-number">6</div>
         <div class="wireframe-card-title">Financial Dashboard</div>
-        <div class="wireframe-card-desc">Detailed P&L income statement, balance sheet summary, cash flow, and HR overview.</div>
+        <div class="wireframe-card-desc">Income statements comparison, balance sheets, cash flows, and HR metrics.</div>
+      </a>
+      <a class="wireframe-card" href="pages/resources.html">
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-box height-18"></div>
+              <div class="wireframe-block-split-3 height-32">
+                <div class="wireframe-block-box-teal"></div>
+                <div class="wireframe-block-box-amber"></div>
+                <div class="wireframe-block-box"></div>
+              </div>
+              <div class="wireframe-block-box height-18"></div>
+              <div class="wireframe-block-split-3 height-32">
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box-green"></div>
+                <div class="wireframe-block-box"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wireframe-card-number">7</div>
+        <div class="wireframe-card-title">Resources Page</div>
+        <div class="wireframe-card-desc">Category lists, reference templates, quickstart instructions, and video walkthrough links.</div>
+      </a>
+      <a class="wireframe-card" href="pages/settings-student.html">
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-split">
+                <div class="wireframe-block-list">
+                  <div class="wireframe-block-box height-18"></div>
+                  <div class="wireframe-block-box height-18"></div>
+                </div>
+                <div class="wireframe-block-box-teal height-38"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wireframe-card-number">8</div>
+        <div class="wireframe-card-title">Student Settings</div>
+        <div class="wireframe-card-desc">Personal profile details, dashboard colors preset switcher, dynamic text size scaler, and checkbox notifications.</div>
+      </a>
+      
+      <a class="wireframe-card" href="pages/market-outlook.html">
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-split">
+                <div class="wireframe-block-list">
+                  <div class="wireframe-block-box height-18"></div>
+                  <div class="wireframe-block-box height-18"></div>
+                  <div class="wireframe-block-box height-18"></div>
+                </div>
+                <div class="wireframe-block-list">
+                  <div class="wireframe-block-box height-38 wireframe-block-box-teal"></div>
+                  <div class="wireframe-block-box height-18"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wireframe-card-number">19</div>
+        <div class="wireframe-card-title">Economic Outlook</div>
+        <div class="wireframe-card-desc">Global macroeconomic briefs, regional reports list, equity indices line chart, and interest rates matrix.</div>
+      </a>
+
+      <a class="wireframe-card" href="pages/investment-strategy.html">
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-tabs">
+                <div class="wireframe-block-tab active"></div>
+                <div class="wireframe-block-tab"></div>
+              </div>
+              <div class="wireframe-block-split">
+                <div class="wireframe-block-table">
+                  <div class="wireframe-block-table-row"><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div></div>
+                  <div class="wireframe-block-table-row"><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div></div>
+                </div>
+                <div class="wireframe-block-list">
+                  <div class="wireframe-block-box height-24 wireframe-block-box-teal"></div>
+                  <div class="wireframe-block-box height-18"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wireframe-card-number">20</div>
+        <div class="wireframe-card-title">Investment Strategy</div>
+        <div class="wireframe-card-desc">Tactical allocation inputs, currency allocations grid, tracking error graph, and total return statistics.</div>
+      </a>
+
+      <a class="wireframe-card" href="pages/class-financials.html">
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-split" style="height:12px; margin-bottom:2px;">
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+              </div>
+              <div class="wireframe-block-table">
+                <div class="wireframe-block-table-row"><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div></div>
+                <div class="wireframe-block-table-row"><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div></div>
+                <div class="wireframe-block-table-row"><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wireframe-card-number">21</div>
+        <div class="wireframe-card-title">Class Comparison</div>
+        <div class="wireframe-card-desc">Income statements stacked horizontally, cohort comparison matrix, round selector, and active team column highlights.</div>
       </a>
     </div>
   </div>
@@ -73,19 +332,95 @@
     <div class="wireframe-section-title">Instructor Flow</div>
     <div class="wireframe-grid">
       <a class="wireframe-card" href="pages/session-config.html">
-        <div class="wireframe-card-number">7</div>
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-split">
+                <div class="wireframe-block-table">
+                  <div class="wireframe-block-table-row"><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div></div>
+                  <div class="wireframe-block-table-row"><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div></div>
+                </div>
+                <div class="wireframe-block-box-amber"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wireframe-card-number">9</div>
         <div class="wireframe-card-title">Session Configuration</div>
-        <div class="wireframe-card-desc">Course setup with collapsible sections for ESG constraints, market conditions, and advanced settings.</div>
+        <div class="wireframe-card-desc">Instructor parameter settings, active rounds, custom shocks, and ESG threshold config.</div>
       </a>
       <a class="wireframe-card" href="pages/class-monitor.html">
-        <div class="wireframe-card-number">8</div>
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-kpis">
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box-green"></div>
+                <div class="wireframe-block-box-amber"></div>
+              </div>
+              <div class="wireframe-block-box height-18"></div>
+              <div class="wireframe-block-split">
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wireframe-card-number">10</div>
         <div class="wireframe-card-title">Class Monitoring</div>
-        <div class="wireframe-card-desc">All-teams overview with KPI summary, at-risk alerts, performance table, and market share chart.</div>
+        <div class="wireframe-card-desc">At-risk team warnings, student progress overview, metrics averages, and details.</div>
       </a>
       <a class="wireframe-card" href="pages/team-deepdive.html">
-        <div class="wireframe-card-number">9</div>
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-split-3 height-18">
+                <div class="wireframe-block-box-teal"></div>
+                <div class="wireframe-block-box-green"></div>
+                <div class="wireframe-block-box"></div>
+              </div>
+              <div class="wireframe-block-split">
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box-amber"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wireframe-card-number">11</div>
         <div class="wireframe-card-title">Team Deep-Dive</div>
-        <div class="wireframe-card-desc">Individual team analysis with decision log, feedback history, and instructor override controls.</div>
+        <div class="wireframe-card-desc">Team historical P&L log, submitted decisions review, and instructor custom overrides.</div>
+      </a>
+      <a class="wireframe-card" href="pages/settings-instructor.html">
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-split">
+                <div class="wireframe-block-list">
+                  <div class="wireframe-block-box height-18"></div>
+                  <div class="wireframe-block-box height-18"></div>
+                </div>
+                <div class="wireframe-block-box-amber height-38"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wireframe-card-number">12</div>
+        <div class="wireframe-card-title">Instructor Settings</div>
+        <div class="wireframe-card-desc">Instructor profile setup, default session scopes, notification thresholds, and LMS API integration.</div>
       </a>
     </div>
   </div>
@@ -94,13 +429,188 @@
 
   <!-- Admin -->
   <div class="wireframe-section">
-    <div class="wireframe-section-title">Admin</div>
+    <div class="wireframe-section-title">Admin Flow</div>
     <div class="wireframe-grid">
       <a class="wireframe-card" href="pages/admin.html">
-        <div class="wireframe-card-number">10</div>
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-kpis">
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box-amber"></div>
+              </div>
+              <div class="wireframe-block-split">
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wireframe-card-number">13</div>
         <div class="wireframe-card-title">University Admin</div>
-        <div class="wireframe-card-desc">Institutional dashboard with license management, billing, instructor table, and usage analytics.</div>
+        <div class="wireframe-card-desc">Institutional billing metrics, usage metrics, license status, and instructor seats logs.</div>
       </a>
+      
+      <a class="wireframe-card" href="pages/admin-users.html">
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-split-3" style="height:12px; margin-bottom:2px;">
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box-teal"></div>
+              </div>
+              <div class="wireframe-block-table">
+                <div class="wireframe-block-table-row"><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div></div>
+                <div class="wireframe-block-table-row"><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div></div>
+                <div class="wireframe-block-table-row"><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wireframe-card-number">14</div>
+        <div class="wireframe-card-title">User Directory (Admin)</div>
+        <div class="wireframe-card-desc">Search filters, role filter toggles, system users database grid, deactivation and activation controls.</div>
+      </a>
+
+      <a class="wireframe-card" href="pages/admin-billing.html">
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-split" style="height:32px;">
+                <div class="wireframe-block-box-teal"></div>
+                <div class="wireframe-block-box-amber"></div>
+              </div>
+              <div class="wireframe-block-table">
+                <div class="wireframe-block-table-row"><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div></div>
+                <div class="wireframe-block-table-row"><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wireframe-card-number">15</div>
+        <div class="wireframe-card-title">Billing &amp; Licensing (Admin)</div>
+        <div class="wireframe-card-desc">License plan quotas, usage indicators progress lines, credit card payment status, and invoices download log.</div>
+      </a>
+
+      <a class="wireframe-card" href="pages/admin-analytics.html">
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-kpis">
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box"></div>
+              </div>
+              <div class="wireframe-block-box height-18 wireframe-block-box-teal"></div>
+              <div class="wireframe-block-split" style="height:22px;">
+                <div class="wireframe-block-box"></div>
+                <div class="wireframe-block-box-green"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wireframe-card-number">16</div>
+        <div class="wireframe-card-title">Usage Analytics (Admin)</div>
+        <div class="wireframe-card-desc">Overall average sessions duration, submission timelines, dual-axis Chart.js line graph, and survey results summaries.</div>
+      </a>
+
+      <a class="wireframe-card" href="pages/admin-support.html">
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-split-3" style="height:20px;">
+                <div class="wireframe-block-box-green"></div>
+                <div class="wireframe-block-box-green"></div>
+                <div class="wireframe-block-box-green"></div>
+              </div>
+              <div class="wireframe-block-table">
+                <div class="wireframe-block-table-row"><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div></div>
+                <div class="wireframe-block-table-row"><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div><div class="wireframe-block-table-cell"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wireframe-card-number">17</div>
+        <div class="wireframe-card-title">Support &amp; Telemetry (Admin)</div>
+        <div class="wireframe-card-desc">System health telemetry bars, CPU node loads, active tickets list grid, and ticket status assignment controls.</div>
+      </a>
+
+      <a class="wireframe-card" href="pages/settings-admin.html">
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-split">
+                <div class="wireframe-block-list">
+                  <div class="wireframe-block-box height-18"></div>
+                  <div class="wireframe-block-box height-18"></div>
+                  <div class="wireframe-block-box-teal height-18"></div>
+                </div>
+                <div class="wireframe-block-box-amber height-38"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wireframe-card-number">18</div>
+        <div class="wireframe-card-title">Admin Settings</div>
+        <div class="wireframe-card-desc">Admin profile credentials, color templates selector, SAML/Google SSO integration toggle, and alert checkboxes.</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ZOOM WIREFRAME MODAL -->
+<div id="zoom-modal-overlay" class="modal-overlay">
+  <div class="zoom-modal">
+    <div class="flex items-center justify-between mb-20">
+      <div class="modal-title" id="zoom-modal-title">Page Layout Wireframe</div>
+      <button class="btn btn-secondary btn-sm zoom-modal-close" onclick="closeZoomModal()">✕</button>
+    </div>
+    <div class="zoom-modal-body">
+      <div class="zoom-modal-layout">
+        <div class="zoom-modal-left" id="zoom-wireframe-container">
+          <!-- Zoomed wireframe cloned here dynamically -->
+        </div>
+        <div class="zoom-modal-right">
+          <div class="wireframe-details-section">
+            <div class="details-section-title">Page Purpose</div>
+            <p class="details-purpose-text" id="zoom-details-purpose">Select a page to see its design layout purpose.</p>
+          </div>
+          <div class="wireframe-details-section" style="margin-top: 20px;">
+            <div class="details-section-title">Key Functions &amp; Capabilities</div>
+            <ul class="details-functions-list" id="zoom-details-functions">
+              <li>No page selected.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-actions" style="display: flex; gap: 12px; margin-top: 20px;">
+      <button class="btn btn-ghost" style="flex: 1; justify-content: center;" onclick="downloadWireframeAsImage()">💾 Download PNG</button>
+      <button class="btn btn-primary" id="zoom-redirect-btn" style="flex: 1; justify-content: center;">Go to Screen →</button>
+      <button class="btn btn-secondary" style="flex: 1; justify-content: center;" onclick="closeZoomModal()">Close Preview</button>
     </div>
   </div>
 </div>

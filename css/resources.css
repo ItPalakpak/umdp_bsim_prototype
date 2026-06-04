@@ -1,0 +1,77 @@
+/* ===================== RESOURCES PAGE ===================== */
+.resources-section {
+  margin-bottom: 32px;
+}
+.resources-section-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 18px;
+  border-left: 3px solid var(--teal);
+  padding-left: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.resource-card {
+  background: var(--navy-2);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: all var(--transition);
+}
+.resource-card:hover {
+  border-color: var(--teal-glow);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+.resource-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.resource-type {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--teal);
+  letter-spacing: 0.8px;
+}
+.resource-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+.resource-desc {
+  font-size: 12px;
+  color: var(--gray-400);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+.resource-action {
+  margin-top: auto;
+}
+
+@media (max-width: 992px) {
+  .resources-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .resources-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.resource-modal-close {
+  padding: 4px 8px;
+}

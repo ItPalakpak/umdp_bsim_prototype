@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usage Analytics — B-Sim AI</title>
+  <meta name="description" content="View overall student engagement, session timings, and decision submission telemetry.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+
+      <!-- Analytics Stats Grid -->
+      <div class="admin-stats-grid mb-20">
+        <div class="admin-stat-card">
+          <div class="admin-stat-num">35m</div>
+          <div class="admin-stat-label">Avg Session Duration</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-num">90%</div>
+          <div class="admin-stat-label">Submission Rate</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-num">4.8 / 5</div>
+          <div class="admin-stat-label">Student Satisfaction</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-num">12</div>
+          <div class="admin-stat-label">Active Courses</div>
+        </div>
+      </div>
+
+      <div class="grid-2 mb-20">
+        <!-- Trend Chart -->
+        <div class="card" style="grid-column: span 2;">
+          <div class="card-title">Engagement and Completion Ranks (Last 6 Weeks)</div>
+          <p class="form-hint mb-16">Dual-axis line showing average minutes per session vs final decision submit percentage.</p>
+          <div class="chart-wrap chart-wrap-180" style="height: 240px;">
+            <canvas id="adminEngagementChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2 mb-20">
+        <!-- telemetry data breakdown -->
+        <div class="card">
+          <div class="card-title">System Activity telemetry</div>
+          <div class="details-info-box" style="margin-bottom:0;">
+            <div class="details-info-title">📊 Hourly Active Logs Summary</div>
+            <div class="details-info-row"><span>Total Active Enrolled:</span><span>284 Students</span></div>
+            <div class="details-info-row"><span>Decisions Generated:</span><span>1,842 Entries</span></div>
+            <div class="details-info-row"><span>Completed Rounds:</span><span>24 Runs</span></div>
+            <div class="details-info-row"><span>Last Heartbeat:</span><span>Just now</span></div>
+          </div>
+        </div>
+
+        <!-- satisfaction distribution -->
+        <div class="card">
+          <div class="card-title">Platform Performance Feedback</div>
+          <p class="form-hint mb-10">Qualitative survey stats collected after team final-round scoreboards.</p>
+          <div class="round-status-list">
+            <div class="round-status-item">
+              <span class="round-label">Strategic AI Causal Value</span>
+              <span class="badge badge-green">94% Positive</span>
+            </div>
+            <div class="round-status-item">
+              <span class="round-label">UX / Portal Interface Flow</span>
+              <span class="badge badge-green">91% Positive</span>
+            </div>
+            <div class="round-status-item">
+              <span class="round-label">Instructor Class Auditing Tool</span>
+              <span class="badge badge-teal">96% Positive</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/actions.js"></script>
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script src="../js/charts.js"></script>
+<script>
+  renderSidebar({ variant: 'admin', activePage: 'analytics' });
+  renderTopBar({ 
+    title: 'Platform Analytics', 
+    subtitle: 'Track student active hours, simulation submission frequencies, and system satisfaction grades' 
+  });
+  renderNavigator();
+  document.addEventListener('DOMContentLoaded', initAdminAnalyticsCharts);
+</script>
+</body>
+</html>

@@ -6,7 +6,7 @@
   <title>Session Configuration — B-Sim AI</title>
   <meta name="description" content="Configure a new simulation session — rounds, teams, ESG constraints, and advanced settings.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/tokens.css">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/layout.css">
@@ -116,8 +116,8 @@
               <div class="session-preview-row-last"><span class="session-preview-label">Starting Capital</span><span class="text-mono">$10M / team</span></div>
             </div>
             <div class="session-preview-actions">
-              <button class="btn btn-secondary w-full">💾 Save as Template</button>
-              <button class="btn btn-primary w-full">🚀 Launch Simulation</button>
+              <button class="btn btn-secondary w-full" onclick="saveSessionTemplate()">💾 Save as Template</button>
+              <button class="btn btn-primary w-full" onclick="launchSimulation()">🚀 Launch Simulation</button>
             </div>
           </div>
         </div>
@@ -128,6 +128,7 @@
 
 <div id="navigator-root"></div>
 
+<script src="../js/components/actions.js"></script>
 <script src="../js/components/sidebar.js"></script>
 <script src="../js/components/top-bar.js"></script>
 <script src="../js/components/navigator.js"></script>

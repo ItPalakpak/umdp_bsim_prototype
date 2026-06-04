@@ -3,6 +3,21 @@
 .screen.active { display: flex; flex-direction: column; }
 .screen.app-layout { flex-direction: row; }
 
+/* Pre-allocate space for dynamic layout roots to prevent rendering shifts/flashes */
+.screen.app-layout #sidebar-root {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  min-height: 100vh;
+  background: var(--navy-2);
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.screen.app-layout #topbar-root {
+  height: 56px;
+  background: var(--navy-2);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+
 /* ===================== SIDEBAR ===================== */
 .sidebar {
   width: var(--sidebar-w);
@@ -20,6 +35,10 @@
 .sidebar-logo {
   padding: 24px 20px 18px;
   border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 .sidebar-logo .logo-mark {
   display: flex;
@@ -188,3 +207,121 @@
 .loading-title span { color: var(--teal); }
 .loading-sub { font-size: 13px; color: var(--gray-400); animation: blink 1.5s ease-in-out infinite; }
 @keyframes blink { 0%,100%{opacity:0.5;} 50%{opacity:1;} }
+
+/* ===================== COLLAPSED SIDEBAR ===================== */
+#sidebar-root {
+  transition: width var(--transition);
+}
+.sidebar {
+  transition: width var(--transition);
+}
+#sidebar-root.collapsed, .sidebar.collapsed {
+  width: 64px !important;
+}
+.sidebar.collapsed .logo-text,
+.sidebar.collapsed .sidebar-section-label,
+.sidebar.collapsed .nav-label,
+.sidebar.collapsed .avatar-info {
+  display: none !important;
+}
+.sidebar.collapsed .sidebar-logo {
+  padding: 24px 14px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.sidebar.collapsed .nav-item {
+  padding: 10px 0;
+  justify-content: center;
+}
+.sidebar.collapsed .sidebar-footer {
+  padding: 16px 0;
+  justify-content: center;
+}
+.sidebar-collapse-toggle-btn {
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  cursor: pointer;
+  color: var(--gray-400);
+  border-radius: var(--radius);
+  transition: all var(--transition);
+  outline: none;
+}
+.sidebar-collapse-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+}
+.sidebar-collapse-toggle-btn svg {
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+  transition: transform var(--transition), opacity var(--transition);
+}
+.sidebar-collapse-toggle-btn:hover svg {
+  opacity: 1;
+}
+.sidebar.collapsed .sidebar-collapse-toggle-btn svg {
+  transform: rotate(180deg);
+}
+
+/* ===================== PROFILE TOOLTIP ===================== */
+.sidebar-footer {
+  position: relative;
+}
+.avatar-tooltip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 20px;
+  width: 150px;
+  background: var(--navy-3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  padding: 6px 0;
+  box-shadow: var(--shadow);
+  z-index: 100;
+}
+.sidebar-footer:hover .avatar-tooltip {
+  display: block;
+}
+/* Invisible bridge to prevent losing hover state when moving cursor to the tooltip */
+.avatar-tooltip::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 16px;
+  background: transparent;
+}
+.sidebar.collapsed .avatar-tooltip {
+  left: 60px;
+  bottom: 12px;
+}
+.sidebar.collapsed .avatar-tooltip::before {
+  top: 0;
+  left: -25px;
+  width: 25px;
+  height: 100%;
+}
+.tooltip-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  color: var(--gray-400);
+  font-size: 12px;
+  font-weight: 500;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+.tooltip-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--white);
+}
+

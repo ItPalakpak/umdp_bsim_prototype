@@ -107,3 +107,71 @@ function initAdminCharts() {
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
   });
 }
+
+/** Admin Analytics charts */
+function initAdminAnalyticsCharts() {
+  initChart('adminEngagementChart', {
+    type: 'line',
+    data: {
+      labels: ['Wk 1', 'Wk 2', 'Wk 3', 'Wk 4', 'Wk 5', 'Wk 6'],
+      datasets: [
+        { label: 'Avg Session Time (min)', data: [18, 24, 32, 28, 41, 35], borderColor: '#00C2CB', tension: 0.4, fill: false, pointBackgroundColor: '#00C2CB' },
+        { label: 'Submissions Rate %', data: [65, 80, 92, 85, 96, 90], borderColor: '#2EC4B6', tension: 0.4, fill: false, pointBackgroundColor: '#2EC4B6', yAxisID: 'y1' }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { position: 'top', labels: { boxWidth: 10, usePointStyle: true } } },
+      scales: {
+        y: { type: 'linear', display: true, position: 'left', ticks: { callback: function(v) { return v + 'm'; } } },
+        y1: { type: 'linear', display: true, position: 'right', grid: { drawOnChartArea: false }, ticks: { callback: function(v) { return v + '%'; } } }
+      }
+    }
+  });
+}
+
+/** Market Outlook Charts */
+function initOutlookCharts() {
+  initChart('equityMarketChart', {
+    type: 'line',
+    data: {
+      labels: ['12M', '10M', '8M', '6M', '4M', '2M', 'Now'],
+      datasets: [
+        { label: 'United States', data: [100, 102, 105, 103, 108, 107, 114], borderColor: '#00C2CB', backgroundColor: 'rgba(0,194,203,0.05)', tension: 0.3, pointRadius: 2 },
+        { label: 'United Kingdom', data: [100, 101, 100, 98, 102, 99, 97], borderColor: '#F4A261', backgroundColor: 'transparent', tension: 0.3, pointRadius: 2 },
+        { label: 'Eurozone', data: [100, 103, 102, 104, 105, 110, 109], borderColor: '#2EC4B6', backgroundColor: 'transparent', tension: 0.3, pointRadius: 2 },
+        { label: 'Switzerland', data: [100, 104, 103, 106, 102, 108, 112], borderColor: '#E63946', backgroundColor: 'transparent', tension: 0.3, pointRadius: 2 },
+        { label: 'Japan', data: [100, 99, 97, 96, 99, 98, 102], borderColor: '#9B5DE5', backgroundColor: 'transparent', tension: 0.3, pointRadius: 2 }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { boxWidth: 8, usePointStyle: true, font: { size: 9 } } } },
+      scales: { y: { min: 90, max: 120 } }
+    }
+  });
+}
+
+/** Investment Strategy Charts */
+function initStrategyCharts() {
+  initChart('infoRatioChart', {
+    type: 'line',
+    data: {
+      labels: ['R1', 'R2', 'R3', 'R4', 'R5'],
+      datasets: [
+        { label: 'Team Nova', data: [0.0, 5.0, 0.5, -2.2, -4.5], borderColor: '#00C2CB', backgroundColor: 'rgba(0,194,203,0.05)', tension: 0.3, fill: true },
+        { label: 'Market Avg', data: [0.0, 3.5, 0.8, -0.2, 1.5], borderColor: '#8A9BAD', borderDash: [4, 4], backgroundColor: 'transparent', tension: 0.3 }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { position: 'top', labels: { boxWidth: 10, usePointStyle: true } } },
+      scales: { y: { min: -6, max: 6 } }
+    }
+  });
+}
+
+

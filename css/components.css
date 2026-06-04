@@ -308,3 +308,144 @@ canvas { max-width: 100%; }
 .empty-icon { font-size: 48px; opacity: 0.3; }
 .empty-title { font-size: 16px; font-weight: 700; color: var(--gray-400); }
 .empty-sub { font-size: 13px; color: var(--gray-600); }
+
+/* ===================== TOAST NOTIFICATIONS ===================== */
+.toast-container {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+  pointer-events: none;
+}
+.toast {
+  pointer-events: auto;
+  background: rgba(15, 23, 42, 0.85); /* navy-3 backdrop */
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  padding: 12px 18px;
+  width: 320px;
+  max-width: 90vw;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transform: translateX(120%);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+.toast.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+.toast-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.toast-content {
+  flex: 1;
+}
+.toast-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 2px;
+}
+.toast-message {
+  font-size: 11px;
+  color: var(--gray-400);
+  line-height: 1.4;
+}
+.toast-close {
+  background: transparent;
+  border: none;
+  color: var(--gray-600);
+  cursor: pointer;
+  padding: 0;
+  font-size: 12px;
+  transition: color 0.2s;
+}
+.toast-close:hover {
+  color: var(--white);
+}
+
+/* Toast Variants */
+.toast-success { border-left: 3px solid var(--teal); }
+.toast-success .toast-title { color: var(--teal); }
+.toast-success .toast-icon { color: var(--teal); }
+.toast-warning { border-left: 3px solid var(--amber); }
+.toast-warning .toast-title { color: var(--amber); }
+.toast-warning .toast-icon { color: var(--amber); }
+.toast-danger { border-left: 3px solid var(--red); }
+.toast-danger .toast-title { color: var(--red); }
+.toast-danger .toast-icon { color: var(--red); }
+.toast-info { border-left: 3px solid var(--teal); }
+.toast-info .toast-title { color: var(--teal); }
+
+/* Modal Inputs & Styling Updates */
+.modal-form-group {
+  margin-bottom: 16px;
+  text-align: left;
+}
+.modal-form-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gray-400);
+  margin-bottom: 6px;
+  display: block;
+}
+.modal-form-input {
+  width: 100%;
+  background: var(--navy-3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  color: var(--white);
+  font-size: 13px;
+}
+.modal-form-input:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+/* Launching Simulation Process Screen overlay */
+.sim-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--navy);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.sim-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.sim-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  border-top-color: var(--teal);
+  animation: spin 1s linear infinite;
+}
+.sim-step {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--gray-400);
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+

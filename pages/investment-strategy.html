@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investment Strategy — B-Sim AI</title>
+  <meta name="description" content="Configure investment strategy allocations for government and corporate bonds across global currencies.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+  <link rel="stylesheet" href="../css/decision.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .strategy-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 20px; align-items: start; }
+    @media (max-width: 1024px) { .strategy-grid { grid-template-columns: 1fr; } }
+    .allocation-table { width: 100%; border-collapse: collapse; }
+    .allocation-table th { padding: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--gray-400); text-align: right; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .allocation-table th:first-child { text-align: left; }
+    .allocation-table td { padding: 10px 12px; font-size: 13px; text-align: right; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
+    .allocation-table td:first-child { text-align: left; }
+    .allocation-table tr.category-row td { background: rgba(255,255,255,0.02); font-weight: 700; color: var(--teal); border-bottom: 1px solid rgba(0, 194, 203, 0.2); }
+    
+    /* Allocation Inputs styling */
+    .allocation-input {
+      width: 76px;
+      background: var(--navy-3);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      padding: 6px 10px;
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: 12px;
+      text-align: right;
+      transition: border-color var(--transition), background-color var(--transition);
+    }
+    .allocation-input:focus {
+      border-color: var(--teal);
+      background: rgba(0, 194, 203, 0.04);
+      outline: none;
+    }
+    
+    /* Hide number input spinners for clean alignment */
+    .allocation-input::-webkit-outer-spin-button,
+    .allocation-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .allocation-input[type=number] {
+      -moz-appearance: textfield;
+    }
+    
+    .automation-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 18px; background: var(--navy-3); border-radius: 6px; border: 1px solid rgba(255,255,255,0.06); margin-bottom: 16px; }
+    .automation-label { font-size: 13px; font-weight: 600; color: var(--gray-200); }
+    
+    /* Premium Segmented Toggle Button Group */
+    .toggle-group {
+      display: flex;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 3px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .toggle-btn {
+      background: transparent;
+      border: none;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 16px;
+      color: var(--gray-400);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .toggle-btn.active {
+      background: var(--teal);
+      color: var(--navy-1);
+      box-shadow: 0 0 10px var(--teal-glow);
+    }
+    .toggle-btn:hover:not(.active) {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.05);
+    }
+  </style>
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+
+      <!-- Strategy Mode Selection Tabs -->
+      <div class="decision-tabs" style="margin-bottom:16px;">
+        <button class="decision-tab active" onclick="switchStrategyMode(this, 'Dynamic')">📈 Dynamic Portfolio Strategy</button>
+        <button class="decision-tab" onclick="switchStrategyMode(this, 'Conservative')">🛡️ Conservative Portfolio Strategy</button>
+      </div>
+
+      <div class="strategy-grid">
+        <!-- Left: Allocation Tables -->
+        <div>
+          <!-- Automation override settings -->
+          <div class="automation-row">
+            <span class="automation-label">🤖 AI Portfolio Automation Agent</span>
+            <div class="toggle-group">
+              <button class="toggle-btn active" id="btn-auto-off" onclick="togglePortfolioAutomation(false)">Disabled</button>
+              <button class="toggle-btn" id="btn-auto-on" onclick="togglePortfolioAutomation(true)">Enabled</button>
+            </div>
+          </div>
+
+          <div class="card card-no-padding mb-20">
+            <div class="instructor-table-header">
+              <div class="instructor-table-title" id="strategy-title">Investment allocations (% of Assets under Management)</div>
+              <button class="btn btn-primary btn-sm" onclick="saveInvestmentStrategy()">💾 Save Strategy</button>
+            </div>
+            
+            <table class="allocation-table">
+              <thead>
+                <tr>
+                  <th style="width: 30%;">Asset Class</th>
+                  <th style="width: 23%;">Strategic %</th>
+                  <th style="width: 23%;">Tactical %</th>
+                  <th style="width: 12%;">Current %</th>
+                  <th style="width: 12%;">Projected %</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Government Bonds -->
+                <tr class="category-row">
+                  <td colspan="5">Government Bonds</td>
+                </tr>
+                <tr>
+                  <td>USD Bonds</td>
+                  <td><input type="number" class="allocation-input strat-val" data-field="gov-usd" step="0.5" value="7.00" onchange="calculateProjectedAllocations()"></td>
+                  <td><input type="number" class="allocation-input tact-val" data-field="gov-usd" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                  <td class="text-mono">7.00%</td>
+                  <td class="text-mono text-teal" id="proj-gov-usd">7.00%</td>
+                </tr>
+                <tr>
+                  <td>GBP Bonds</td>
+                  <td><input type="number" class="allocation-input strat-val" data-field="gov-gbp" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                  <td><input type="number" class="allocation-input tact-val" data-field="gov-gbp" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                  <td class="text-mono">0.00%</td>
+                  <td class="text-mono text-teal" id="proj-gov-gbp">0.00%</td>
+                </tr>
+                <tr>
+                  <td>EUR Bonds</td>
+                  <td><input type="number" class="allocation-input strat-val" data-field="gov-eur" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                  <td><input type="number" class="allocation-input tact-val" data-field="gov-eur" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                  <td class="text-mono">0.00%</td>
+                  <td class="text-mono text-teal" id="proj-gov-eur">0.00%</td>
+                </tr>
+                <tr>
+                  <td>CHF Bonds</td>
+                  <td><input type="number" class="allocation-input strat-val" data-field="gov-chf" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                  <td><input type="number" class="allocation-input tact-val" data-field="gov-chf" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                  <td class="text-mono">0.00%</td>
+                  <td class="text-mono text-teal" id="proj-gov-chf">0.00%</td>
+                </tr>
+                <tr>
+                  <td>JPY Bonds</td>
+                  <td><input type="number" class="allocation-input strat-val" data-field="gov-jpy" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                  <td><input type="number" class="allocation-input tact-val" data-field="gov-jpy" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                  <td class="text-mono">0.00%</td>
+                  <td class="text-mono text-teal" id="proj-gov-jpy">0.00%</td>
+                </tr>
+
+                <!-- Corporate Bonds -->
+                <tr class="category-row">
+                  <td colspan="5">Corporate Bonds</td>
+                </tr>
+                <tr>
+                  <td>USD Corporate</td>
+                  <td><input type="number" class="allocation-input strat-val" data-field="corp-usd" step="0.5" value="5.00" onchange="calculateProjectedAllocations()"></td>
+                  <td><input type="number" class="allocation-input tact-val" data-field="corp-usd" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                  <td class="text-mono">5.00%</td>
+                  <td class="text-mono text-teal" id="proj-corp-usd">5.00%</td>
+                </tr>
+                <tr>
+                  <td>GBP Corporate</td>
+                  <td><input type="number" class="allocation-input strat-val" data-field="corp-gbp" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                  <td><input type="number" class="allocation-input tact-val" data-field="corp-gbp" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                  <td class="text-mono">0.00%</td>
+                  <td class="text-mono text-teal" id="proj-corp-gbp">0.00%</td>
+                </tr>
+                <tr>
+                  <td>EUR Corporate</td>
+                  <td><input type="number" class="allocation-input strat-val" data-field="corp-eur" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                  <td><input type="number" class="allocation-input tact-val" data-field="corp-eur" step="0.5" value="0.00" onchange="calculateProjectedAllocations()"></td>
+                  <td class="text-mono">0.00%</td>
+                  <td class="text-mono text-teal" id="proj-corp-eur">0.00%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right: Charts & Stats -->
+        <div>
+          <!-- Information ratio chart -->
+          <div class="card mb-20">
+            <div class="card-title">Information Ratio Trend</div>
+            <div class="chart-wrap" style="height: 180px;">
+              <canvas id="infoRatioChart"></canvas>
+            </div>
+            
+            <table class="data-table" style="margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); width: 100%;">
+              <tbody>
+                <tr>
+                  <td class="table-cell-text" style="text-align: left;">Fund Return, %</td>
+                  <td class="text-mono text-red" style="text-align: right; padding-right: 8px;">-3.08%</td>
+                  <td class="text-mono text-gray" style="text-align: right; font-size: 11px; width: 30%;">Prev: 11.18%</td>
+                </tr>
+                <tr>
+                  <td class="table-cell-text" style="text-align: left;">Benchmark Return, %</td>
+                  <td class="text-mono text-red" style="text-align: right; padding-right: 8px;">-2.65%</td>
+                  <td class="text-mono text-gray" style="text-align: right; font-size: 11px; width: 30%;">Prev: 15.27%</td>
+                </tr>
+                <tr>
+                  <td class="table-cell-text" style="text-align: left;">Tracking Error, %</td>
+                  <td class="text-mono" style="text-align: right; padding-right: 8px;">1.06%</td>
+                  <td class="text-mono text-gray" style="text-align: right; font-size: 11px; width: 30%;">Prev: 1.06%</td>
+                </tr>
+                <tr>
+                  <td class="table-cell-text" style="text-align: left;">Information Ratio</td>
+                  <td class="text-mono text-red" style="text-align: right; padding-right: 8px;">-0.45</td>
+                  <td class="text-mono text-gray" style="text-align: right; font-size: 11px; width: 30%;">Prev: -4.34</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pie allocation visual -->
+          <div class="card">
+            <div class="card-title">AuM Distribution</div>
+            <p class="form-hint mb-12">Dynamic portfolio allocation splits by asset currencies weight.</p>
+            <div class="round-status-list">
+              <div class="round-status-item">
+                <span class="round-label">USD Holdings</span>
+                <span class="badge badge-teal">12.0%</span>
+              </div>
+              <div class="round-status-item">
+                <span class="round-label">Cash / Liquidity</span>
+                <span class="badge badge-gray">88.0%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/actions.js"></script>
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script src="../js/charts.js"></script>
+<script>
+  renderSidebar({ variant: 'student', activePage: 'strategy' });
+  renderTopBar({ 
+    title: 'Investment Strategy Panel', 
+    subtitle: 'Configure tactical allocations, set bond portfolios ratios, and analyze information ratios' 
+  });
+  renderNavigator();
+  document.addEventListener('DOMContentLoaded', initStrategyCharts);
+
+  // Dynamic calculations for table inputs
+  function calculateProjectedAllocations() {
+    var strats = document.querySelectorAll('.strat-val');
+    var tacts = document.querySelectorAll('.tact-val');
+    
+    strats.forEach(function(s, idx) {
+      var stratVal = parseFloat(s.value) || 0;
+      var tactVal = parseFloat(tacts[idx].value) || 0;
+      var projVal = stratVal + tactVal;
+      
+      var fieldId = s.getAttribute('data-field');
+      var label = document.getElementById('proj-' + fieldId);
+      if (label) {
+        label.textContent = projVal.toFixed(2) + '%';
+      }
+    });
+  }
+
+  function switchStrategyMode(btn, mode) {
+    var tabs = document.querySelectorAll('.decision-tab');
+    tabs.forEach(function(t) { t.classList.remove('active'); });
+    btn.classList.add('active');
+    
+    document.getElementById('strategy-title').textContent = mode + ' portfolio allocations (% of AuM)';
+    showToast("Strategy Loaded", mode + " configuration model loaded.", "info");
+  }
+
+  function togglePortfolioAutomation(enabled) {
+    var btnOff = document.getElementById('btn-auto-off');
+    var btnOn = document.getElementById('btn-auto-on');
+    
+    if (enabled) {
+      btnOff.classList.remove('active');
+      btnOn.classList.add('active');
+      showToast("Automation On", "AI automation agent will manage dynamic tactical rebalances.", "success");
+    } else {
+      btnOn.classList.remove('active');
+      btnOff.classList.add('active');
+      showToast("Automation Off", "Manual tactical asset allocation control active.", "info");
+    }
+  }
+</script>
+</body>
+</html>

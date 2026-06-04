@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Settings — B-Sim AI</title>
+  <meta name="description" content="Configure admin credentials, visual presets, SSO integrations, and server status alerts.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+  <link rel="stylesheet" href="../css/settings.css">
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+      
+      <div class="settings-grid">
+        <!-- Left: Form Controls -->
+        <div>
+          <!-- Profile Settings -->
+          <div class="card settings-card">
+            <div class="settings-section-title">👤 Admin Profile Credentials</div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input" id="profileName">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Avatar Initials</label>
+                <input type="text" class="form-input" id="profileInitials" maxlength="3">
+              </div>
+            </div>
+            <div class="form-group form-group-no-margin">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-input" id="profileEmail">
+            </div>
+          </div>
+
+          <!-- UI Customization -->
+          <div class="card settings-card">
+            <div class="settings-section-title">🎨 UI Visual Customization</div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Color Theme Preset</label>
+                <select class="form-select" id="themePreset">
+                  <option value="teal">Classic Teal (Default)</option>
+                  <option value="amber">Amber Flare (Warm)</option>
+                  <option value="emerald">Emerald Forest (Teal/Green)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Interface Layout Scale</label>
+                <select class="form-select" id="textScale">
+                  <option value="standard">Standard (Compact)</option>
+                  <option value="large">Large Font Layout</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-label mb-10">AI Strategic Feedback Verbosity</div>
+            <div class="radio-group">
+              <div class="radio-card" data-value="concise" onclick="selectVerbosityCard('concise')">
+                <div class="radio-card-title">Concise</div>
+                <div class="radio-card-desc">Short action list. Ideal for quick round iterations.</div>
+              </div>
+              <div class="radio-card" data-value="balanced" onclick="selectVerbosityCard('balanced')">
+                <div class="radio-card-title">Balanced</div>
+                <div class="radio-card-desc">Standard breakdowns. Explains core segment concerns.</div>
+              </div>
+              <div class="radio-card" data-value="detailed" onclick="selectVerbosityCard('detailed')">
+                <div class="radio-card-title">Detailed</div>
+                <div class="radio-card-desc">In-depth feedback covering competitors and logic links.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SSO & Security Settings -->
+          <div class="card settings-card">
+            <div class="settings-section-title">🔐 Single Sign-On &amp; Security</div>
+            
+            <div class="toggle-switch-row mb-16">
+              <div>
+                <div class="form-label" style="margin-bottom:2px;">Enable SAML / Google SSO Sync</div>
+                <div class="form-hint">Enforce single sign-on authentication across all instructor and student portals.</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="ssoSyncToggle">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="form-group form-group-no-margin">
+              <label class="form-label">Admin Session Inactivity Timeout</label>
+              <select class="form-select" id="sessionTimeout">
+                <option value="15m">15 Minutes</option>
+                <option value="30m">30 Minutes (Recommended)</option>
+                <option value="1h">1 Hour</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Server Alerts -->
+          <div class="card settings-card">
+            <div class="settings-section-title">🔔 Server &amp; Security Alerts</div>
+            
+            <label class="check-row">
+              <input type="checkbox" class="check-input" id="alertDeadline" style="display:none;"> <!-- Hidden but required by settings.js common initialization -->
+            </label>
+            <label class="check-row" style="display:none;">
+              <input type="checkbox" class="check-input" id="alertEsg"> <!-- Hidden but required by settings.js common initialization -->
+            </label>
+
+            <label class="check-row">
+              <input type="checkbox" class="check-input" id="alertCompute">
+              <span class="check-label">Notify immediately on compute node resource spikes (&gt;85% CPU load).</span>
+            </label>
+            
+            <label class="check-row">
+              <input type="checkbox" class="check-input" id="alertReplica">
+              <span class="check-label">Notify if database read-replica replica lag exceeds 300ms.</span>
+            </label>
+
+            <label class="check-row">
+              <input type="checkbox" class="check-input" id="alertInvoice">
+              <span class="check-label">Send monthly invoice and license capacity reports to registered email.</span>
+            </label>
+          </div>
+
+          <!-- Save/Reset Actions -->
+          <div class="settings-actions-bar">
+            <button class="btn btn-secondary" onclick="resetDefaultSettings('admin')">Reset Defaults</button>
+            <button class="btn btn-primary" onclick="saveAllSettings('admin')">💾 Save Preferences</button>
+          </div>
+        </div>
+
+        <!-- Right: Institutional Defaults Reference -->
+        <div>
+          <div class="card mb-16">
+            <div class="settings-section-title">🏫 Institutional Scope Defaults</div>
+            <div class="details-info-box">
+              <div class="details-info-title">De La Salle University</div>
+              <div class="details-info-row"><span>Active License:</span><span>Enterprise Plan</span></div>
+              <div class="details-info-row"><span>Student Seats:</span><span>284 / 500 max</span></div>
+              <div class="details-info-row"><span>Instructor Seats:</span><span>18 / 50 max</span></div>
+              <div class="details-info-row"><span>Renewal Date:</span><span>Jan 15, 2026</span></div>
+            </div>
+            
+            <div class="form-label mb-10">Access Guides</div>
+            <div class="round-status-list">
+              <div class="round-status-item">
+                <span class="round-label">SSO Setup Guide</span>
+                <span class="badge badge-teal">DOCS</span>
+              </div>
+              <div class="round-status-item">
+                <span class="round-label">Server Telemetry Specs</span>
+                <span class="badge badge-teal">DOCS</span>
+              </div>
+              <div class="round-status-item">
+                <span class="round-label">Compliance Policy</span>
+                <span class="badge badge-teal">DOCS</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-sm">
+            <div class="card-title">Security State</div>
+            <div class="form-hint mb-10">SSL authentication is enforced across all DLSU admin portals.</div>
+            <span class="badge badge-green">✓ Secure HTTPS Connection</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/actions.js"></script>
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script src="../js/settings.js"></script>
+<script>
+  renderSidebar({ variant: 'admin', activePage: 'settings' });
+  renderTopBar({ title: 'Account Settings', subtitle: 'Manage preferences & custom configuration' });
+  renderNavigator();
+  initSettingsPage('admin');
+</script>
+</body>
+</html>

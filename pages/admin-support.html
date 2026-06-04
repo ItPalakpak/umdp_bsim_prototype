@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Platform Support — B-Sim AI</title>
+  <meta name="description" content="Manage support tickets from students/faculty, and check active server system telemetry logs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+
+      <!-- Telemetry Health Cards -->
+      <div class="grid-3 mb-20">
+        <!-- Compute Nodes -->
+        <div class="card">
+          <div class="flex justify-between items-center mb-10">
+            <div class="card-title" style="margin-bottom:0;">🖥️ Compute Clusters</div>
+            <span class="badge badge-green">Healthy</span>
+          </div>
+          <div class="details-info-row mb-10"><span>Active Nodes:</span><span>8 Nodes</span></div>
+          <div class="details-info-row mb-10"><span>Average CPU:</span><span>42.4% Load</span></div>
+          <div style="background:var(--navy-3); height:6px; border-radius:3px; overflow:hidden; border:1px solid rgba(255,255,255,0.06);">
+            <div style="background:var(--teal); width:42%; height:100%;"></div>
+          </div>
+        </div>
+
+        <!-- AI API Server -->
+        <div class="card">
+          <div class="flex justify-between items-center mb-10">
+            <div class="card-title" style="margin-bottom:0;">🤖 AI Feedback Engine</div>
+            <span class="badge badge-green">Operational</span>
+          </div>
+          <div class="details-info-row mb-10"><span>API Latency:</span><span>142ms</span></div>
+          <div class="details-info-row mb-10"><span>Replica Quota:</span><span>14.8% Used</span></div>
+          <div style="background:var(--navy-3); height:6px; border-radius:3px; overflow:hidden; border:1px solid rgba(255,255,255,0.06);">
+            <div style="background:var(--teal); width:15%; height:100%;"></div>
+          </div>
+        </div>
+
+        <!-- DB Replica Lag -->
+        <div class="card">
+          <div class="flex justify-between items-center mb-10">
+            <div class="card-title" style="margin-bottom:0;">🗄️ Database Replicas</div>
+            <span class="badge badge-green">Synced</span>
+          </div>
+          <div class="details-info-row mb-10"><span>Replica Lag:</span><span>12ms</span></div>
+          <div class="details-info-row mb-10"><span>Read Operations:</span><span>456 req/s</span></div>
+          <div style="background:var(--navy-3); height:6px; border-radius:3px; overflow:hidden; border:1px solid rgba(255,255,255,0.06);">
+            <div style="background:var(--teal); width:8%; height:100%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Support Tickets Table -->
+      <div class="card card-no-padding mb-20">
+        <div class="instructor-table-header">
+          <div class="instructor-table-title">Active Support Tickets</div>
+          <span class="badge badge-teal">3 Active Tickets</span>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th class="table-cell-pad">Ticket ID</th>
+              <th>Issue Title</th>
+              <th>Submitted By</th>
+              <th>Severity</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="table-cell-pad table-cell-name">#2084</td>
+              <td>Google OAuth SSO Fail</td>
+              <td>NovaTech Corp (Alex)</td>
+              <td><span class="badge badge-red" style="padding: 2px 6px;">High</span></td>
+              <td><span class="badge badge-red">Open</span></td>
+              <td>
+                <button class="btn btn-sm btn-ghost" onclick="toggleTicketStatus(this, '2084')">Assign</button>
+                <button class="btn btn-sm btn-secondary" onclick="respondToTicket('NovaTech Corp (Alex)', '2084')">Reply</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="table-cell-pad table-cell-name">#2079</td>
+              <td>LMS Gradebook Out of Sync</td>
+              <td>Dr. Reyes (Instructor)</td>
+              <td><span class="badge badge-amber" style="padding: 2px 6px;">Medium</span></td>
+              <td><span class="badge badge-amber">In Progress</span></td>
+              <td>
+                <button class="btn btn-sm btn-ghost" onclick="toggleTicketStatus(this, '2079')">Resolve</button>
+                <button class="btn btn-sm btn-secondary" onclick="respondToTicket('Dr. Reyes (Instructor)', '2079')">Reply</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="table-cell-pad table-cell-name">#2056</td>
+              <td>Round 2 PDF Export Error</td>
+              <td>Team Alpha (Jamie)</td>
+              <td><span class="badge badge-gray" style="padding: 2px 6px;">Low</span></td>
+              <td><span class="badge badge-green">Resolved</span></td>
+              <td>
+                <button class="btn btn-sm btn-secondary" onclick="toggleTicketStatus(this, '2056')">Reopen</button>
+                <button class="btn btn-sm btn-secondary" onclick="respondToTicket('Team Alpha (Jamie)', '2056')">Reply</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/actions.js"></script>
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script>
+  renderSidebar({ variant: 'admin', activePage: 'support' });
+  renderTopBar({ 
+    title: 'Platform Support & Telemetry', 
+    subtitle: 'Resolve user technical issues and audit server clusters uptime status' 
+  });
+  renderNavigator();
+</script>
+</body>
+</html>

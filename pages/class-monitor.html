@@ -6,7 +6,7 @@
   <title>Class Monitoring — B-Sim AI</title>
   <meta name="description" content="Instructor class monitoring — KPI overview, at-risk alerts, team performance table.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/tokens.css">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/layout.css">
@@ -37,7 +37,7 @@
         <div class="alert-text">
           <strong class="alert-title">3 teams require attention:</strong> Peak Dynamics (negative EBITDA, Round 3), Kestrel Co (ESG below threshold × 2 rounds), BlueStar Inc (ESG below threshold).
         </div>
-        <button class="btn btn-sm alert-btn">Review</button>
+        <button class="btn btn-sm alert-btn" onclick="reviewAtRiskAlert()">Review</button>
       </div>
 
       <!-- Charts Row -->
@@ -57,8 +57,8 @@
         <div class="team-table-header">
           <div class="team-table-title">Team Performance Overview</div>
           <div class="tab-bar">
-            <button class="tab-btn active">All Teams</button>
-            <button class="tab-btn">At Risk</button>
+            <button class="tab-btn active" onclick="filterClassMonitorTable('All Teams', this)">All Teams</button>
+            <button class="tab-btn" onclick="filterClassMonitorTable('At Risk', this)">At Risk</button>
           </div>
         </div>
         <table class="data-table">
@@ -177,13 +177,14 @@
   <div class="divider"></div>
   <div class="sheet-section-label">Instructor Actions</div>
   <div class="override-actions">
-    <button class="btn btn-secondary btn-sm">📩 Send Private Feedback</button>
-    <button class="btn btn-ghost btn-sm">🔒 Override Decision Lock</button>
+    <button class="btn btn-secondary btn-sm" onclick="openSideSheetFeedback(document.getElementById('sheetTeamName').textContent)">📩 Send Private Feedback</button>
+    <button class="btn btn-ghost btn-sm" onclick="toggleSideSheetLock(this)">🔒 Override Decision Lock</button>
   </div>
 </div>
 
 <div id="navigator-root"></div>
 
+<script src="../js/components/actions.js"></script>
 <script src="../js/components/sidebar.js"></script>
 <script src="../js/components/top-bar.js"></script>
 <script src="../js/components/navigator.js"></script>
@@ -194,7 +195,7 @@
   renderTopBar({
     title: 'Class Monitoring',
     subtitle: 'BUS 401 · Round 3 of 6',
-    actions: [{ text: '⬇ Download Class Report (PDF)', className: 'btn btn-secondary btn-sm' }]
+    actions: [{ text: '⬇ Download Class Report (PDF)', className: 'btn btn-secondary btn-sm', onclick: 'downloadClassReport()' }]
   });
   renderNavigator();
   document.addEventListener('DOMContentLoaded', initClassMonitorCharts);

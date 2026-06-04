@@ -6,7 +6,7 @@
   <title>B-Sim AI — Where Strategy Meets Consequence</title>
   <meta name="description" content="B-Sim AI is the next-generation macroeconomic simulation platform for higher education. AI-powered feedback, live competitive economy, and ESG as a core constraint.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -45,12 +45,12 @@
       <span class="logo-text">B-Sim <span>AI</span></span>
     </div>
     <div class="landing-nav-links">
-      <a href="#">Platform</a>
-      <a href="#">For Faculty</a>
-      <a href="#">Pricing</a>
-      <a href="#">Research</a>
+      <a href="#platform">Platform</a>
+      <a href="#for-faculty">For Faculty</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#research">Research</a>
     </div>
-    <a class="btn btn-ghost btn-sm" href="#">Request a Demo</a>
+    <a class="btn btn-ghost btn-sm" href="#" onclick="openDemoModal(); return false;">Request a Demo</a>
   </nav>
 
   <div class="hero">
@@ -61,7 +61,7 @@
       <p class="hero-desc">B-Sim AI is the next-generation macroeconomic simulation platform for higher education. Student teams manage virtual companies in a shared live economy — with AI-powered post-round feedback and ESG at the core.</p>
       <div class="hero-actions">
         <a class="btn btn-primary btn-lg" href="pages/student-dashboard.html">▶ Explore Platform Demo</a>
-        <a class="btn btn-secondary btn-lg" href="#">Request a Demo</a>
+        <a class="btn btn-secondary btn-lg" href="#" onclick="openDemoModal(); return false;">Request a Demo</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -97,7 +97,7 @@
     </div>
   </div>
 
-  <div class="features-strip">
+  <div id="platform" class="features-strip">
     <div class="feature-card">
       <div class="feature-icon feature-icon-teal">🤖</div>
       <h3>AI-Powered Feedback</h3>
@@ -115,6 +115,119 @@
     </div>
   </div>
 
+  <!-- ==================== FACULTY SECTION ==================== -->
+  <section id="for-faculty" class="landing-section">
+    <div class="landing-section-header">
+      <div class="hero-eyebrow">👨‍🏫 Instructor Control</div>
+      <h2 class="landing-section-title">Designed for <span>Faculty &amp; Instructors</span></h2>
+      <p class="landing-section-sub">B-Sim AI automates grading and analytics so you can focus on teaching. Manage large cohorts and observe strategic thinking as it happens.</p>
+    </div>
+    <div class="faculty-grid">
+      <div class="faculty-card">
+        <div class="faculty-card-icon">🤖</div>
+        <div class="faculty-card-content">
+          <h3>Automated AI Auditor &amp; Grading</h3>
+          <p>The AI engine instantly evaluates student strategies, analyzes decisions (pricing, operations, ESG), and provides constructive qualitative feedback, eliminating the need for manual grading.</p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-card-icon">📊</div>
+        <div class="faculty-card-content">
+          <h3>Class Monitoring Dashboard</h3>
+          <p>Real-time updates on team rankings, cumulative scores, and financial metrics. Intervene with targeted guidance based on empirical student performance data.</p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-card-icon">🔌</div>
+        <div class="faculty-card-content">
+          <h3>Seamless LMS Integration</h3>
+          <p>Full support for Canvas, Moodle, and Blackboard via standard LTI APIs. Single Sign-On (SSO) makes setup instant for both students and faculty.</p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-card-icon">⚙️</div>
+        <div class="faculty-card-content">
+          <h3>Custom Simulation Parameters</h3>
+          <p>Easily configure cohort sizes, active rounds, custom macroeconomic shocks, and environmental policy thresholds to match your syllabus.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRICING SECTION ==================== -->
+  <section id="pricing" class="landing-section">
+    <div class="landing-section-header">
+      <div class="hero-eyebrow">💳 Pricing Plans</div>
+      <h2 class="landing-section-title">Flexible <span>SaaS Licensing</span></h2>
+      <p class="landing-section-sub">Simple, transparent options for single cohorts up to university-wide deployments.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-tier">Student Billing</div>
+        <div class="pricing-cost">$15 – $30</div>
+        <div class="pricing-period">per student, per course</div>
+        <ul class="pricing-features">
+          <li>Full access to student dashboard</li>
+          <li>All decision entry modules</li>
+          <li>Qualitative post-round AI feedback</li>
+          <li>Class leaderboard access</li>
+          <li>Standard email support</li>
+        </ul>
+        <div class="pricing-action">
+          <button class="btn btn-secondary w-full" onclick="openDemoModal()">Request Info</button>
+        </div>
+      </div>
+      <div class="pricing-card pricing-card-featured">
+        <span class="badge badge-teal pricing-badge">Recommended</span>
+        <div class="pricing-tier">Institutional License</div>
+        <div class="pricing-cost">$3,500+</div>
+        <div class="pricing-period">per year, billed annually</div>
+        <ul class="pricing-features">
+          <li>Unlimited students and cohorts</li>
+          <li>Canvas/Moodle/Blackboard Integration</li>
+          <li>Priority customer success support</li>
+          <li>Dedicated instructor onboarding</li>
+          <li>Custom scenario builder</li>
+          <li>Annual simulation championship entry</li>
+        </ul>
+        <div class="pricing-action">
+          <button class="btn btn-primary w-full" onclick="openDemoModal()">Contact Sales</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== RESEARCH & DATA SECTION ==================== -->
+  <section id="research" class="landing-section">
+    <div class="landing-section-header">
+      <div class="hero-eyebrow">📈 Market &amp; Research Insights</div>
+      <h2 class="landing-section-title">Validated by <span>Regional Demand</span></h2>
+      <p class="landing-section-sub">Addressing the transition towards experiential, sustainable digital education.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">800+</div>
+        <div class="stat-label">PRME Signatories</div>
+        <div class="stat-desc">Universities committed to responsible management education.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">4,400+</div>
+        <div class="stat-label">Higher Education Institutions</div>
+        <div class="stat-desc">A massive addressable region with high EdTech demand.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">85%</div>
+        <div class="stat-label">Retention Rate</div>
+        <div class="stat-desc">High curriculum integration generates predictable annual value.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">16.3%</div>
+        <div class="stat-label">EdTech CAGR</div>
+        <div class="stat-desc">Rapid digital scaling projected to reach $404B by 2025.</div>
+      </div>
+    </div>
+  </section>
+
   <div class="landing-login-hint">Select your login portal to continue</div>
   <div class="login-portals">
     <a class="portal-card" href="pages/student-dashboard.html">
@@ -125,10 +238,65 @@
     </a>
     <a class="portal-card" href="pages/class-monitor.html">
       <div class="portal-icon">👩‍🏫</div>
-      <div class="portal-title">Instructor / Admin Login</div>
-      <div class="portal-desc">Configure simulations, monitor all teams, and access class analytics</div>
+      <div class="portal-title">Instructor Login</div>
+      <div class="portal-desc">Configure simulations, monitor active teams, and access class analytics</div>
       <span class="btn btn-ghost w-full">Instructor Portal →</span>
     </a>
+    <a class="portal-card" href="pages/admin.html">
+      <div class="portal-icon">🏢</div>
+      <div class="portal-title">Institutional Admin</div>
+      <div class="portal-desc">Manage institutional licenses, billing, instructor accounts, and platform support</div>
+      <span class="btn btn-ghost w-full">Admin Portal →</span>
+    </a>
+  </div>
+</div>
+
+<!-- DEMO REQUEST MODAL -->
+<div id="demo-modal-overlay" class="modal-overlay">
+  <div class="modal">
+    <div id="demo-form-container">
+      <div class="flex items-center justify-between mb-20">
+        <div class="modal-title">Request a Demo</div>
+        <button class="btn btn-secondary btn-sm demo-modal-close" onclick="closeDemoModal()">✕</button>
+      </div>
+      <form id="demo-request-form" class="demo-form" onsubmit="return submitDemoRequest(event)">
+        <div class="form-group">
+          <label class="form-label" for="demo-name">Full Name *</label>
+          <input type="text" id="demo-name" class="form-input form-input-text" placeholder="Jamie Dela Cruz" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="demo-email">Institutional Email *</label>
+          <input type="email" id="demo-email" class="form-input" placeholder="jamie.dc@university.edu" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="demo-institution">Institution / University *</label>
+          <input type="text" id="demo-institution" class="form-input form-input-text" placeholder="De La Salle University" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="demo-role">Your Role *</label>
+          <select id="demo-role" class="form-select" required>
+            <option value="" disabled selected>Select your role...</option>
+            <option value="instructor">Instructor / Faculty</option>
+            <option value="administrator">University Administrator</option>
+            <option value="student">Student Representative</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="demo-message">Additional Notes (Optional)</label>
+          <textarea id="demo-message" class="form-input form-input-text" rows="3" placeholder="Tell us about your cohort size or course goals..."></textarea>
+        </div>
+        <div class="modal-actions mt-20">
+          <button type="button" class="btn btn-secondary modal-action-btn" onclick="closeDemoModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary modal-action-btn">Submit Request</button>
+        </div>
+      </form>
+    </div>
+    <div id="demo-success-container" class="demo-success hide-el">
+      <div class="demo-success-icon">✓</div>
+      <div class="modal-title">Request Received!</div>
+      <p class="modal-body">Thank you for your interest in B-Sim AI. Our academic alignment team will reach out to you within 24 hours.</p>
+    </div>
   </div>
 </div>
 
@@ -137,6 +305,7 @@
 
 <script src="js/components/navigator.js"></script>
 <script src="js/loading.js"></script>
+<script src="js/landing.js"></script>
 <script>
   renderNavigator();
 </script>

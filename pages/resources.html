@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources — B-Sim AI</title>
+  <meta name="description" content="Access guides, templates, and references for the B-Sim AI strategic simulation platform.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+  <link rel="stylesheet" href="../css/resources.css">
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+      
+      <!-- GETTING STARTED SECTION -->
+      <div class="resources-section">
+        <div class="resources-section-title">Getting Started</div>
+        <div class="resources-grid">
+          
+          <div class="resource-card">
+            <div class="resource-meta">
+              <span class="resource-type">Guide</span>
+              <span class="badge badge-teal">PDF</span>
+            </div>
+            <div class="resource-title">Simulation Quickstart Guide</div>
+            <div class="resource-desc">A step-by-step introduction to the 6-step simulation cycle, decision-making periods, and submittal protocols.</div>
+            <div class="resource-action">
+              <button class="btn btn-ghost w-full" onclick="showResourceAlert('Simulation Quickstart Guide')">Read Guide →</button>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-meta">
+              <span class="resource-type">Strategy</span>
+              <span class="badge badge-amber">Interactive</span>
+            </div>
+            <div class="resource-title">ESG Capex Allocation Guide</div>
+            <div class="resource-desc">Learn how corporate sustainability initiatives affect team ranking metrics, brand equity, and yield cost savings.</div>
+            <div class="resource-action">
+              <button class="btn btn-ghost w-full" onclick="showResourceAlert('ESG Capex Allocation Guide')">Explore Guide →</button>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-meta">
+              <span class="resource-type">Manual</span>
+              <span class="badge badge-gray">Docs</span>
+            </div>
+            <div class="resource-title">Workforce &amp; Operations Manual</div>
+            <div class="resource-desc">Detailed guide to managing factory shifts, worker attrition, training budgets, and optimizing overall plant capacity.</div>
+            <div class="resource-action">
+              <button class="btn btn-ghost w-full" onclick="showResourceAlert('Workforce & Operations Manual')">View Document →</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- STRATEGIC RESOURCES SECTION -->
+      <div class="resources-section">
+        <div class="resources-section-title">Strategic &amp; Financial Resources</div>
+        <div class="resources-grid">
+          
+          <div class="resource-card">
+            <div class="resource-meta">
+              <span class="resource-type">Archive</span>
+              <span class="badge badge-teal">ZIP</span>
+            </div>
+            <div class="resource-title">Macroeconomic Briefs Archive</div>
+            <div class="resource-desc">Access past reports on market volatility, raw material index updates, and regulatory policy shifts from Rounds 1–3.</div>
+            <div class="resource-action">
+              <button class="btn btn-ghost w-full" onclick="showResourceAlert('Macroeconomic Briefs Archive')">Download Archive →</button>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-meta">
+              <span class="resource-type">Template</span>
+              <span class="badge badge-green">Excel</span>
+            </div>
+            <div class="resource-title">Pricing &amp; Elasticity Modeler</div>
+            <div class="resource-desc">Pre-configured spreadsheet template for calculating product margins, price elasticity, and estimating competitor responses.</div>
+            <div class="resource-action">
+              <button class="btn btn-ghost w-full" onclick="showResourceAlert('Pricing & Elasticity Modeler Excel Template')">Download Template →</button>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-meta">
+              <span class="resource-type">Tutorial</span>
+              <span class="badge badge-amber">Video</span>
+            </div>
+            <div class="resource-title">Income Statement Walkthrough</div>
+            <div class="resource-desc">A 5-minute video tutorial detailing how to read the financial dashboard, calculate contribution margins, and locate line-item costs.</div>
+            <div class="resource-action">
+              <button class="btn btn-ghost w-full" onclick="showResourceAlert('Income Statement Walkthrough Video')">Watch Video →</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- FREQUENTLY ASKED QUESTIONS -->
+      <div class="resources-section">
+        <div class="resources-section-title">Frequently Asked Questions</div>
+        <div class="resources-grid">
+          
+          <div class="resource-card">
+            <div class="resource-meta">
+              <span class="resource-type">FAQ</span>
+              <span class="badge badge-gray">Q&amp;A</span>
+            </div>
+            <div class="resource-title">AI Feedback System FAQ</div>
+            <div class="resource-desc">Find answers on how the automated strategic evaluation operates, how feedback priorities are generated, and error corrections.</div>
+            <div class="resource-action">
+              <button class="btn btn-ghost w-full" onclick="showResourceAlert('AI Feedback System FAQ')">Read FAQ →</button>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-meta">
+              <span class="resource-type">FAQ</span>
+              <span class="badge badge-gray">Q&amp;A</span>
+            </div>
+            <div class="resource-title">Scoring &amp; Weightings FAQ</div>
+            <div class="resource-desc">Frequently asked questions concerning balanced scorecard metrics, cumulative scores, penalty triggers, and team rank weights.</div>
+            <div class="resource-action">
+              <button class="btn btn-ghost w-full" onclick="showResourceAlert('Scoring & Weightings FAQ')">Read FAQ →</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal popup for resource preview -->
+<div id="resource-modal-overlay" class="modal-overlay">
+  <div class="modal">
+    <div class="flex items-center justify-between mb-20">
+      <div class="modal-title" id="resource-modal-title">Resource Content</div>
+      <button class="btn btn-secondary btn-sm resource-modal-close" onclick="closeResourceModal()">✕</button>
+    </div>
+    <div class="modal-body" id="resource-modal-body">
+      This is a mockup preview of the requested guide/resource.
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-primary w-full" onclick="closeResourceModal()">Dismiss</button>
+    </div>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/actions.js"></script>
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script>
+  renderSidebar({ variant: 'student', activePage: 'resources' });
+  renderTopBar({
+    title: 'Resource Library',
+    subtitle: 'Reference guides, financial templates, and FAQ documents',
+    badges: [{ text: 'Docs & Support', variant: 'teal' }]
+  });
+  renderNavigator();
+
+  function showResourceAlert(resourceName) {
+    var overlay = document.getElementById('resource-modal-overlay');
+    var title = document.getElementById('resource-modal-title');
+    var body = document.getElementById('resource-modal-body');
+    if (overlay && title && body) {
+      title.innerText = resourceName;
+      body.innerHTML = 'You have requested: <strong>' + resourceName + '</strong>.<br><br>In the production system, this action downloads or opens the document instantly. For this prototype, this dialog validates standard interactivity.';
+      overlay.classList.add('open');
+    }
+  }
+
+  function closeResourceModal() {
+    var overlay = document.getElementById('resource-modal-overlay');
+    if (overlay) {
+      overlay.classList.remove('open');
+    }
+  }
+
+  // Close modal on background click
+  document.getElementById('resource-modal-overlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeResourceModal();
+    }
+  });
+</script>
+</body>
+</html>

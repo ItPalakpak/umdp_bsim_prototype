@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Directory — B-Sim AI</title>
+  <meta name="description" content="Manage institutional users, instructors, administrators, and student coordinators.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+
+      <!-- Directory Controls -->
+      <div class="card mb-20">
+        <div class="grid-3">
+          <div class="form-group mb-0">
+            <label class="form-label">Search Users</label>
+            <input type="text" class="form-input form-input-text" placeholder="Search by name or email..." oninput="showToast('Searching...', 'Filtering user directory...', 'info')">
+          </div>
+          <div class="form-group mb-0">
+            <label class="form-label">Filter Role</label>
+            <select class="form-select" onchange="showToast('Filter Applied', 'Showing ' + this.value + ' list.', 'info')">
+              <option value="All Roles">All Roles</option>
+              <option value="Instructors">Instructors</option>
+              <option value="Admins">Institutional Admins</option>
+              <option value="Student Coords">Student Coordinators</option>
+            </select>
+          </div>
+          <div class="form-group mb-0">
+            <label class="form-label" style="opacity: 0; user-select: none;">&nbsp;</label>
+            <button class="btn btn-primary w-full" style="height: 38px;" onclick="openInviteUserModal()">➕ Invite System User</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Users Directory Table -->
+      <div class="card card-no-padding mb-20">
+        <div class="instructor-table-header">
+          <div class="instructor-table-title">System User Directory</div>
+          <span class="badge badge-teal">5 Active Accounts</span>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th class="table-cell-pad">Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Active Courses / Scope</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="table-cell-pad table-cell-name">Dr. Ana Reyes</td>
+              <td class="instructor-email-cell">a.reyes@dlsu.edu.ph</td>
+              <td>Instructor</td>
+              <td>3 Active Courses</td>
+              <td><span class="badge badge-green">Active</span></td>
+              <td><button class="btn btn-sm btn-ghost" onclick="toggleInstructorStatus(this, 'Dr. Ana Reyes')">Deactivate</button></td>
+            </tr>
+            <tr>
+              <td class="table-cell-pad table-cell-name">Prof. Marco Santos</td>
+              <td class="instructor-email-cell">m.santos@dlsu.edu.ph</td>
+              <td>Instructor</td>
+              <td>2 Active Courses</td>
+              <td><span class="badge badge-green">Active</span></td>
+              <td><button class="btn btn-sm btn-ghost" onclick="toggleInstructorStatus(this, 'Prof. Marco Santos')">Deactivate</button></td>
+            </tr>
+            <tr>
+              <td class="table-cell-pad table-cell-name">Dr. Luz Hernandez</td>
+              <td class="instructor-email-cell">l.hernandez@dlsu.edu.ph</td>
+              <td>Instructor</td>
+              <td>1 Active Course</td>
+              <td><span class="badge badge-gray">Inactive</span></td>
+              <td><button class="btn btn-sm btn-ghost" onclick="toggleInstructorStatus(this, 'Dr. Luz Hernandez')">Activate</button></td>
+            </tr>
+            <tr>
+              <td class="table-cell-pad table-cell-name">University Admin</td>
+              <td class="instructor-email-cell">admin@dlsu.edu.ph</td>
+              <td>Admin</td>
+              <td>DLSU Portal Owner</td>
+              <td><span class="badge badge-green">Active</span></td>
+              <td><button class="btn btn-sm btn-ghost" onclick="toggleInstructorStatus(this, 'University Admin')">Deactivate</button></td>
+            </tr>
+            <tr>
+              <td class="table-cell-pad table-cell-name">Jamie Dela Cruz</td>
+              <td class="instructor-email-cell">j.delacruz@student.dlsu.edu.ph</td>
+              <td>Student Coord</td>
+              <td>1 Active Course</td>
+              <td><span class="badge badge-green">Active</span></td>
+              <td><button class="btn btn-sm btn-ghost" onclick="toggleInstructorStatus(this, 'Jamie Dela Cruz')">Deactivate</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/actions.js"></script>
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script>
+  renderSidebar({ variant: 'admin', activePage: 'users' });
+  renderTopBar({ 
+    title: 'User Management', 
+    subtitle: 'Manage university instructor credentials, coordinator accounts, and SSO logs' 
+  });
+  renderNavigator();
+</script>
+</body>
+</html>

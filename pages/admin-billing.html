@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>License &amp; Billing — B-Sim AI</title>
+  <meta name="description" content="View system plan licensing details, current allocations, and download historical invoices.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+
+      <!-- Stats Grid -->
+      <div class="admin-stats-grid mb-20">
+        <div class="admin-stat-card">
+          <div class="admin-stat-num">Enterprise</div>
+          <div class="admin-stat-label">Licensing Tier</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-num">284 / 500</div>
+          <div class="admin-stat-label">Student Seats</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-num">18 / 50</div>
+          <div class="admin-stat-label">Instructor Seats</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-num">$12,000</div>
+          <div class="admin-stat-label">Annual Subscription</div>
+        </div>
+      </div>
+
+      <div class="grid-2 mb-20">
+        <!-- Capacity & Allocation -->
+        <div class="card">
+          <div class="card-title">Seat Allocation &amp; Usage</div>
+          <p class="form-hint mb-16">Licenses are allocated automatically to students on active class registration.</p>
+          
+          <div class="mb-16">
+            <div class="flex justify-between mb-4">
+              <span class="form-label" style="margin-bottom:0;">Student Allocation</span>
+              <span class="text-mono" style="font-size:12px;">56.8% Used</span>
+            </div>
+            <div style="background:var(--navy-3); height:8px; border-radius:4px; overflow:hidden; border:1px solid rgba(255,255,255,0.06);">
+              <div style="background:var(--teal); width:56.8%; height:100%;"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-4">
+              <span class="form-label" style="margin-bottom:0;">Instructor Allocation</span>
+              <span class="text-mono" style="font-size:12px;">36.0% Used</span>
+            </div>
+            <div style="background:var(--navy-3); height:8px; border-radius:4px; overflow:hidden; border:1px solid rgba(255,255,255,0.06);">
+              <div style="background:var(--teal); width:36%; height:100%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment details -->
+        <div class="card">
+          <div class="card-title">Payment Method &amp; Invoicing</div>
+          <div class="details-info-box" style="margin-bottom:12px;">
+            <div class="details-info-title">💳 DLSU Finance Corporate Card</div>
+            <div class="details-info-row"><span>Card Type:</span><span>Visa ending in *9120</span></div>
+            <div class="details-info-row"><span>Billing Email:</span><span>billing@dlsu.edu.ph</span></div>
+            <div class="details-info-row"><span>Renewal Date:</span><span>Jan 15, 2026</span></div>
+          </div>
+          <button class="btn btn-secondary btn-sm w-full" onclick="showToast('Payment Details', 'Opening secure Stripe portal...', 'info')">Update Payment Details</button>
+        </div>
+      </div>
+
+      <!-- Invoices log -->
+      <div class="card card-no-padding mb-20">
+        <div class="instructor-table-header">
+          <div class="instructor-table-title">Billing &amp; Invoice Logs</div>
+          <button class="btn btn-primary btn-sm" onclick="openUpgradeModal()">⬆ Upgrade Plan</button>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th class="table-cell-pad">Invoice ID</th>
+              <th>Billing Date</th>
+              <th>Amount (USD)</th>
+              <th>Payment Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="table-cell-pad table-cell-name">INV-DLSU-2025-Q4</td>
+              <td>Oct 15, 2025</td>
+              <td class="text-mono">$3,000.00</td>
+              <td><span class="badge badge-green">Paid</span></td>
+              <td><button class="btn btn-sm btn-ghost" onclick="downloadInvoice()">Download PDF</button></td>
+            </tr>
+            <tr>
+              <td class="table-cell-pad table-cell-name">INV-DLSU-2025-Q3</td>
+              <td>Jul 15, 2025</td>
+              <td class="text-mono">$3,000.00</td>
+              <td><span class="badge badge-green">Paid</span></td>
+              <td><button class="btn btn-sm btn-ghost" onclick="downloadInvoice()">Download PDF</button></td>
+            </tr>
+            <tr>
+              <td class="table-cell-pad table-cell-name">INV-DLSU-2025-Q2</td>
+              <td>Apr 15, 2025</td>
+              <td class="text-mono">$3,000.00</td>
+              <td><span class="badge badge-green">Paid</span></td>
+              <td><button class="btn btn-sm btn-ghost" onclick="downloadInvoice()">Download PDF</button></td>
+            </tr>
+            <tr>
+              <td class="table-cell-pad table-cell-name">INV-DLSU-2025-Q1</td>
+              <td>Jan 15, 2025</td>
+              <td class="text-mono">$3,000.00</td>
+              <td><span class="badge badge-green">Paid</span></td>
+              <td><button class="btn btn-sm btn-ghost" onclick="downloadInvoice()">Download PDF</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/actions.js"></script>
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script>
+  renderSidebar({ variant: 'admin', activePage: 'billing' });
+  renderTopBar({ 
+    title: 'Billing & Licensing', 
+    subtitle: 'Manage payment profiles, upgrade tiers, and audit historical invoices' 
+  });
+  renderNavigator();
+</script>
+</body>
+</html>

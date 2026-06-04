@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Comparison Financials — B-Sim AI</title>
+  <meta name="description" content="View cohort financial comparison grid, income statements, balance sheets, and cash flows.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <style>
+    .comparison-table-wrap { width: 100%; overflow-x: auto; margin-top: 10px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.06); }
+    .comparison-table { width: 100%; border-collapse: collapse; min-width: 900px; }
+    .comparison-table th { padding: 12px 14px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--gray-400); background: var(--navy-3); border-bottom: 1px solid rgba(255,255,255,0.06); border-right: 1px solid rgba(255,255,255,0.04); text-align: right; }
+    .comparison-table th:first-child { text-align: left; background: var(--navy-2); position: sticky; left: 0; z-index: 10; border-right: 1px solid rgba(255,255,255,0.1); width: 240px; }
+    .comparison-table td { padding: 10px 14px; font-size: 12px; border-bottom: 1px solid rgba(255,255,255,0.04); border-right: 1px solid rgba(255,255,255,0.04); text-align: right; font-family: var(--mono); color: var(--gray-200); }
+    .comparison-table td:first-child { text-align: left; font-family: var(--font); font-weight: 600; color: var(--white); background: var(--navy-2); position: sticky; left: 0; z-index: 10; border-right: 1px solid rgba(255,255,255,0.1); }
+    .comparison-table tr.section-header-row td { background: rgba(255,255,255,0.02); font-weight: 700; color: var(--teal); font-family: var(--font); text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; border-bottom: 1px solid rgba(0, 194, 203, 0.2); }
+    .comparison-table tr.total-row td { background: rgba(0, 194, 203, 0.03); font-weight: 700; color: var(--white); border-bottom: 1px solid rgba(255,255,255,0.08); border-top: 1px solid rgba(255,255,255,0.06); }
+    .comparison-table tr.grand-total-row td { background: rgba(46, 196, 182, 0.08); font-weight: 700; color: var(--teal); font-size: 13px; border-bottom: 2px solid var(--teal); border-top: 1px solid var(--teal-glow); }
+    
+    /* Column Highlight class */
+    .highlight-col { background: rgba(0, 240, 255, 0.08) !important; color: var(--teal) !important; border-left: 1px solid var(--teal-glow); border-right: 1px solid var(--teal-glow); }
+    th.highlight-col { background: var(--teal-dim) !important; color: var(--teal) !important; font-weight: 800 !important; }
+  </style>
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+
+      <!-- Cohort selection bar -->
+      <div class="card mb-20">
+        <div class="grid-3 items-center">
+          <div class="form-group mb-0">
+            <label class="form-label">Compare Statements</label>
+            <div class="tab-bar">
+              <button class="tab-btn active" onclick="switchFinTab(this, 'Income Statement')">Income Statement</button>
+              <button class="tab-btn" onclick="switchFinTab(this, 'Balance Sheet')">Balance Sheet</button>
+              <button class="tab-btn" onclick="switchFinTab(this, 'Cash Flow')">Cash Flow</button>
+              <button class="tab-btn" onclick="switchFinTab(this, 'HR Report')">HR Report</button>
+            </div>
+          </div>
+          <div class="form-group mb-0">
+            <label class="form-label">Select Simulation Round</label>
+            <select class="form-select" id="roundSelect" onchange="switchCohortRound(this.value)">
+              <option value="Round 5" selected>Round 5 (Current)</option>
+              <option value="Round 4">Round 4</option>
+              <option value="Round 3">Round 3</option>
+              <option value="Round 2">Round 2</option>
+              <option value="Round 1">Round 1</option>
+            </select>
+          </div>
+          <div class="form-group mb-0">
+            <label class="form-label">Highlight Active Team Column</label>
+            <select class="form-select" id="teamSelect" onchange="highlightComparisonTeam(this.value)">
+              <option value="">No highlight</option>
+              <option value="MUST">MUST</option>
+              <option value="UNIATLANTICO 3">UNIATLANTICO 3</option>
+              <option value="Delta Genesis">Delta Genesis</option>
+              <option value="PUCCAMP ECO">PUCCAMP ECO</option>
+              <option value="DUCK TANK">DUCK TANK</option>
+              <option value="Team Nova" selected>Team Nova (You)</option>
+              <option value="Shouryanga">Shouryanga</option>
+              <option value="ChicouTeamy">ChicouTeamy</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cohort comparison ledger card -->
+      <div class="card card-no-padding mb-20">
+        <div class="instructor-table-header">
+          <div class="instructor-table-title" id="table-title">Income Statement (k USD) — Round 5</div>
+          <span class="badge badge-teal">8 Cohort Teams</span>
+        </div>
+        
+        <div class="comparison-table-wrap">
+          <table class="comparison-table" id="comparisonTable">
+            <thead>
+              <tr>
+                <th>Line Item</th>
+                <th data-team="MUST">MUST</th>
+                <th data-team="UNIATLANTICO 3">UNIATLANTICO 3</th>
+                <th data-team="Delta Genesis">Delta Genesis</th>
+                <th data-team="PUCCAMP ECO">PUCCAMP ECO</th>
+                <th data-team="DUCK TANK">DUCK TANK</th>
+                <th data-team="Team Nova">Team Nova</th>
+                <th data-team="Shouryanga">Shouryanga</th>
+                <th data-team="ChicouTeamy">ChicouTeamy</th>
+              </tr>
+            </thead>
+            <tbody id="comparisonTableBody">
+              <!-- Dynamic Rows Rendered Here by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/actions.js"></script>
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script>
+  renderSidebar({ variant: 'student', activePage: 'comparison' });
+  renderTopBar({ 
+    title: 'Class Financial Comparison', 
+    subtitle: 'Evaluate peer teams performance side-by-side across dynamic ledger summaries' 
+  });
+  renderNavigator();
+
+  // State parameters
+  var currentStatement = 'Income Statement';
+  var currentRound = 'Round 5';
+  var selectedTeam = 'Team Nova';
+
+  // Base cohort financial templates (Round 5 levels)
+  var baseData = {
+    'Income Statement': [
+      { label: 'Revenue from fund fees', type: 'header' },
+      { label: 'Dynamic Funds', type: 'row', baseValues: [1198.1, 4814.0, 2718.3, 4360.8, 2186.2, 524.7, 2973.0, 2452.8] },
+      { label: 'Conservative Funds', type: 'row', baseValues: [1123.6, 6134.0, 3094.4, 5109.2, 3101.3, 610.7, 2787.1, 2340.4] },
+      { label: 'Total Revenue', type: 'total', compute: function(rowVals) { return rowVals[1] + rowVals[2]; } },
+      { label: 'Costs and expenses', type: 'header' },
+      { label: 'Employee Compensation & Training', type: 'row', baseValues: [3985.8, 19123.2, 3907.5, 5875.2, 2073.6, 163.2, 3845.1, 3123.6] },
+      { label: 'Marketing & Promotion Expense', type: 'row', baseValues: [6083.8, 9690.6, 2215.4, 7708.4, 2087.9, 120.7, 9879.6, 4416.4] },
+      { label: 'General Administration Expense', type: 'row', baseValues: [465.6, 2145.2, 1156.4, 1436.6, 611.4, 46.0, 1062.5, 836.5] },
+      { label: 'Total Operating Costs', type: 'total', compute: function(rowVals) { return rowVals[5] + rowVals[6] + rowVals[7]; } },
+      { label: 'EBITDA', type: 'total', compute: function(rowVals) { return rowVals[3] - rowVals[8]; } },
+      { label: 'Depreciation & Amortization', type: 'row', baseValues: [1078.1, 2135.5, 968.1, 1383.1, 1095.6, 740.6, 915.1, 897.4] },
+      { label: 'Operating Profit (EBIT)', type: 'total', compute: function(rowVals) { return rowVals[9] - rowVals[10]; } },
+      { label: 'Net Financing Expenses', type: 'row', baseValues: [-22.3, 4069.4, 112.5, 470.7, -275.8, 220.5, 419.8, 8.1] },
+      { label: 'Profit for the Round', type: 'grand-total', compute: function(rowVals) { return rowVals[11] - rowVals[12]; } }
+    ],
+    'Balance Sheet': [
+      { label: 'Assets', type: 'header' },
+      { label: 'Cash and equivalents', type: 'row', baseValues: [2500.0, 8000.0, 4200.0, 6500.0, 3100.0, 4500.0, 5200.0, 3800.0] },
+      { label: 'Accounts receivable', type: 'row', baseValues: [850.0, 2400.0, 1200.0, 1850.0, 1100.0, 950.0, 1300.0, 1050.0] },
+      { label: 'Portfolio investments', type: 'row', baseValues: [12000.0, 45000.0, 23000.0, 38000.0, 19000.0, 24000.0, 27000.0, 21000.0] },
+      { label: 'Fixed assets', type: 'row', baseValues: [4500.0, 12500.0, 6800.0, 9500.0, 5600.0, 6200.0, 7800.0, 5900.0] },
+      { label: 'Total Assets', type: 'grand-total', compute: function(rowVals) { return rowVals[1] + rowVals[2] + rowVals[3] + rowVals[4]; } },
+      { label: 'Liabilities & Equity', type: 'header' },
+      { label: 'Accounts payable', type: 'row', baseValues: [500.0, 1500.0, 900.0, 1200.0, 800.0, 750.0, 950.0, 850.0] },
+      { label: 'Short-term loans', type: 'row', baseValues: [1200.0, 4200.0, 2100.0, 3100.0, 1800.0, 2000.0, 2400.0, 1900.0] },
+      { label: 'Long-term loans', type: 'row', baseValues: [8000.0, 28000.0, 14000.0, 21000.0, 11000.0, 13000.0, 16000.0, 12000.0] },
+      { label: 'Share capital', type: 'row', baseValues: [5000.0, 15000.0, 10000.0, 12000.0, 8000.0, 10000.0, 11000.0, 9000.0] },
+      { label: 'Retained earnings', type: 'row', baseValues: [5150.0, 19200.0, 8200.0, 18550.0, 7200.0, 9900.0, 10950.0, 8000.0] },
+      { label: 'Total Liabilities & Equity', type: 'grand-total', compute: function(rowVals) { return rowVals[7] + rowVals[8] + rowVals[9] + rowVals[10] + rowVals[11]; } }
+    ],
+    'Cash Flow': [
+      { label: 'Operating Activities', type: 'header' },
+      { label: 'Operating profit (EBITDA)', type: 'row', baseValues: [-8213.5, -20011.0, -1466.6, -5550.2, 514.6, 805.5, -9027.1, -3583.3] },
+      { label: 'Change in working capital', type: 'row', baseValues: [250.0, -120.0, 180.0, -450.0, 300.0, 420.0, -80.0, 150.0] },
+      { label: 'Net Cash from Operating Activities', type: 'total', compute: function(rowVals) { return rowVals[1] + rowVals[2]; } },
+      { label: 'Investing Activities', type: 'header' },
+      { label: 'Capital expenditures', type: 'row', baseValues: [-800.0, -2500.0, -1200.0, -1800.0, -900.0, -1100.0, -1400.0, -1000.0] },
+      { label: 'Portfolio investments', type: 'row', baseValues: [-1500.0, -4500.0, -2200.0, -3200.0, -1600.0, -2000.0, -2400.0, -1800.0] },
+      { label: 'Net Cash from Investing Activities', type: 'total', compute: function(rowVals) { return rowVals[5] + rowVals[6]; } },
+      { label: 'Financing Activities', type: 'header' },
+      { label: 'Net borrowing', type: 'row', baseValues: [1200.0, 3500.0, 1800.0, 2600.0, 1100.0, 1500.0, 2000.0, 1400.0] },
+      { label: 'Share capital transactions', type: 'row', baseValues: [500.0, 1000.0, 0.0, 1200.0, -200.0, 0.0, 500.0, 0.0] },
+      { label: 'Net Cash from Financing Activities', type: 'total', compute: function(rowVals) { return rowVals[9] + rowVals[10]; } },
+      { label: 'Net Change in Cash', type: 'grand-total', compute: function(rowVals) { return rowVals[3] + rowVals[7] + rowVals[11]; } }
+    ],
+    'HR Report': [
+      { label: 'Analysts', type: 'header' },
+      { label: 'Personnel', type: 'row', baseValues: [13, 46, 28, 34, 14, 2, 29, 23], format: 'int' },
+      { label: 'Pay per month, USD', type: 'row', baseValues: [9000, 9100, 2000, 2000, 2000, 2000, 2000, 2000], format: 'int' },
+      { label: 'Total, k USD', type: 'total', compute: function(rowVals) { return (rowVals[1] * rowVals[2] * 6) / 1000; }, format: 'int' },
+      { label: 'Analyst level', type: 'row', baseValues: [100.00, 100.00, 16.05, 16.05, 16.05, 16.05, 16.05, 16.05], format: 'decimal2' },
+      { label: 'Other investment personnel', type: 'header' },
+      { label: 'Personnel', type: 'row', baseValues: [9, 30, 19, 23, 10, 2, 19, 15], format: 'int' },
+      { label: 'Pay per month, USD', type: 'row', baseValues: [10800, 10920, 2400, 2400, 2400, 2400, 2400, 2400], format: 'int' },
+      { label: 'Total, k USD', type: 'total', compute: function(rowVals) { return (rowVals[6] * rowVals[7] * 6) / 1000; }, format: 'int' },
+      { label: 'Support staff', type: 'header' },
+      { label: 'Personnel', type: 'row', baseValues: [9, 30, 19, 23, 10, 2, 19, 15], format: 'int' },
+      { label: 'Pay per month, USD', type: 'row', baseValues: [6300, 6370, 1400, 1400, 1400, 1400, 1400, 1400], format: 'int' },
+      { label: 'Total, k USD', type: 'total', compute: function(rowVals) { return (rowVals[10] * rowVals[11] * 6) / 1000; }, format: 'int' },
+      { label: 'Salesforce', type: 'header' },
+      { label: 'Hours per client', type: 'row', baseValues: [4.5, 4.2, 4.5, 4.0, 6.0, 1.0, 5.0, 6.0], format: 'decimal1' },
+      { label: 'Personnel', type: 'row', baseValues: [15, 55, 35, 35, 18, 1, 37, 32], format: 'int' },
+      { label: 'Pay per month, USD', type: 'row', baseValues: [7000, 9500, 5990, 10000, 6000, 2000, 6000, 6600], format: 'int' },
+      { label: 'Total, k USD', type: 'total', compute: function(rowVals) { return (rowVals[15] * rowVals[16] * 6) / 1000; }, format: 'int' },
+      { label: 'Salesforce level', type: 'row', baseValues: [63.23, 100.00, 48.75, 100.00, 48.88, 8.40, 48.88, 57.30], format: 'decimal2' }
+    ]
+  };
+
+  // Get team specific round factor to model different strategies, growth paths and prevent lockstep scaling
+  function getTeamRoundFactor(tIdx, roundNum) {
+    var variations = {
+      // MUST: starts strong, grows slowly
+      0: [0, 0.52, 0.68, 0.80, 0.91, 1.0],
+      // UNIATLANTICO 3: steady average growth
+      1: [0, 0.38, 0.55, 0.72, 0.86, 1.0],
+      // Delta Genesis: fast start, slows down
+      2: [0, 0.48, 0.64, 0.76, 0.88, 1.0],
+      // PUCCAMP ECO: slow start, catches up
+      3: [0, 0.32, 0.50, 0.70, 0.85, 1.0],
+      // DUCK TANK: volatile growth
+      4: [0, 0.44, 0.58, 0.74, 0.87, 1.0],
+      // Team Nova (You): exponential growth!
+      5: [0, 0.30, 0.52, 0.75, 0.89, 1.0],
+      // Shouryanga: solid steady growth
+      6: [0, 0.41, 0.59, 0.74, 0.88, 1.0],
+      // ChicouTeamy: steady high start
+      7: [0, 0.46, 0.61, 0.75, 0.88, 1.0]
+    };
+    var teamVars = variations[tIdx];
+    if (teamVars && teamVars[roundNum] !== undefined) {
+      return teamVars[roundNum];
+    }
+    var defaultFactors = [0, 0.40, 0.58, 0.72, 0.85, 1.0];
+    return defaultFactors[roundNum] || 1.0;
+  }
+
+  // Render cohort financials based on parameters
+  function renderComparisonTable() {
+    var roundNum = parseInt(currentRound.replace(/\D/g, '')) || 5;
+
+    var tbody = document.getElementById('comparisonTableBody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    var rows = baseData[currentStatement] || [];
+    var rowValuesDatabase = []; // stores finalized arrays for computed values reference
+
+    for (var i = 0; i < rows.length; i++) {
+      var r = rows[i];
+      var tr = document.createElement('tr');
+
+      if (r.type === 'header') {
+        tr.className = 'section-header-row';
+        var td = document.createElement('td');
+        td.colSpan = 9;
+        td.textContent = r.label;
+        tr.appendChild(td);
+        rowValuesDatabase.push(null);
+      } else {
+        if (r.type === 'total') tr.className = 'total-row';
+        else if (r.type === 'grand-total') tr.className = 'grand-total-row';
+
+        // Add class for EBITDA highlighting inside Cash Flow / Income Statement
+        if (r.label === 'EBITDA') tr.style.background = 'rgba(230, 57, 70, 0.05)';
+
+        var labelTd = document.createElement('td');
+        labelTd.textContent = r.label;
+        tr.appendChild(labelTd);
+
+        // Calculate values for all 8 teams
+        var finalVals = [];
+        var teamsList = ['MUST', 'UNIATLANTICO 3', 'Delta Genesis', 'PUCCAMP ECO', 'DUCK TANK', 'Team Nova', 'Shouryanga', 'ChicouTeamy'];
+
+        for (var tIdx = 0; tIdx < teamsList.length; tIdx++) {
+          var teamName = teamsList[tIdx];
+          var rawVal = 0;
+          var teamRoundFactor = getTeamRoundFactor(tIdx, roundNum);
+
+          if (r.baseValues) {
+            // Apply scale based on selected round and team
+            rawVal = r.baseValues[tIdx] * teamRoundFactor;
+          } else if (r.compute) {
+            // Compute based on previous rows
+            var columnHistory = [];
+            for (var rowHistoryIdx = 0; rowHistoryIdx < rowValuesDatabase.length; rowHistoryIdx++) {
+              var historyRow = rowValuesDatabase[rowHistoryIdx];
+              columnHistory.push(historyRow ? historyRow[tIdx] : 0);
+            }
+            rawVal = r.compute(columnHistory);
+          }
+
+          finalVals.push(rawVal);
+
+          // Add cell
+          var valTd = document.createElement('td');
+          valTd.setAttribute('data-team', teamName);
+          
+          if (r.format === 'int') {
+            valTd.textContent = Math.round(rawVal).toLocaleString();
+          } else if (r.format === 'decimal1') {
+            valTd.textContent = rawVal.toFixed(1);
+          } else if (r.format === 'decimal2') {
+            valTd.textContent = rawVal.toFixed(2);
+          } else {
+            valTd.textContent = formatFinancialValue(rawVal);
+          }
+
+          // Value styling tags
+          if (rawVal < 0) {
+            valTd.classList.add('text-red');
+          } else if (r.type === 'grand-total' || r.label === 'EBITDA' || r.label === 'Net Change in Cash') {
+            valTd.classList.add('text-green');
+          }
+
+          // Apply selection highlight
+          if (teamName === selectedTeam) {
+            valTd.classList.add('highlight-col');
+          }
+
+          tr.appendChild(valTd);
+        }
+
+        rowValuesDatabase.push(finalVals);
+      }
+
+      tbody.appendChild(tr);
+    }
+  }
+
+  // Format financial values with commas and decimals
+  function formatFinancialValue(v) {
+    return v.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  }
+
+  // Highlight a specific team column
+  function highlightComparisonTeam(teamName) {
+    selectedTeam = teamName;
+    
+    // Remove previous highlights
+    var highlighted = document.querySelectorAll('.highlight-col');
+    highlighted.forEach(function(el) {
+      el.classList.remove('highlight-col');
+    });
+
+    if (!teamName) return;
+
+    // Apply header highlight
+    var ths = document.querySelectorAll('th[data-team="' + teamName + '"]');
+    ths.forEach(function(th) { th.classList.add('highlight-col'); });
+
+    // Apply table cell highlights
+    var tds = document.querySelectorAll('td[data-team="' + teamName + '"]');
+    tds.forEach(function(td) { td.classList.add('highlight-col'); });
+
+    showToast("Active Team Highlighted", teamName + " column highlighted.", "info");
+  }
+
+  // Tab Swap trigger
+  function switchFinTab(btn, tabName) {
+    var tabs = document.querySelectorAll('.tab-btn');
+    tabs.forEach(function(t) { t.classList.remove('active'); });
+    btn.classList.add('active');
+
+    currentStatement = tabName;
+    document.getElementById('table-title').textContent = tabName + ' (k USD) — ' + currentRound;
+    
+    renderComparisonTable();
+    highlightComparisonTeam(selectedTeam);
+    showToast("Report Swapped", tabName + " view loaded.", "info");
+  }
+
+  // Round Change trigger
+  function switchCohortRound(round) {
+    currentRound = round;
+    document.getElementById('table-title').textContent = currentStatement + ' (k USD) — ' + round;
+    
+    renderComparisonTable();
+    highlightComparisonTeam(selectedTeam);
+    showToast("Round Changed", "Cohort data loaded for " + round + ".", "info");
+  }
+
+  // Initial load
+  document.addEventListener('DOMContentLoaded', function() {
+    renderComparisonTable();
+    highlightComparisonTeam('Team Nova');
+  });
+</script>
+</body>
+</html>

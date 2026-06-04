@@ -26,3 +26,42 @@
 .instructor-table-header { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; }
 .instructor-table-title { font-size: 14px; font-weight: 700; }
 .instructor-email-cell { font-family: var(--mono); font-size: 12px; }
+
+/* ===================== SHARED ADMIN DATA STRUCTURES ===================== */
+.details-info-box {
+  background: var(--navy-3);
+  border-left: 3px solid var(--teal);
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+}
+.details-info-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+.details-info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--gray-400);
+  margin-top: 6px;
+  font-family: var(--mono);
+}
+.round-status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+.round-status-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.round-label {
+  font-size: 13px;
+  color: var(--gray-200);
+}
+

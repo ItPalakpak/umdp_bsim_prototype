@@ -42,7 +42,8 @@ function renderTopBar(config) {
   if (config.actions && config.actions.length > 0) {
     for (var j = 0; j < config.actions.length; j++) {
       var action = config.actions[j];
-      html += '<button class="' + action.className + '">' + action.text + '</button>';
+      var clickAttr = action.onclick ? ' onclick="' + action.onclick + '"' : '';
+      html += '<button class="' + action.className + '"' + clickAttr + '>' + action.text + '</button>';
     }
   }
 

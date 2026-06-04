@@ -1,0 +1,230 @@
+/* ===================== SETTINGS LAYOUT ===================== */
+.settings-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.settings-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--teal);
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.settings-card {
+  margin-bottom: 20px;
+}
+
+/* Custom Checkbox and Toggle Row */
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  user-select: none;
+  cursor: pointer;
+}
+.check-input {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: var(--navy-3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  flex-shrink: 0;
+  margin: 0;
+  outline: none;
+}
+.check-input:checked {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+.check-input:checked::before {
+  content: '✓';
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 800;
+}
+.check-label {
+  font-size: 13px;
+  color: var(--gray-200);
+}
+
+/* Toggle Switch */
+.toggle-switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--navy-3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: .3s;
+  border-radius: 22px;
+}
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--gray-400);
+  transition: .3s;
+  border-radius: 50%;
+}
+.toggle-switch input:checked + .toggle-slider {
+  background-color: var(--teal-dim);
+  border-color: var(--teal);
+}
+.toggle-switch input:checked + .toggle-slider:before {
+  transform: translateX(22px);
+  background-color: var(--teal);
+}
+
+/* Radio Cards */
+.radio-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+@media (max-width: 600px) {
+  .radio-group {
+    grid-template-columns: 1fr;
+  }
+}
+.radio-card {
+  background: var(--navy-3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.radio-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.radio-card.active {
+  border-color: var(--teal);
+  background: rgba(0, 240, 255, 0.03);
+}
+.radio-card-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--white);
+}
+.radio-card-desc {
+  font-size: 10px;
+  color: var(--gray-400);
+  line-height: 1.3;
+}
+
+/* Detail Info Box */
+.details-info-box {
+  background: var(--navy-3);
+  border-left: 3px solid var(--teal);
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+}
+.details-info-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+.details-info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--gray-400);
+  margin-top: 6px;
+  font-family: var(--mono);
+}
+
+/* API Key Input Action */
+.api-key-container {
+  display: flex;
+  gap: 8px;
+}
+.api-key-input {
+  font-family: var(--mono);
+  background: var(--navy-3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--gray-400);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  font-size: 12px;
+  flex: 1;
+  outline: none;
+}
+
+/* Form Action Buttons Bar */
+.settings-actions-bar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Font scale scaling classes */
+body.large-font-scale {
+  font-size: 15px;
+}
+body.large-font-scale .top-bar-title {
+  font-size: 18px;
+}
+body.large-font-scale .nav-item {
+  font-size: 14px;
+  padding: 12px 20px;
+}
+body.large-font-scale .card {
+  padding: 24px;
+}
+body.large-font-scale .form-label {
+  font-size: 13px;
+}
+body.large-font-scale .form-input, 
+body.large-font-scale .form-select {
+  font-size: 14px;
+  padding: 12px 16px;
+}

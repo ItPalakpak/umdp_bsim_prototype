@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Settings — B-Sim AI</title>
+  <meta name="description" content="Customize student profile credentials, simulation alerts, and dashboard themes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+  <link rel="stylesheet" href="../css/settings.css">
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+      
+      <div class="settings-grid">
+        <!-- Left: Form Controls -->
+        <div>
+          <!-- Profile Settings -->
+          <div class="card settings-card">
+            <div class="settings-section-title">👤 Student Profile Credentials</div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input" id="profileName">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Avatar Initials</label>
+                <input type="text" class="form-input" id="profileInitials" maxlength="3">
+              </div>
+            </div>
+            <div class="form-group form-group-no-margin">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-input" id="profileEmail">
+            </div>
+          </div>
+
+          <!-- UI Customization -->
+          <div class="card settings-card">
+            <div class="settings-section-title">🎨 UI Visual Customization</div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Color Theme Preset</label>
+                <select class="form-select" id="themePreset">
+                  <option value="teal">Classic Teal (Default)</option>
+                  <option value="amber">Amber Flare (Warm)</option>
+                  <option value="emerald">Emerald Forest (Teal/Green)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Interface Layout Scale</label>
+                <select class="form-select" id="textScale">
+                  <option value="standard">Standard (Compact)</option>
+                  <option value="large">Large Font Layout</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-label mb-10">AI Strategic Feedback Verbosity</div>
+            <div class="radio-group">
+              <div class="radio-card" data-value="concise" onclick="selectVerbosityCard('concise')">
+                <div class="radio-card-title">Concise</div>
+                <div class="radio-card-desc">Short action list. Ideal for quick round iterations.</div>
+              </div>
+              <div class="radio-card" data-value="balanced" onclick="selectVerbosityCard('balanced')">
+                <div class="radio-card-title">Balanced</div>
+                <div class="radio-card-desc">Standard breakdowns. Explains core segment concerns.</div>
+              </div>
+              <div class="radio-card" data-value="detailed" onclick="selectVerbosityCard('detailed')">
+                <div class="radio-card-title">Detailed</div>
+                <div class="radio-card-desc">In-depth feedback covering competitors and logic links.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alerts Prefs -->
+          <div class="card settings-card">
+            <div class="settings-section-title">🔔 Decision Alerts &amp; Notifications</div>
+            
+            <label class="check-row">
+              <input type="checkbox" class="check-input" id="alertDeadline">
+              <span class="check-label">Notify me 24 hours before round decision submission deadline.</span>
+            </label>
+            
+            <label class="check-row">
+              <input type="checkbox" class="check-input" id="alertEsg">
+              <span class="check-label">Notify immediately if team ESG score breaches course threshold (60).</span>
+            </label>
+
+            <label class="check-row">
+              <input type="checkbox" class="check-input" id="alertPriceWar">
+              <span class="check-label">Send critical warning if competitor segment pricing triggers a price war.</span>
+            </label>
+          </div>
+
+          <!-- Save/Reset Actions -->
+          <div class="settings-actions-bar">
+            <button class="btn btn-secondary" onclick="resetDefaultSettings('student')">Reset Defaults</button>
+            <button class="btn btn-primary" onclick="saveAllSettings('student')">💾 Save Preferences</button>
+          </div>
+        </div>
+
+        <!-- Right: Team Details Reference -->
+        <div>
+          <div class="card mb-16">
+            <div class="settings-section-title">👥 Team Roster Info</div>
+            <div class="details-info-box">
+              <div class="details-info-title">NovaTech Corp</div>
+              <div class="details-info-row"><span>Segment:</span><span>Electronics</span></div>
+              <div class="details-info-row"><span>Rounds:</span><span>6 Rounds</span></div>
+              <div class="details-info-row"><span>Starting Cap:</span><span>$10M USD</span></div>
+            </div>
+            
+            <div class="form-label mb-10">Teammates</div>
+            <div class="round-status-list">
+              <div class="round-status-item">
+                <span class="round-label">Jamie Dela Cruz</span>
+                <span class="badge badge-teal">CEO (You)</span>
+              </div>
+              <div class="round-status-item">
+                <span class="round-label">Alex Santos</span>
+                <span class="badge badge-gray">CFO</span>
+              </div>
+              <div class="round-status-item">
+                <span class="round-label">Mia Reyes</span>
+                <span class="badge badge-gray">COO</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-sm">
+            <div class="card-title">Security State</div>
+            <div class="form-hint mb-10">Credentials and connections are encrypted inside DLSU student databases.</div>
+            <span class="badge badge-green">✓ Secure SSL Connection</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/actions.js"></script>
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script src="../js/settings.js"></script>
+<script>
+  renderSidebar({ variant: 'student', activePage: 'settings' });
+  renderTopBar({ title: 'Account Settings', subtitle: 'Manage preferences & custom configuration' });
+  renderNavigator();
+  initSettingsPage('student');
+</script>
+</body>
+</html>
