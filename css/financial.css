@@ -1,0 +1,24 @@
+/* ===================== FINANCIAL DASHBOARD ===================== */
+.fin-statement { display: flex; flex-direction: column; gap: 0; }
+.fin-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+.fin-row.header { background: var(--navy-3); font-weight: 600; border-radius: var(--radius) var(--radius) 0 0; }
+.fin-row.total { background: var(--navy-3); font-weight: 700; border-top: 1px solid rgba(255,255,255,0.1); }
+.fin-row.total-lg { font-size: 15px; }
+.fin-row.sub { padding-left: 30px; color: var(--gray-400); font-size: 12px; }
+.fin-label { color: var(--gray-200); }
+.fin-val { text-align: right; }
+.fin-val.pos { color: var(--green); }
+.fin-val.neg { color: var(--red); }
+.fin-period { font-size: 11px; color: var(--gray-400); margin-bottom: 4px; font-family: var(--font); }
+.fin-header-wrap { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.summary-card-list { display: flex; flex-direction: column; gap: 8px; font-size: 12px; }
+.summary-card-row { display: flex; justify-content: space-between; }
+.summary-card-label { color: var(--gray-400); }
+.summary-card-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 6px 0; }
+.summary-card-total { display: flex; justify-content: space-between; font-weight: 700; }

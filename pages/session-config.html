@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session Configuration — B-Sim AI</title>
+  <meta name="description" content="Configure a new simulation session — rounds, teams, ESG constraints, and advanced settings.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+  <link rel="stylesheet" href="../css/session-config.css">
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+      <div class="grid-2">
+        <!-- Left: Config Form -->
+        <div>
+          <div class="card mb-16">
+            <div class="section-header">Session Settings</div>
+            <div class="form-group">
+              <label class="form-label">Course Name</label>
+              <input type="text" class="form-input form-input-text" value="BUS 401 — Strategic Management">
+            </div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Number of Rounds</label>
+                <select class="form-select"><option>4</option><option>5</option><option selected>6</option><option>8</option></select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Round Duration (days)</label>
+                <select class="form-select"><option>3</option><option selected>7</option><option>14</option></select>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Number of Teams</label>
+                <input type="number" class="form-input" value="8" min="2" max="20">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Industry / Market Preset</label>
+                <select class="form-select">
+                  <option selected>Consumer Electronics</option>
+                  <option>FMCG / Retail</option>
+                  <option>Manufacturing</option>
+                  <option>Fintech</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sustainability Constraints -->
+          <div class="card mb-16">
+            <div class="section-header">🌿 Sustainability Constraints</div>
+            <div class="form-group">
+              <label class="form-label">Minimum ESG Score Threshold (per round)</label>
+              <input type="number" class="form-input" value="60" min="0" max="100">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Penalty Type for ESG Breach</label>
+              <select class="form-select">
+                <option selected>Financial Penalty (−5% Revenue)</option>
+                <option>Score Deduction (−10 pts)</option>
+                <option>Both Financial + Score</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Advanced Settings (Collapsible) -->
+          <div class="card">
+            <div class="collapsible-header" onclick="toggleCollapsible('advancedSettings')">
+              <h3>Advanced Settings</h3>
+              <span class="collapsible-arrow" id="advancedSettingsArrow">▼</span>
+            </div>
+            <div class="collapsible-body" id="advancedSettings">
+              <div class="form-group">
+                <label class="form-label">Market Volatility</label>
+                <select class="form-select"><option>Low</option><option selected>Medium</option><option>High</option><option>Extreme</option></select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">ESG Weight in Final Scoring: <span id="esgWeightVal" class="text-teal text-mono">25%</span></label>
+                <input type="range" class="range-input" min="0" max="40" value="25" oninput="document.getElementById('esgWeightVal').textContent=this.value+'%'">
+                <div class="range-bounds"><span>0%</span><span>40%</span></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Custom Market Events</label>
+                <select class="form-select"><option selected>Disabled</option><option>Enabled (manual)</option><option>Enabled (random)</option></select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Starting Capital per Team — USD</label>
+                <input type="number" class="form-input" value="10000000">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Preview Panel -->
+        <div>
+          <div class="card sticky-preview">
+            <div class="section-header">Session Preview</div>
+            <div class="session-preview-list">
+              <div class="session-preview-row"><span class="session-preview-label">Course</span><span class="font-semibold">BUS 401 — Strategic Mgmt</span></div>
+              <div class="session-preview-row"><span class="session-preview-label">Rounds</span><span class="text-mono">6 × 7 days</span></div>
+              <div class="session-preview-row"><span class="session-preview-label">Total Duration</span><span class="text-mono">42 days</span></div>
+              <div class="session-preview-row"><span class="session-preview-label">Teams</span><span class="text-mono">8</span></div>
+              <div class="session-preview-row"><span class="session-preview-label">Industry</span><span>Consumer Electronics</span></div>
+              <div class="session-preview-row"><span class="session-preview-label">ESG Weight</span><span class="text-mono text-green">25%</span></div>
+              <div class="session-preview-row"><span class="session-preview-label">ESG Min Threshold</span><span class="text-mono text-amber">60/100</span></div>
+              <div class="session-preview-row-last"><span class="session-preview-label">Starting Capital</span><span class="text-mono">$10M / team</span></div>
+            </div>
+            <div class="session-preview-actions">
+              <button class="btn btn-secondary w-full">💾 Save as Template</button>
+              <button class="btn btn-primary w-full">🚀 Launch Simulation</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script src="../js/collapsible.js"></script>
+<script>
+  renderSidebar({ variant: 'instructor', activePage: 'session-config' });
+  renderTopBar({ title: 'Configure New Session', subtitle: 'Instructor Panel' });
+  renderNavigator();
+</script>
+</body>
+</html>

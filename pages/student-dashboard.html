@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — B-Sim AI</title>
+  <meta name="description" content="Student dashboard with KPI cards, revenue trends, and round status overview.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+      <!-- Notification Banner -->
+      <a class="notif-banner notif-banner-clickable" href="ai-feedback.html">
+        <div class="notif-icon">🤖</div>
+        <div class="notif-text"><strong>Round 3 results are ready</strong> — Your AI strategic debrief is available. Pricing strategy flagged as Critical.</div>
+        <span class="btn btn-primary btn-sm">View AI Feedback →</span>
+      </a>
+
+      <!-- KPI Cards -->
+      <div class="kpi-grid mb-20">
+        <div class="kpi-card">
+          <div class="kpi-label">Revenue</div>
+          <div class="kpi-value">$18.4M</div>
+          <div class="kpi-delta delta-up">▲ 12.3% vs last round</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Net Profit</div>
+          <div class="kpi-value">$4.2M</div>
+          <div class="kpi-delta delta-up">▲ 8.1%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">EBITDA</div>
+          <div class="kpi-value">$6.8M</div>
+          <div class="kpi-delta delta-up">▲ 5.4%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Market Share</div>
+          <div class="kpi-value">23.4%</div>
+          <div class="kpi-delta delta-down">▼ 2.1% — competitors expanding</div>
+        </div>
+        <div class="kpi-card kpi-card-esg">
+          <div class="kpi-label">ESG Score 🌿</div>
+          <div class="kpi-value kpi-value-green">78/100</div>
+          <div class="kpi-delta delta-up">▲ 6 pts · Above threshold</div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="grid-2 mb-20">
+        <div class="card">
+          <div class="card-title">Revenue &amp; Profit Trend (Rounds 1–3)</div>
+          <div class="chart-wrap chart-wrap-180">
+            <canvas id="dashTrendChart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Round Status &amp; Upcoming</div>
+          <div class="round-status-list">
+            <div class="round-status-item">
+              <span class="round-label">Round 1</span>
+              <span class="badge badge-green">✓ Complete</span>
+            </div>
+            <div class="round-status-item">
+              <span class="round-label">Round 2</span>
+              <span class="badge badge-green">✓ Complete</span>
+            </div>
+            <div class="round-status-item">
+              <span class="round-label-current">Round 3 (Current)</span>
+              <span class="badge badge-amber">⏳ Open — 2d left</span>
+            </div>
+            <div class="round-status-item">
+              <span class="round-label-locked">Round 4</span>
+              <span class="badge badge-gray">Locked</span>
+            </div>
+            <div class="round-status-item">
+              <span class="round-label-locked">Rounds 5–6</span>
+              <span class="badge badge-gray">Locked</span>
+            </div>
+            <div class="round-action">
+              <a class="btn btn-primary w-full" href="decision.html">Submit Round 3 Decision →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="grid-3">
+        <div class="card card-sm">
+          <div class="card-title">Leaderboard Position</div>
+          <div class="quick-stat-value">#2</div>
+          <div class="quick-stat-detail">of 8 teams · 1 behind TeamAlpha</div>
+        </div>
+        <div class="card card-sm">
+          <div class="card-title">Last Decision Saved</div>
+          <div class="quick-stat-teal">Pricing tab</div>
+          <div class="quick-stat-detail">Draft · Not yet submitted</div>
+        </div>
+        <div class="card card-sm">
+          <div class="card-title">Instructor Notes</div>
+          <div class="quick-stat-note">"Strong Q2 showing — watch your ESG capex allocation."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script src="../js/charts.js"></script>
+<script>
+  renderSidebar({ variant: 'student', activePage: 'dashboard' });
+  renderTopBar({
+    title: 'Dashboard',
+    subtitle: 'NovaTech Corp · BUS 401 — Strategic Management',
+    badges: [{ text: '● Round 3 of 6', variant: 'teal' }],
+    timer: { label: 'Deadline', value: '2d 14h 32m' }
+  });
+  renderNavigator();
+  document.addEventListener('DOMContentLoaded', initDashboardCharts);
+</script>
+</body>
+</html>

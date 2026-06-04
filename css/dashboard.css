@@ -1,0 +1,14 @@
+/* ===================== DASHBOARD ===================== */
+.kpi-card-esg { border-color: rgba(46,196,182,0.3); }
+.kpi-value-green { color: var(--green); }
+.kpi-value-red { color: var(--red); }
+.round-status-list { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.round-status-item { display: flex; justify-content: space-between; align-items: center; }
+.round-label { font-size: 13px; color: var(--gray-200); }
+.round-label-current { font-size: 13px; color: var(--teal); font-weight: 600; }
+.round-label-locked { font-size: 13px; color: var(--gray-600); }
+.round-action { margin-top: 8px; }
+.quick-stat-value { font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--amber); }
+.quick-stat-detail { font-size: 12px; color: var(--gray-400); }
+.quick-stat-teal { font-family: var(--mono); font-size: 13px; color: var(--teal); }
+.quick-stat-note { font-size: 13px; color: var(--gray-200); }

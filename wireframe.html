@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wireframe — B-Sim AI</title>
+  <meta name="description" content="B-Sim AI Prototype Wireframe — Visual sitemap of all screens and user flows.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/navigator.css">
+  <link rel="stylesheet" href="css/wireframe.css">
+</head>
+<body>
+
+<nav class="wireframe-nav">
+  <div class="logo-mark">
+    <div class="logo-icon">B</div>
+    <span class="logo-text">B-Sim <span>AI</span></span>
+  </div>
+  <div class="wireframe-nav-spacer"></div>
+  <a class="btn btn-ghost btn-sm" href="index.html">← Back to Home</a>
+</nav>
+
+<div class="wireframe-container">
+  <h1 class="wireframe-title">Prototype <span>Wireframe</span> — Screen Map</h1>
+  <p class="wireframe-subtitle">B-Sim AI · All screens and user flows</p>
+
+  <!-- Student Flow -->
+  <div class="wireframe-section">
+    <div class="wireframe-section-title">Student Flow</div>
+    <div class="wireframe-grid">
+      <a class="wireframe-card" href="index.html">
+        <div class="wireframe-card-number">1</div>
+        <div class="wireframe-card-title">Landing / Login</div>
+        <div class="wireframe-card-desc">Entry point with hero section, platform features, and login portals for students and instructors.</div>
+      </a>
+      <a class="wireframe-card" href="pages/student-dashboard.html">
+        <div class="wireframe-card-number">2</div>
+        <div class="wireframe-card-title">Student Dashboard</div>
+        <div class="wireframe-card-desc">KPI cards, revenue/profit trends, round status tracker, and quick stats overview.</div>
+      </a>
+      <a class="wireframe-card" href="pages/decision.html">
+        <div class="wireframe-card-number">3</div>
+        <div class="wireframe-card-title">Decision Submission</div>
+        <div class="wireframe-card-desc">Multi-tab form for pricing, operations, finance, HR, and ESG decisions with live sidebar summary.</div>
+      </a>
+      <a class="wireframe-card" href="pages/ai-feedback.html">
+        <div class="wireframe-card-number">4</div>
+        <div class="wireframe-card-title">AI Feedback Report</div>
+        <div class="wireframe-card-desc">AI strategic debrief with diagnosis cards, market share chart, profit trends, and ESG breakdown.</div>
+      </a>
+      <a class="wireframe-card" href="pages/leaderboard.html">
+        <div class="wireframe-card-number">5</div>
+        <div class="wireframe-card-title">Leaderboard</div>
+        <div class="wireframe-card-desc">Class rankings with sortable columns, ESG leaders panel, and score composition breakdown.</div>
+      </a>
+      <a class="wireframe-card" href="pages/financial.html">
+        <div class="wireframe-card-number">6</div>
+        <div class="wireframe-card-title">Financial Dashboard</div>
+        <div class="wireframe-card-desc">Detailed P&L income statement, balance sheet summary, cash flow, and HR overview.</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="wireframe-flow">↓</div>
+
+  <!-- Instructor Flow -->
+  <div class="wireframe-section">
+    <div class="wireframe-section-title">Instructor Flow</div>
+    <div class="wireframe-grid">
+      <a class="wireframe-card" href="pages/session-config.html">
+        <div class="wireframe-card-number">7</div>
+        <div class="wireframe-card-title">Session Configuration</div>
+        <div class="wireframe-card-desc">Course setup with collapsible sections for ESG constraints, market conditions, and advanced settings.</div>
+      </a>
+      <a class="wireframe-card" href="pages/class-monitor.html">
+        <div class="wireframe-card-number">8</div>
+        <div class="wireframe-card-title">Class Monitoring</div>
+        <div class="wireframe-card-desc">All-teams overview with KPI summary, at-risk alerts, performance table, and market share chart.</div>
+      </a>
+      <a class="wireframe-card" href="pages/team-deepdive.html">
+        <div class="wireframe-card-number">9</div>
+        <div class="wireframe-card-title">Team Deep-Dive</div>
+        <div class="wireframe-card-desc">Individual team analysis with decision log, feedback history, and instructor override controls.</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="wireframe-flow">↓</div>
+
+  <!-- Admin -->
+  <div class="wireframe-section">
+    <div class="wireframe-section-title">Admin</div>
+    <div class="wireframe-grid">
+      <a class="wireframe-card" href="pages/admin.html">
+        <div class="wireframe-card-number">10</div>
+        <div class="wireframe-card-title">University Admin</div>
+        <div class="wireframe-card-desc">Institutional dashboard with license management, billing, instructor table, and usage analytics.</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Navigator -->
+<div id="navigator-root"></div>
+
+<script src="js/components/navigator.js"></script>
+<script src="js/wireframe.js"></script>
+<script>
+  renderNavigator();
+</script>
+</body>
+</html>

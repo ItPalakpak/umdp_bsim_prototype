@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Monitoring — B-Sim AI</title>
+  <meta name="description" content="Instructor class monitoring — KPI overview, at-risk alerts, team performance table.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+  <link rel="stylesheet" href="../css/class-monitor.css">
+  <link rel="stylesheet" href="../css/team-deepdive.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+      <!-- Overview Cards -->
+      <div class="kpi-grid-5">
+        <div class="kpi-card"><div class="kpi-label">Total Teams</div><div class="kpi-value">8</div><div class="kpi-delta text-gray">All submitted</div></div>
+        <div class="kpi-card"><div class="kpi-label">Rounds Done</div><div class="kpi-value">3/6</div><div class="kpi-delta text-gray">50% complete</div></div>
+        <div class="kpi-card"><div class="kpi-label">Avg Class Profit</div><div class="kpi-value">$3.0M</div><div class="kpi-delta delta-up">▲ 11%</div></div>
+        <div class="kpi-card"><div class="kpi-label">Avg ESG Score</div><div class="kpi-value kpi-value-green">63</div><div class="kpi-delta delta-up">▲ 4 pts</div></div>
+        <div class="kpi-card kpi-card-at-risk"><div class="kpi-label">At-Risk Teams ⚠</div><div class="kpi-value kpi-value-red">3</div><div class="kpi-delta text-red">ESG or Profit crisis</div></div>
+      </div>
+
+      <!-- Alert Panel -->
+      <div class="alert-banner">
+        <span class="alert-icon">🚨</span>
+        <div class="alert-text">
+          <strong class="alert-title">3 teams require attention:</strong> Peak Dynamics (negative EBITDA, Round 3), Kestrel Co (ESG below threshold × 2 rounds), BlueStar Inc (ESG below threshold).
+        </div>
+        <button class="btn btn-sm alert-btn">Review</button>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="grid-2 mb-20">
+        <div class="card">
+          <div class="card-title">Market Share Distribution — Round 3</div>
+          <div class="chart-wrap chart-wrap-180"><canvas id="classShareChart"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Avg Profit Trend (All Rounds)</div>
+          <div class="chart-wrap chart-wrap-180"><canvas id="classAvgProfitChart"></canvas></div>
+        </div>
+      </div>
+
+      <!-- Team Table -->
+      <div class="card card-no-padding">
+        <div class="team-table-header">
+          <div class="team-table-title">Team Performance Overview</div>
+          <div class="tab-bar">
+            <button class="tab-btn active">All Teams</button>
+            <button class="tab-btn">At Risk</button>
+          </div>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th class="table-cell-pad">Team Name</th>
+              <th>Revenue</th>
+              <th>Profit Margin</th>
+              <th>Market Share</th>
+              <th>ESG Score</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="table-cell-pad table-cell-name">TeamAlpha</td>
+              <td>$21.2M</td><td>24.1%</td><td>26.8%</td>
+              <td class="score-cell-amber">71</td>
+              <td><div class="team-status"><div class="status-dot status-dot-green"></div><span class="status-text-green">On Track</span></div></td>
+              <td><button class="btn btn-sm btn-ghost" onclick="openTeamDeepDive('TeamAlpha')">View →</button></td>
+            </tr>
+            <tr>
+              <td class="table-cell-pad table-cell-name">NovaTech Corp</td>
+              <td>$18.4M</td><td>22.8%</td><td>23.4%</td>
+              <td class="text-green">78</td>
+              <td><div class="team-status"><div class="status-dot status-dot-green"></div><span class="status-text-green">On Track</span></div></td>
+              <td><button class="btn btn-sm btn-ghost" onclick="openTeamDeepDive('NovaTech Corp')">View →</button></td>
+            </tr>
+            <tr>
+              <td class="table-cell-pad table-cell-name">Stratosphere</td>
+              <td>$17.8M</td><td>21.9%</td><td>21.1%</td>
+              <td class="text-green">82</td>
+              <td><div class="team-status"><div class="status-dot status-dot-green"></div><span class="status-text-green">On Track</span></div></td>
+              <td><button class="btn btn-sm btn-ghost" onclick="openTeamDeepDive('Stratosphere')">View →</button></td>
+            </tr>
+            <tr>
+              <td class="table-cell-pad table-cell-name">Team Omega</td>
+              <td>$16.1M</td><td>21.1%</td><td>18.9%</td>
+              <td class="score-cell-amber">64</td>
+              <td><div class="team-status"><div class="status-dot status-dot-green"></div><span class="status-text-green">On Track</span></div></td>
+              <td><button class="btn btn-sm btn-ghost" onclick="openTeamDeepDive('Team Omega')">View →</button></td>
+            </tr>
+            <tr>
+              <td class="table-cell-pad table-cell-name">BlueStar Inc</td>
+              <td>$14.7M</td><td>19.0%</td><td>16.4%</td>
+              <td class="text-red">58</td>
+              <td><div class="team-status"><div class="status-dot status-dot-amber"></div><span class="status-text-amber">At Risk</span></div></td>
+              <td><button class="btn btn-sm btn-ghost" onclick="openTeamDeepDive('BlueStar Inc')">View →</button></td>
+            </tr>
+            <tr>
+              <td class="table-cell-pad table-cell-name">Vertex Group</td>
+              <td>$13.2M</td><td>15.9%</td><td>14.2%</td>
+              <td class="text-red">55</td>
+              <td><div class="team-status"><div class="status-dot status-dot-amber"></div><span class="status-text-amber">At Risk</span></div></td>
+              <td><button class="btn btn-sm btn-ghost" onclick="openTeamDeepDive('Vertex Group')">View →</button></td>
+            </tr>
+            <tr>
+              <td class="table-cell-pad table-cell-name">Peak Dynamics</td>
+              <td>$11.8M</td><td>13.6%</td><td>11.1%</td>
+              <td class="text-red">44</td>
+              <td><div class="team-status"><div class="status-dot status-dot-red"></div><span class="status-text-red">Critical</span></div></td>
+              <td><button class="btn btn-sm btn-ghost" onclick="openTeamDeepDive('Peak Dynamics')">View →</button></td>
+            </tr>
+            <tr>
+              <td class="table-cell-pad table-cell-name">Kestrel Co</td>
+              <td>$10.4M</td><td>8.7%</td><td>8.8%</td>
+              <td class="text-red">38</td>
+              <td><div class="team-status"><div class="status-dot status-dot-red"></div><span class="status-text-red">Critical</span></div></td>
+              <td><button class="btn btn-sm btn-ghost" onclick="openTeamDeepDive('Kestrel Co')">View →</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Team Deep-Dive Side Sheet -->
+<div class="side-sheet-overlay" id="teamSheetOverlay" onclick="closeTeamDeepDive()"></div>
+<div class="side-sheet" id="teamSideSheet">
+  <div class="sheet-header">
+    <div>
+      <div class="sheet-title" id="sheetTeamName">TeamAlpha</div>
+      <div class="sheet-subtitle">Team Performance Deep-Dive</div>
+    </div>
+    <button class="btn btn-secondary btn-sm" onclick="closeTeamDeepDive()">✕ Close</button>
+  </div>
+  <div class="sheet-badges">
+    <span class="badge badge-teal">Rank #1</span>
+    <span class="badge badge-green">ESG: 71</span>
+    <span class="badge badge-amber">⚠ Pricing concern</span>
+  </div>
+  <div class="divider"></div>
+  <div class="sheet-section-label">Round 3 Decisions</div>
+  <div class="decision-log-grid mb-16">
+    <div><span class="decision-log-label">Price:</span> $124</div>
+    <div><span class="decision-log-label">Production:</span> 14,500 u</div>
+    <div><span class="decision-log-label">Marketing:</span> $410K</div>
+    <div><span class="decision-log-label">ESG Invest:</span> $120K</div>
+    <div><span class="decision-log-label">Supplier:</span> B (Balanced)</div>
+    <div><span class="decision-log-label">Loan:</span> $0</div>
+  </div>
+  <div class="divider"></div>
+  <div class="sheet-section-label">AI Feedback Summary</div>
+  <div class="feedback-log-list">
+    <div class="diagnosis-card warning">
+      <div class="diag-title">⚙️ Overproduction Risk</div>
+      <div class="diag-body diag-body-sm">Produced 14,500 units vs. 12,800 demand. Excess inventory will incur $180K in carrying costs.</div>
+    </div>
+    <div class="diagnosis-card opportunity">
+      <div class="diag-title">🌿 ESG Below Class Leaders</div>
+      <div class="diag-body diag-body-sm">ESG score of 71 is above threshold but ranks 4th. Recommend increasing carbon offset.</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="sheet-section-label">Instructor Actions</div>
+  <div class="override-actions">
+    <button class="btn btn-secondary btn-sm">📩 Send Private Feedback</button>
+    <button class="btn btn-ghost btn-sm">🔒 Override Decision Lock</button>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script src="../js/charts.js"></script>
+<script src="../js/team-deepdive.js"></script>
+<script>
+  renderSidebar({ variant: 'instructor', activePage: 'class-monitor' });
+  renderTopBar({
+    title: 'Class Monitoring',
+    subtitle: 'BUS 401 · Round 3 of 6',
+    actions: [{ text: '⬇ Download Class Report (PDF)', className: 'btn btn-secondary btn-sm' }]
+  });
+  renderNavigator();
+  document.addEventListener('DOMContentLoaded', initClassMonitorCharts);
+</script>
+</body>
+</html>

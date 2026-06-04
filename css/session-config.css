@@ -1,0 +1,17 @@
+/* ===================== SESSION CONFIG ===================== */
+.collapsible-header {
+  display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer; padding: 14px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  user-select: none;
+}
+.collapsible-header h3 { font-size: 14px; font-weight: 600; }
+.collapsible-body { display: none; padding-bottom: 14px; }
+.collapsible-body.open { display: block; }
+.collapsible-arrow { color: var(--teal); font-size: 18px; transition: transform var(--transition); }
+.session-preview-list { display: flex; flex-direction: column; gap: 12px; font-size: 13px; }
+.session-preview-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.session-preview-row-last { display: flex; justify-content: space-between; padding: 10px 0; }
+.session-preview-label { color: var(--gray-400); }
+.session-preview-actions { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+.sticky-preview { position: sticky; top: 76px; }

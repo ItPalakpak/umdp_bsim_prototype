@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial Dashboard — B-Sim AI</title>
+  <meta name="description" content="Detailed financial view — P&L income statement, balance sheet, cash flow, and HR metrics.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+  <link rel="stylesheet" href="../css/financial.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+      <!-- P&L Side by Side -->
+      <div class="grid-2 mb-20">
+        <div class="card card-no-padding">
+          <div class="fin-header-wrap">
+            <div class="fin-period">Round 3 — Income Statement</div>
+          </div>
+          <div class="fin-statement">
+            <div class="fin-row header"><span class="fin-label">REVENUE</span><span class="fin-val">$18,400,000</span></div>
+            <div class="fin-row sub"><span class="fin-label">Product Sales</span><span class="fin-val">$17,820,000</span></div>
+            <div class="fin-row sub"><span class="fin-label">Other Income</span><span class="fin-val">$580,000</span></div>
+            <div class="fin-row"><span class="fin-label">Cost of Goods Sold</span><span class="fin-val neg">($10,100,000)</span></div>
+            <div class="fin-row total"><span class="fin-label">GROSS PROFIT</span><span class="fin-val pos">$8,300,000</span></div>
+            <div class="fin-row"><span class="fin-label">Operating Expenses</span><span class="fin-val neg">($1,500,000)</span></div>
+            <div class="fin-row sub"><span class="fin-label">Marketing &amp; Promo</span><span class="fin-val neg">($320,000)</span></div>
+            <div class="fin-row sub"><span class="fin-label">HR &amp; Training</span><span class="fin-val neg">($415,000)</span></div>
+            <div class="fin-row sub"><span class="fin-label">ESG Investment</span><span class="fin-val neg">($180,000)</span></div>
+            <div class="fin-row total"><span class="fin-label">EBITDA</span><span class="fin-val pos">$6,800,000</span></div>
+            <div class="fin-row"><span class="fin-label">Depreciation &amp; Amort.</span><span class="fin-val neg">($1,800,000)</span></div>
+            <div class="fin-row"><span class="fin-label">Interest Expense</span><span class="fin-val neg">($0)</span></div>
+            <div class="fin-row"><span class="fin-label">Tax (28%)</span><span class="fin-val neg">($800,000)</span></div>
+            <div class="fin-row total total-lg"><span class="fin-label">NET PROFIT</span><span class="fin-val pos">$4,200,000</span></div>
+          </div>
+        </div>
+        <div class="card card-no-padding">
+          <div class="fin-header-wrap">
+            <div class="fin-period">Round 2 — Income Statement (Comparison)</div>
+          </div>
+          <div class="fin-statement">
+            <div class="fin-row header"><span class="fin-label">REVENUE</span><span class="fin-val">$16,400,000</span></div>
+            <div class="fin-row sub"><span class="fin-label">Product Sales</span><span class="fin-val">$15,900,000</span></div>
+            <div class="fin-row sub"><span class="fin-label">Other Income</span><span class="fin-val">$500,000</span></div>
+            <div class="fin-row"><span class="fin-label">Cost of Goods Sold</span><span class="fin-val neg">($9,200,000)</span></div>
+            <div class="fin-row total"><span class="fin-label">GROSS PROFIT</span><span class="fin-val pos">$7,200,000</span></div>
+            <div class="fin-row"><span class="fin-label">Operating Expenses</span><span class="fin-val neg">($700,000)</span></div>
+            <div class="fin-row sub"><span class="fin-label">Marketing &amp; Promo</span><span class="fin-val neg">($280,000)</span></div>
+            <div class="fin-row sub"><span class="fin-label">HR &amp; Training</span><span class="fin-val neg">($380,000)</span></div>
+            <div class="fin-row sub"><span class="fin-label">ESG Investment</span><span class="fin-val neg">($150,000)</span></div>
+            <div class="fin-row total"><span class="fin-label">EBITDA</span><span class="fin-val pos">$6,500,000</span></div>
+            <div class="fin-row"><span class="fin-label">Depreciation &amp; Amort.</span><span class="fin-val neg">($1,800,000)</span></div>
+            <div class="fin-row"><span class="fin-label">Interest Expense</span><span class="fin-val neg">($0)</span></div>
+            <div class="fin-row"><span class="fin-label">Tax (28%)</span><span class="fin-val neg">($800,000)</span></div>
+            <div class="fin-row total total-lg"><span class="fin-label">NET PROFIT</span><span class="fin-val pos">$3,900,000</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Balance Sheet + Cash Flow + HR -->
+      <div class="grid-3 mb-20">
+        <div class="card">
+          <div class="card-title">Balance Sheet Summary</div>
+          <div class="summary-card-list">
+            <div class="summary-card-row"><span class="summary-card-label">Total Assets</span><span class="text-mono">$28.4M</span></div>
+            <div class="summary-card-row"><span class="summary-card-label">Total Liabilities</span><span class="text-mono text-red">$8.2M</span></div>
+            <div class="summary-card-total"><span>Shareholder Equity</span><span class="text-mono text-green">$20.2M</span></div>
+            <div class="summary-card-divider"></div>
+            <div class="summary-card-row"><span class="summary-card-label">Cash &amp; Equivalents</span><span class="text-mono text-teal">$6.8M</span></div>
+            <div class="summary-card-row"><span class="summary-card-label">Inventory</span><span class="text-mono">$2.4M</span></div>
+            <div class="summary-card-row"><span class="summary-card-label">PP&amp;E (Net)</span><span class="text-mono">$14.2M</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Cash Flow Summary</div>
+          <div class="summary-card-list">
+            <div class="summary-card-row"><span class="summary-card-label">Operating CF</span><span class="text-mono text-green">+$5.2M</span></div>
+            <div class="summary-card-row"><span class="summary-card-label">Investing CF</span><span class="text-mono text-red">−$0.8M</span></div>
+            <div class="summary-card-row"><span class="summary-card-label">Financing CF</span><span class="text-mono text-red">−$0.6M</span></div>
+            <div class="summary-card-divider"></div>
+            <div class="summary-card-total"><span>Net Cash Change</span><span class="text-mono text-green">+$3.8M</span></div>
+            <div class="summary-card-row"><span class="summary-card-label">Closing Balance</span><span class="text-mono text-teal">$6.8M</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">HR Metrics</div>
+          <div class="summary-card-list">
+            <div class="summary-card-row"><span class="summary-card-label">Total Headcount</span><span class="text-mono">80</span></div>
+            <div class="summary-card-row"><span class="summary-card-label">Labor Cost / mo</span><span class="text-mono">$336K</span></div>
+            <div class="summary-card-row"><span class="summary-card-label">Training Budget</span><span class="text-mono">$95K</span></div>
+            <div class="summary-card-divider"></div>
+            <div class="summary-card-total"><span>Productivity Index</span><span class="text-mono text-green">87.4</span></div>
+            <div class="summary-card-row"><span class="summary-card-label">Revenue / Employee</span><span class="text-mono text-teal">$230K</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Revenue Trend Chart -->
+      <div class="card">
+        <div class="card-title">Revenue &amp; Net Profit — Full Trend</div>
+        <div class="chart-wrap chart-wrap-200"><canvas id="finTrendChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script src="../js/charts.js"></script>
+<script>
+  renderSidebar({ variant: 'student', activePage: 'results' });
+  renderTopBar({
+    title: 'Financial Dashboard',
+    subtitle: 'NovaTech Corp · Detailed View',
+    badges: [{ text: 'Round 3 Results', variant: 'teal' }]
+  });
+  renderNavigator();
+  document.addEventListener('DOMContentLoaded', initFinancialCharts);
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+/* ===================== WIREFRAME / SITEMAP ===================== */
+.wireframe-container { max-width: 1280px; margin: 0 auto; padding: 40px 60px 80px; }
+.wireframe-title { font-size: 32px; font-weight: 800; margin-bottom: 8px; letter-spacing: -1px; }
+.wireframe-title span { color: var(--teal); }
+.wireframe-subtitle { font-size: 14px; color: var(--gray-400); margin-bottom: 48px; }
+.wireframe-section { margin-bottom: 48px; }
+.wireframe-section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--teal); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.wireframe-section-title::after { content: ''; flex: 1; height: 1px; background: rgba(0,194,203,0.2); }
+.wireframe-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.wireframe-card {
+  background: var(--navy-2);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: all var(--transition);
+  cursor: pointer;
+  display: block;
+  color: inherit;
+}
+.wireframe-card:hover { border-color: var(--teal); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,194,203,0.15); }
+.wireframe-card-number {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--teal-dim);
+  border: 1px solid var(--teal-glow);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: var(--teal);
+  font-family: var(--mono);
+  margin-bottom: 14px;
+}
+.wireframe-card-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.wireframe-card-desc { font-size: 12px; color: var(--gray-400); line-height: 1.6; }
+.wireframe-nav { display: flex; align-items: center; padding: 20px 60px; border-bottom: 1px solid rgba(255,255,255,0.06); gap: 16px; margin-bottom: 0; }
+.wireframe-nav .logo-mark { display: flex; align-items: center; gap: 10px; }
+.wireframe-nav-spacer { flex: 1; }
+.wireframe-flow { text-align: center; padding: 16px 0; color: var(--gray-600); font-size: 20px; }

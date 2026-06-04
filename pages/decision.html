@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Decision — B-Sim AI</title>
+  <meta name="description" content="Submit your strategic decisions for pricing, operations, finance, HR, and sustainability.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+  <link rel="stylesheet" href="../css/decision.css">
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+      <div class="decision-tabs">
+        <button class="decision-tab active" onclick="switchDecisionTab(this,'tab-pricing')">💰 Pricing</button>
+        <button class="decision-tab" onclick="switchDecisionTab(this,'tab-operations')">⚙️ Operations</button>
+        <button class="decision-tab" onclick="switchDecisionTab(this,'tab-finance')">🏦 Finance</button>
+        <button class="decision-tab" onclick="switchDecisionTab(this,'tab-hr')">👥 HR</button>
+        <button class="decision-tab" onclick="switchDecisionTab(this,'tab-sustainability')">🌿 Sustainability</button>
+      </div>
+
+      <div class="decision-grid">
+        <!-- Left: Form Panels -->
+        <div>
+          <!-- PRICING TAB -->
+          <div class="tab-panel active" id="tab-pricing">
+            <div class="card mb-16">
+              <div class="section-header">Pricing Strategy</div>
+              <div class="market-hint">📊 Market price range this quarter: <strong>$89 – $134</strong>. Your current price is below average.</div>
+              <div class="form-group">
+                <label class="form-label">Product Price (per unit) — USD</label>
+                <input type="number" class="form-input" value="109" min="1">
+                <div class="form-hint">Competitor avg: $118 · Your last round: $105</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Discount % (applied to bulk orders)</label>
+                <input type="number" class="form-input" value="8" min="0" max="40">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Promotion Budget — USD</label>
+                <input type="number" class="form-input" value="320000">
+                <div class="form-hint">Recommendation: $250K–$400K based on market size</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- OPERATIONS TAB -->
+          <div class="tab-panel" id="tab-operations">
+            <div class="card mb-16">
+              <div class="section-header">Operations &amp; Production</div>
+              <div class="form-group">
+                <label class="form-label">Production Volume (units): <span id="prodVol" class="text-teal text-mono">12,000</span></label>
+                <input type="range" class="range-input" min="5000" max="25000" step="500" value="12000" oninput="document.getElementById('prodVol').textContent=Number(this.value).toLocaleString()">
+                <div class="range-bounds"><span>5,000</span><span>25,000</span></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Inventory Target (units)</label>
+                <input type="number" class="form-input" value="2400">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Supplier Selection</label>
+                <select class="form-select">
+                  <option>Supplier A — Low Cost, Lower Quality ($22/unit)</option>
+                  <option selected>Supplier B — Balanced ($31/unit) ✓ Current</option>
+                  <option>Supplier C — Premium Quality ($45/unit, ESG+8)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- FINANCE TAB -->
+          <div class="tab-panel" id="tab-finance">
+            <div class="card mb-16">
+              <div class="section-header">Financial Decisions</div>
+              <div class="form-group">
+                <label class="form-label">Loan Amount — USD (0 = no borrowing)</label>
+                <input type="number" class="form-input" value="0" min="0" max="5000000">
+                <div class="form-hint">Current interest rate: 6.2% p.a.</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Dividend Payout %</label>
+                <input type="number" class="form-input" value="15" min="0" max="60">
+              </div>
+              <div class="form-group">
+                <label class="form-label">CapEx Investment — USD: <span id="capexVal" class="text-teal text-mono">$800K</span></label>
+                <input type="range" class="range-input" min="0" max="3000000" step="50000" value="800000" oninput="document.getElementById('capexVal').textContent='$'+Math.round(this.value/1000)+'K'">
+              </div>
+            </div>
+          </div>
+
+          <!-- HR TAB -->
+          <div class="tab-panel" id="tab-hr">
+            <div class="card mb-16">
+              <div class="section-header">Human Resources</div>
+              <div class="grid-2 mb-16">
+                <div class="form-group form-group-no-margin">
+                  <label class="form-label">Production Staff</label>
+                  <input type="number" class="form-input" value="42">
+                </div>
+                <div class="form-group form-group-no-margin">
+                  <label class="form-label">Sales &amp; Marketing</label>
+                  <input type="number" class="form-input" value="18">
+                </div>
+                <div class="form-group form-group-no-margin">
+                  <label class="form-label">R&amp;D</label>
+                  <input type="number" class="form-input" value="12">
+                </div>
+                <div class="form-group form-group-no-margin">
+                  <label class="form-label">Admin &amp; Support</label>
+                  <input type="number" class="form-input" value="8">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Training Budget — USD</label>
+                <input type="number" class="form-input" value="95000">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Avg Wage Rate — USD/month</label>
+                <input type="number" class="form-input" value="4200">
+              </div>
+            </div>
+          </div>
+
+          <!-- SUSTAINABILITY TAB -->
+          <div class="tab-panel" id="tab-sustainability">
+            <div class="card mb-16">
+              <div class="section-header">Sustainability &amp; ESG</div>
+              <div class="esg-preview-box">
+                <div class="esg-preview-label">🌿 Live ESG Preview</div>
+                <div class="esg-preview-value">82 / 100</div>
+                <div class="esg-preview-note">Based on current selections · Threshold: 60/100</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">ESG Investment Amount — USD</label>
+                <input type="number" class="form-input" value="180000">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Carbon Offset Selection</label>
+                <select class="form-select">
+                  <option>None (0 credits)</option>
+                  <option selected>Standard Offset — 500 tonnes CO₂ ($25K)</option>
+                  <option>Premium Offset — 1,200 tonnes CO₂ ($55K, ESG+12)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Ethical Sourcing</label>
+                <div class="toggle-row">
+                  <button class="toggle-btn-on">ON ✓</button>
+                  <span class="toggle-hint">Enabled · +6 ESG points · +$0.80/unit cost</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Checklist Sidebar -->
+        <div class="decision-sidebar">
+          <div class="card card-sm">
+            <div class="card-title">Decisions Checklist</div>
+            <div class="checklist-list">
+              <div class="checklist-item done">
+                <svg class="checklist-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--green)" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/></svg>
+                Pricing
+              </div>
+              <div class="checklist-item done">
+                <svg class="checklist-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--green)" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/></svg>
+                Operations
+              </div>
+              <div class="checklist-item active-item">
+                <svg class="checklist-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--teal)" stroke-width="1.5"/><circle cx="8" cy="8" r="2" fill="var(--teal)"/></svg>
+                Finance
+              </div>
+              <div class="checklist-item">
+                <svg class="checklist-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--gray-600)" stroke-width="1.5"/></svg>
+                HR
+              </div>
+              <div class="checklist-item">
+                <svg class="checklist-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--gray-600)" stroke-width="1.5"/></svg>
+                Sustainability
+              </div>
+            </div>
+          </div>
+          <div class="card card-sm">
+            <div class="card-title">Round 3 Summary</div>
+            <div class="summary-list">
+              <div class="summary-row"><span>Price set</span><span class="text-mono">$109</span></div>
+              <div class="summary-row"><span>Production</span><span class="text-mono">12,000 u</span></div>
+              <div class="summary-row"><span>ESG Preview</span><span class="text-mono text-green">82/100</span></div>
+              <div class="summary-row"><span>Total OPEX est.</span><span class="text-mono text-amber">$9.4M</span></div>
+            </div>
+          </div>
+          <div class="card card-sm esg-warning-card">
+            <div class="esg-warning-title">⚠ ESG Warning</div>
+            <div class="esg-warning-text">Your carbon offset is below the class average. Consider upgrading to Premium Offset.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Action Bar -->
+    <div class="decision-bottom-bar">
+      <span class="bottom-bar-status">Last auto-saved: 2 min ago</span>
+      <button class="btn btn-secondary">💾 Save Draft</button>
+      <button class="btn btn-primary" onclick="openSubmitModal()">✓ Submit Final Decision</button>
+    </div>
+  </div>
+</div>
+
+<!-- Submit Modal -->
+<div class="modal-overlay" id="submitModal">
+  <div class="modal">
+    <div class="modal-title">⚠️ Confirm Final Submission</div>
+    <div class="modal-body">
+      You are about to submit your <strong>Round 3 decisions</strong> for NovaTech Corp. This action <strong>cannot be undone</strong>. All five decision categories will be locked and processed by the simulation engine.<br><br>
+      Make sure you have reviewed all tabs before confirming.
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary modal-action-btn" onclick="closeSubmitModal()">Go Back</button>
+      <button class="btn btn-primary modal-action-btn" onclick="submitDecision()">✓ Confirm Submission</button>
+    </div>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script src="../js/decision.js"></script>
+<script>
+  renderSidebar({ variant: 'student', activePage: 'decision' });
+  renderTopBar({
+    title: 'Submit Decision',
+    subtitle: 'Round 3 of 6 · Deadline in 2d 14h',
+    badges: [{ text: '⏳ Draft Saved', variant: 'amber' }]
+  });
+  renderNavigator();
+</script>
+</body>
+</html>

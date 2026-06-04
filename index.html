@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B-Sim AI — Where Strategy Meets Consequence</title>
+  <meta name="description" content="B-Sim AI is the next-generation macroeconomic simulation platform for higher education. AI-powered feedback, live competitive economy, and ESG as a core constraint.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/navigator.css">
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loading-screen">
+  <div class="nodes-viz">
+    <div class="node"></div>
+    <div class="node"></div>
+    <div class="node"></div>
+    <div class="node"></div>
+    <div class="node"></div>
+    <div class="node"></div>
+    <div class="node"></div>
+    <div class="node-line"></div>
+    <div class="node-line"></div>
+    <div class="node-line"></div>
+    <div class="node-line"></div>
+    <div class="node-line"></div>
+    <div class="node-line"></div>
+  </div>
+  <div class="loading-title">B-Sim <span>AI</span></div>
+  <div class="loading-sub">Processing simulation engine…</div>
+</div>
+
+<!-- ==================== SCREEN 1: LANDING ==================== -->
+<div id="screen-landing" class="screen active">
+  <nav class="landing-nav">
+    <div class="logo-mark">
+      <div class="logo-icon">B</div>
+      <span class="logo-text">B-Sim <span>AI</span></span>
+    </div>
+    <div class="landing-nav-links">
+      <a href="#">Platform</a>
+      <a href="#">For Faculty</a>
+      <a href="#">Pricing</a>
+      <a href="#">Research</a>
+    </div>
+    <a class="btn btn-ghost btn-sm" href="#">Request a Demo</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">🎓 EdTech · Business Simulation · AI-Powered</div>
+      <h1 class="hero-title">Where Strategy<br>Meets <span>Consequence</span></h1>
+      <p class="hero-tagline">"Decisions have consequences. Now your students can feel them."</p>
+      <p class="hero-desc">B-Sim AI is the next-generation macroeconomic simulation platform for higher education. Student teams manage virtual companies in a shared live economy — with AI-powered post-round feedback and ESG at the core.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="pages/student-dashboard.html">▶ Explore Platform Demo</a>
+        <a class="btn btn-secondary btn-lg" href="#">Request a Demo</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-nodes">
+        <div class="hero-node"></div>
+        <div class="hero-node"></div>
+        <div class="hero-node"></div>
+        <div class="hero-node"></div>
+        <div class="hero-node"></div>
+        <div class="hero-node"></div>
+        <div class="hero-node"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-mini-card">
+          <div class="mini-card-label">Market Share</div>
+          <div class="mini-card-val">23.4% ▲</div>
+        </div>
+        <div class="hero-mini-card">
+          <div class="mini-card-label">ESG Score</div>
+          <div class="mini-card-val">78/100 🌿</div>
+        </div>
+        <div class="hero-mini-card">
+          <div class="mini-card-label">Net Profit</div>
+          <div class="mini-card-val">$4.2M ▲</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="features-strip">
+    <div class="feature-card">
+      <div class="feature-icon feature-icon-teal">🤖</div>
+      <h3>AI-Powered Feedback</h3>
+      <p>After every round, each student team receives a personalized AI strategic debrief — diagnosing every decision with causal analysis and actionable recommendations.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon feature-icon-amber">📈</div>
+      <h3>Live Competitive Economy</h3>
+      <p>All teams share a real market. Pricing, production, and marketing decisions interact dynamically — meaning your students' choices affect each other in real time.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon feature-icon-green">🌿</div>
+      <h3>ESG as a Core Constraint</h3>
+      <p>Sustainability isn't a checkbox. ESG scoring affects rankings, triggers financial penalties, and shapes long-term market position — just like the real world.</p>
+    </div>
+  </div>
+
+  <div class="landing-login-hint">Select your login portal to continue</div>
+  <div class="login-portals">
+    <a class="portal-card" href="pages/student-dashboard.html">
+      <div class="portal-icon">🎓</div>
+      <div class="portal-title">Student Login</div>
+      <div class="portal-desc">Access your company dashboard, submit decisions, and view AI feedback</div>
+      <span class="btn btn-primary w-full">Student Portal →</span>
+    </a>
+    <a class="portal-card" href="pages/class-monitor.html">
+      <div class="portal-icon">👩‍🏫</div>
+      <div class="portal-title">Instructor / Admin Login</div>
+      <div class="portal-desc">Configure simulations, monitor all teams, and access class analytics</div>
+      <span class="btn btn-ghost w-full">Instructor Portal →</span>
+    </a>
+  </div>
+</div>
+
+<!-- Navigator -->
+<div id="navigator-root"></div>
+
+<script src="js/components/navigator.js"></script>
+<script src="js/loading.js"></script>
+<script>
+  renderNavigator();
+</script>
+</body>
+</html>

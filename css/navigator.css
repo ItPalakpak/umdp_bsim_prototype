@@ -1,0 +1,56 @@
+/* ===================== SCREEN NAV DEMO ===================== */
+.screen-nav-demo {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+.screen-nav-toggle {
+  background: var(--teal);
+  color: var(--navy);
+  border: none;
+  border-radius: 24px;
+  padding: 10px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 20px var(--teal-glow);
+  transition: all var(--transition);
+}
+.screen-nav-toggle:hover { background: #00DADF; }
+.screen-nav-panel {
+  display: none;
+  background: var(--navy-2);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  min-width: 240px;
+  box-shadow: var(--shadow);
+}
+.screen-nav-panel.open { display: block; }
+.screen-nav-panel .nav-screen-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  font-size: 12px;
+  color: var(--gray-400);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition);
+}
+.screen-nav-panel .nav-screen-btn:hover { background: rgba(255,255,255,0.05); color: var(--white); }
+.screen-nav-panel .nav-screen-btn.active-screen { color: var(--teal); background: var(--teal-dim); }
+.screen-num { font-size: 10px; width: 18px; text-align: center; color: var(--gray-600); flex-shrink: 0; }
+.screen-nav-label { font-size: 10px; text-align: center; color: var(--gray-400); margin-bottom: 6px; font-weight: 600; letter-spacing: 0.5px; }

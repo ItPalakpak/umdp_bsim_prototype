@@ -1,0 +1,28 @@
+/* ===================== ADMIN ===================== */
+.admin-stat-card {
+  background: var(--navy-2);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  text-align: center;
+}
+.admin-stat-card-warning { border-color: var(--amber-dim); }
+.admin-stat-num { font-family: var(--mono); font-size: 32px; font-weight: 500; color: var(--teal); margin-bottom: 6px; }
+.admin-stat-num-amber { color: var(--amber); }
+.admin-stat-label { font-size: 12px; color: var(--gray-400); }
+.admin-stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 24px; }
+.admin-top-bar-row { display: flex; align-items: center; gap: 14px; }
+.admin-top-bar-icon { width: 32px; height: 32px; background: var(--navy-3); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.billing-list { display: flex; flex-direction: column; gap: 12px; font-size: 13px; margin-top: 4px; }
+.billing-row { display: flex; justify-content: space-between; }
+.billing-label { color: var(--gray-400); }
+.billing-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 4px 0; }
+.billing-renewal { color: var(--amber); }
+.quick-link-card { cursor: pointer; transition: all var(--transition); }
+.quick-link-card:hover { border-color: var(--teal); }
+.quick-link-icon { font-size: 24px; margin-bottom: 8px; }
+.quick-link-title { font-weight: 600; margin-bottom: 4px; }
+.quick-link-desc { font-size: 12px; color: var(--gray-400); }
+.instructor-table-header { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; }
+.instructor-table-title { font-size: 14px; font-weight: 700; }
+.instructor-email-cell { font-family: var(--mono); font-size: 12px; }

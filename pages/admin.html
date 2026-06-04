@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Admin — B-Sim AI</title>
+  <meta name="description" content="Institutional admin dashboard — license management, billing, instructor table, usage analytics.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+      <!-- Stats -->
+      <div class="admin-stats-grid">
+        <div class="admin-stat-card"><div class="admin-stat-num">12</div><div class="admin-stat-label">Active Courses</div></div>
+        <div class="admin-stat-card"><div class="admin-stat-num">284</div><div class="admin-stat-label">Students Enrolled</div></div>
+        <div class="admin-stat-card"><div class="admin-stat-num">18</div><div class="admin-stat-label">Instructors</div></div>
+        <div class="admin-stat-card"><div class="admin-stat-num">96%</div><div class="admin-stat-label">Completion Rate</div></div>
+        <div class="admin-stat-card admin-stat-card-warning"><div class="admin-stat-num admin-stat-num-amber">214d</div><div class="admin-stat-label">License Remaining</div></div>
+      </div>
+
+      <div class="grid-2 mb-20">
+        <!-- Usage Chart -->
+        <div class="card">
+          <div class="card-title">Monthly Active Users</div>
+          <div class="chart-wrap chart-wrap-180"><canvas id="adminMauChart"></canvas></div>
+        </div>
+
+        <!-- License & Billing -->
+        <div class="card">
+          <div class="card-title">License &amp; Billing</div>
+          <div class="billing-list">
+            <div class="billing-row"><span class="billing-label">Plan</span><span class="badge badge-teal">Enterprise</span></div>
+            <div class="billing-row"><span class="billing-label">Student Seats</span><span class="text-mono">500 / 284 used</span></div>
+            <div class="billing-row"><span class="billing-label">Instructor Seats</span><span class="text-mono">50 / 18 used</span></div>
+            <div class="billing-row"><span class="billing-label">Annual Cost</span><span class="text-mono">$12,000 / yr</span></div>
+            <div class="billing-row"><span class="billing-label">Renewal Date</span><span class="billing-renewal">Jan 15, 2026</span></div>
+            <div class="billing-divider"></div>
+            <button class="btn btn-primary w-full">⬆ Upgrade Plan</button>
+            <button class="btn btn-ghost w-full">Download Invoice</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Management -->
+      <div class="card card-no-padding mb-20">
+        <div class="instructor-table-header">
+          <div class="instructor-table-title">Instructor Management</div>
+          <button class="btn btn-primary btn-sm">+ Add Instructor</button>
+        </div>
+        <table class="data-table">
+          <thead><tr><th class="table-cell-pad">Name</th><th>Email</th><th>Active Courses</th><th>Students</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr><td class="table-cell-pad table-cell-name">Dr. Ana Reyes</td><td class="instructor-email-cell">a.reyes@dlsu.edu.ph</td><td>3</td><td>72</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-sm btn-ghost">Manage</button></td></tr>
+            <tr><td class="table-cell-pad table-cell-name">Prof. Marco Santos</td><td class="instructor-email-cell">m.santos@dlsu.edu.ph</td><td>2</td><td>48</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-sm btn-ghost">Manage</button></td></tr>
+            <tr><td class="table-cell-pad table-cell-name">Dr. Luz Hernandez</td><td class="instructor-email-cell">l.hernandez@dlsu.edu.ph</td><td>1</td><td>32</td><td><span class="badge badge-gray">Inactive</span></td><td><button class="btn btn-sm btn-ghost">Activate</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="grid-3">
+        <div class="card card-sm quick-link-card">
+          <div class="quick-link-icon">📖</div>
+          <div class="quick-link-title">Documentation</div>
+          <div class="quick-link-desc">Instructor &amp; admin guides</div>
+        </div>
+        <div class="card card-sm quick-link-card">
+          <div class="quick-link-icon">🆘</div>
+          <div class="quick-link-title">Support Center</div>
+          <div class="quick-link-desc">Tickets &amp; live chat</div>
+        </div>
+        <div class="card card-sm quick-link-card">
+          <div class="quick-link-icon">📊</div>
+          <div class="quick-link-title">Usage Analytics</div>
+          <div class="quick-link-desc">Full engagement report</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script src="../js/charts.js"></script>
+<script>
+  renderSidebar({ variant: 'admin', activePage: 'institution' });
+  renderTopBar({
+    title: 'De La Salle University',
+    subtitle: 'Enterprise License · Institutional Dashboard',
+    badges: [{ text: '● Enterprise Plan', variant: 'teal' }, { text: 'Renews Jan 2026', variant: 'amber' }]
+  });
+  renderNavigator();
+  document.addEventListener('DOMContentLoaded', initAdminCharts);
+</script>
+</body>
+</html>

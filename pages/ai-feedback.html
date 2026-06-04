@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Feedback Report — B-Sim AI</title>
+  <meta name="description" content="AI Strategic Debrief — Round 3 analysis with diagnosis, market share, and ESG breakdown.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+  <link rel="stylesheet" href="../css/ai-feedback.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+      <!-- Section 1: Financial Results -->
+      <div class="section-header">📊 Financial Results — Round 3</div>
+      <div class="card mb-20">
+        <table class="data-table">
+          <thead>
+            <tr><th>Metric</th><th>Round 3</th><th>Round 2</th><th>Delta</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="financial-results-cell">Revenue</td><td>$18.4M</td><td>$16.4M</td><td class="delta-up">▲ +$2.0M (+12.3%)</td></tr>
+            <tr><td class="financial-results-cell">COGS</td><td>$10.1M</td><td>$9.2M</td><td class="delta-down">▼ +$0.9M</td></tr>
+            <tr><td class="financial-results-cell">Gross Profit</td><td>$8.3M</td><td>$7.2M</td><td class="delta-up">▲ +$1.1M</td></tr>
+            <tr><td class="financial-results-cell">EBITDA</td><td>$6.8M</td><td>$6.5M</td><td class="delta-up">▲ +$0.3M</td></tr>
+            <tr><td class="financial-results-cell">Net Profit</td><td>$4.2M</td><td>$3.9M</td><td class="delta-up">▲ +$0.3M</td></tr>
+            <tr><td class="financial-results-cell">ESG Score 🌿</td><td class="text-green">78/100</td><td>72/100</td><td class="delta-up">▲ +6 pts</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Section 2: AI Diagnosis -->
+      <div class="section-header">🤖 AI Diagnosis — Strategic Analysis</div>
+      <div class="diagnosis-cards mb-20">
+        <div class="diagnosis-card critical">
+          <div class="diag-header">
+            <div class="diag-title">💰 Pricing Strategy</div>
+            <span class="badge badge-red">Critical</span>
+          </div>
+          <div class="diag-body">
+            <div class="diag-section"><div class="diag-section-label">What happened</div>Your price of $109 was 7.6% below market average ($118). You captured volume (+1,200 units vs. target) but sacrificed $1.1M in potential revenue.</div>
+            <div class="diag-section"><div class="diag-section-label">Why it happened</div>The low price triggered a price war response from Team Omega, who undercut you by $4 in response, compressing your margin further.</div>
+            <div class="diag-section"><div class="diag-section-label">Recommendation</div>Raise price to $115–$120 range in Round 4. Your brand equity score (71) supports a premium positioning. Price elasticity in this segment is low.</div>
+          </div>
+        </div>
+        <div class="diagnosis-card warning">
+          <div class="diag-header">
+            <div class="diag-title">⚙️ Inventory Management</div>
+            <span class="badge badge-amber">Warning</span>
+          </div>
+          <div class="diag-body">
+            <div class="diag-section"><div class="diag-section-label">What happened</div>You held 2,400 units in inventory — 18% above optimal. Carrying costs added $192K in OPEX.</div>
+            <div class="diag-section"><div class="diag-section-label">Recommendation</div>Reduce inventory target to 1,800 units. Demand forecast for Round 4 is stable — no buffer required.</div>
+          </div>
+        </div>
+        <div class="diagnosis-card opportunity">
+          <div class="diag-header">
+            <div class="diag-title">🌿 ESG Investment</div>
+            <span class="badge badge-green">Opportunity</span>
+          </div>
+          <div class="diag-body">
+            <div class="diag-section"><div class="diag-section-label">What happened</div>Your ESG score rose to 78 (+6), entering the top third of class performers. Your ethical sourcing toggle was a key driver.</div>
+            <div class="diag-section"><div class="diag-section-label">Recommendation</div>Upgrade to Premium Carbon Offset in Round 4 (+12 ESG). Market simulation shows ESG leaders receive a 3–5% demand premium in Rounds 5–6.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Market Context -->
+      <div class="section-header">📈 Market Share — Round 3</div>
+      <div class="grid-2 mb-20">
+        <div class="card">
+          <div class="card-title">Market Share Distribution</div>
+          <div class="chart-wrap chart-wrap-200"><canvas id="marketShareChart"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Profit Trend vs. Class Average</div>
+          <div class="chart-wrap chart-wrap-200"><canvas id="profitTrendChart"></canvas></div>
+        </div>
+      </div>
+
+      <!-- Section 4: ESG Breakdown -->
+      <div class="section-header">🌿 ESG Impact Breakdown</div>
+      <div class="card mb-20">
+        <div class="esg-bars">
+          <div class="esg-bar-row">
+            <div class="esg-bar-label"><span>Environmental</span><span class="esg-bar-value-green">29/40</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:72.5%; background:var(--green);"></div></div>
+          </div>
+          <div class="esg-bar-row">
+            <div class="esg-bar-label"><span>Social</span><span class="esg-bar-value-teal">28/35</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:80%; background:var(--teal);"></div></div>
+          </div>
+          <div class="esg-bar-row">
+            <div class="esg-bar-label"><span>Governance</span><span class="esg-bar-value-amber">21/25</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:84%; background:var(--amber);"></div></div>
+          </div>
+        </div>
+        <div class="esg-total-bar">
+          <div><span class="esg-total-label">TOTAL ESG</span><br><span class="esg-total-value text-green">78/100</span></div>
+          <div class="esg-total-right"><span class="esg-total-label">CLASS RANK</span><br><span class="esg-total-value text-teal">#3 of 8</span></div>
+          <div class="esg-total-right"><span class="esg-total-label">THRESHOLD</span><br><span class="esg-total-value">60/100</span></div>
+        </div>
+      </div>
+
+      <a class="btn btn-primary btn-lg" href="decision.html">Prepare for Round 4 →</a>
+    </div>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script src="../js/charts.js"></script>
+<script>
+  renderSidebar({ variant: 'student', activePage: 'ai-feedback' });
+  renderTopBar({
+    title: 'AI Strategic Debrief — Round 3',
+    subtitle: 'NovaTech Corp · Generated: Oct 14, 2025',
+    badges: [{ text: '1 Critical Issue', variant: 'red' }, { text: '2 Warnings', variant: 'amber' }]
+  });
+  renderNavigator();
+  document.addEventListener('DOMContentLoaded', initFeedbackCharts);
+</script>
+</body>
+</html>

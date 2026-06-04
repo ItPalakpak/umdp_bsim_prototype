@@ -1,0 +1,18 @@
+/* ===================== CLASS MONITOR ===================== */
+.kpi-grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 20px; }
+.kpi-card-at-risk { border-color: var(--red-dim); }
+.alert-banner { background: var(--red-dim); border: 1px solid rgba(230,57,70,0.3); border-radius: var(--radius); padding: 12px 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+.alert-icon { color: var(--red); font-size: 18px; }
+.alert-text { flex: 1; font-size: 13px; color: var(--gray-100); }
+.alert-title { color: var(--red); font-weight: 700; }
+.alert-btn { background: var(--red); color: white; }
+.team-table-header { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; }
+.team-table-title { font-size: 14px; font-weight: 700; }
+.team-status { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.status-dot-green { background: var(--green); }
+.status-dot-amber { background: var(--amber); }
+.status-dot-red { background: var(--red); }
+.status-text-green { color: var(--green); }
+.status-text-amber { color: var(--amber); }
+.status-text-red { color: var(--red); }

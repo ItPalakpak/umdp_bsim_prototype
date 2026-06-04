@@ -1,0 +1,28 @@
+/* ===================== AI FEEDBACK ===================== */
+.diagnosis-cards { display: flex; flex-direction: column; gap: 14px; }
+.diagnosis-card {
+  background: var(--navy-3);
+  border-radius: var(--radius);
+  padding: 18px;
+  border-left: 3px solid;
+}
+.diagnosis-card.critical { border-color: var(--red); }
+.diagnosis-card.warning  { border-color: var(--amber); }
+.diagnosis-card.opportunity { border-color: var(--green); }
+.diag-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.diag-title { font-size: 14px; font-weight: 700; }
+.diag-body { font-size: 13px; color: var(--gray-200); line-height: 1.6; }
+.diag-body-sm { font-size: 12px; }
+.diag-section { margin-top: 10px; }
+.diag-section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: var(--gray-400); margin-bottom: 4px; }
+.esg-bars { display: flex; flex-direction: column; gap: 12px; }
+.esg-bar-row { }
+.esg-bar-label { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 12px; }
+.esg-bar-value-green { color: var(--green); font-family: var(--mono); }
+.esg-bar-value-teal { color: var(--teal); font-family: var(--mono); }
+.esg-bar-value-amber { color: var(--amber); font-family: var(--mono); }
+.esg-total-bar { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; font-family: var(--mono); }
+.esg-total-label { color: var(--gray-400); font-size: 11px; }
+.esg-total-value { font-size: 22px; font-weight: 500; }
+.esg-total-right { text-align: right; }
+.financial-results-cell { font-family: var(--font); color: var(--gray-200); }

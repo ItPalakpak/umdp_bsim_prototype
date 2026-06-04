@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decision Submitted — B-Sim AI</title>
+  <meta name="description" content="Your Round 3 decisions have been submitted successfully.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/navigator.css">
+</head>
+<body>
+<div class="screen active app-layout">
+  <div id="sidebar-root"></div>
+  <div class="main-content">
+    <div id="topbar-root"></div>
+    <div class="page-content">
+      <div class="success-state">
+        <div class="success-icon">✓</div>
+        <div class="success-title">Decision Submitted!</div>
+        <div class="success-sub">Your Round 3 decisions for NovaTech Corp have been locked and submitted. The AI simulation engine will process all team decisions and results will be available within 24 hours.</div>
+        <div class="success-actions">
+          <a class="btn btn-secondary" href="student-dashboard.html">← Back to Dashboard</a>
+          <a class="btn btn-ghost" href="ai-feedback.html">Preview Last Feedback</a>
+        </div>
+        <div class="success-processing">
+          <div class="nodes-viz nodes-viz-sm">
+            <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
+            <div class="node-line"></div><div class="node-line"></div><div class="node-line"></div><div class="node-line"></div><div class="node-line"></div><div class="node-line"></div>
+          </div>
+          <div class="loading-sub mt-12">Processing simulation engine…</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="navigator-root"></div>
+
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/top-bar.js"></script>
+<script src="../js/components/navigator.js"></script>
+<script>
+  renderSidebar({ variant: 'student', activePage: 'decision' });
+  renderTopBar({ title: 'Decision Submitted' });
+  renderNavigator();
+</script>
+</body>
+</html>
