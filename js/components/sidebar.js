@@ -72,8 +72,9 @@ function renderSidebar(config) {
   
   // Logo & Collapse toggle button nested inside sidebar-logo header
   var toggleIcon = '<svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 19l-7-7 7-7m8 14l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var assetsPrefix = isInPages ? '../Assets/' : 'Assets/';
   html += '<div class="sidebar-logo">';
-  html += '<div class="logo-mark"><div class="logo-icon">B</div><span class="logo-text">B-Sim <span>AI</span></span></div>';
+  html += '<div class="logo-mark"><div class="logo-icon"><img src="' + assetsPrefix + 'bsim_ai_icon.svg" alt="Logo"></div><span class="logo-text">B-Sim <span>AI</span></span></div>';
   html += '<button class="sidebar-collapse-toggle-btn" onclick="toggleSidebarCollapse(event)">' + toggleIcon + '</button>';
   html += '</div>';
 

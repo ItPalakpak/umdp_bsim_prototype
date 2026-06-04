@@ -11,6 +11,17 @@ function renderNavigator() {
   var pagesPrefix = isInPages ? '' : 'pages/';
   var rootPrefix = isInPages ? '../' : '';
 
+  // Inject favicon dynamically
+  var favicon = document.querySelector('link[rel="icon"]') || document.querySelector('link[rel="shortcut icon"]');
+  if (!favicon) {
+    favicon = document.createElement('link');
+    favicon.rel = 'icon';
+    document.head.appendChild(favicon);
+  }
+  var assetsPrefix = isInPages ? '../Assets/' : 'Assets/';
+  favicon.type = 'image/svg+xml';
+  favicon.href = assetsPrefix + 'bsim_ai_icon.svg';
+
   var groups = [
     {
       title: 'General & Flow Map',

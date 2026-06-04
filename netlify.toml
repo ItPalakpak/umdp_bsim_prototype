@@ -1,0 +1,9 @@
+[build]
+  publish = "."
+
+# Optional: Redirect any 404 (not found) errors back to the landing page
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404
+  

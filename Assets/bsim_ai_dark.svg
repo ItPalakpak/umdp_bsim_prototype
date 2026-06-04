@@ -1,0 +1,40 @@
+<svg width="480" height="160" viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+  <title>B-Sim AI dark version logo</title>
+
+  <!-- Dark background pill — this IS the logo bg, not transparent -->
+  <rect x="0" y="0" width="480" height="160" rx="20" fill="#1E1A2E"/>
+
+  <!-- Inner icon square -->
+  <rect x="24" y="22" width="112" height="112" rx="14" fill="#2C1A0E"/>
+
+  <!-- Grid dots warm -->
+  <circle cx="40" cy="38" r="2" fill="#4a3020"/><circle cx="56" cy="38" r="2" fill="#4a3020"/><circle cx="72" cy="38" r="2" fill="#4a3020"/><circle cx="88" cy="38" r="2" fill="#4a3020"/><circle cx="104" cy="38" r="2" fill="#4a3020"/>
+  <circle cx="40" cy="54" r="2" fill="#4a3020"/><circle cx="56" cy="54" r="2" fill="#4a3020"/><circle cx="72" cy="54" r="2" fill="#4a3020"/><circle cx="88" cy="54" r="2" fill="#4a3020"/><circle cx="104" cy="54" r="2" fill="#4a3020"/>
+  <circle cx="40" cy="70" r="2" fill="#4a3020"/><circle cx="56" cy="70" r="2" fill="#4a3020"/><circle cx="72" cy="70" r="2" fill="#4a3020"/><circle cx="88" cy="70" r="2" fill="#4a3020"/><circle cx="104" cy="70" r="2" fill="#4a3020"/>
+  <circle cx="40" cy="86" r="2" fill="#4a3020"/><circle cx="56" cy="86" r="2" fill="#4a3020"/><circle cx="72" cy="86" r="2" fill="#4a3020"/><circle cx="88" cy="86" r="2" fill="#4a3020"/><circle cx="104" cy="86" r="2" fill="#4a3020"/>
+  <circle cx="40" cy="102" r="2" fill="#4a3020"/><circle cx="56" cy="102" r="2" fill="#4a3020"/><circle cx="72" cy="102" r="2" fill="#4a3020"/><circle cx="88" cy="102" r="2" fill="#4a3020"/><circle cx="104" cy="102" r="2" fill="#4a3020"/>
+  <circle cx="40" cy="118" r="2" fill="#4a3020"/><circle cx="56" cy="118" r="2" fill="#4a3020"/><circle cx="72" cy="118" r="2" fill="#4a3020"/><circle cx="88" cy="118" r="2" fill="#4a3020"/><circle cx="104" cy="118" r="2" fill="#4a3020"/>
+
+  <!-- Rising bars -->
+  <rect x="32" y="104" width="16" height="22" rx="2.5" fill="#9E7B5A"/>
+  <rect x="53" y="88" width="16" height="38" rx="2.5" fill="#C4622D"/>
+  <rect x="74" y="68" width="16" height="58" rx="2.5" fill="#8B3A1A"/>
+  <rect x="95" y="44" width="16" height="82" rx="2.5" fill="#D4A847"/>
+
+  <!-- Trend line -->
+  <polyline points="40,104 61,88 82,68 103,44" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+
+  <!-- Peak node -->
+  <circle cx="103" cy="44" r="7" fill="#D4A847" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="103" cy="44" r="13" fill="none" stroke="#D4A847" stroke-width="1" opacity="0.35"/>
+
+  <!-- Wordmark on dark -->
+  <text x="158" y="84" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="52" font-weight="800" letter-spacing="-1" fill="#FDF0E6">B-Sim</text>
+  <text x="374" y="84" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="52" font-weight="200" letter-spacing="2" fill="#D4A847"> AI</text>
+
+  <!-- Gold rule -->
+  <rect x="158" y="96" width="44" height="3" rx="1.5" fill="#D4A847"/>
+
+  <!-- Tagline -->
+  <text x="158" y="122" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" letter-spacing="4.5" fill="#9E7B5A">BUSINESS SIMULATION PLATFORM</text>
+</svg>

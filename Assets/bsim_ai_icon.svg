@@ -1,0 +1,32 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <title>B-Sim AI icon mark</title>
+
+  <!-- Icon square background -->
+  <rect x="0" y="0" width="400" height="400" rx="72" fill="#1E1A2E"/>
+
+  <!-- Circuit grid -->
+  <circle cx="56" cy="56" r="5" fill="#2e2848"/><circle cx="104" cy="56" r="5" fill="#2e2848"/><circle cx="152" cy="56" r="5" fill="#2e2848"/><circle cx="200" cy="56" r="5" fill="#2e2848"/><circle cx="248" cy="56" r="5" fill="#2e2848"/><circle cx="296" cy="56" r="5" fill="#2e2848"/><circle cx="344" cy="56" r="5" fill="#2e2848"/>
+  <circle cx="56" cy="104" r="5" fill="#2e2848"/><circle cx="104" cy="104" r="5" fill="#2e2848"/><circle cx="152" cy="104" r="5" fill="#2e2848"/><circle cx="200" cy="104" r="5" fill="#2e2848"/><circle cx="248" cy="104" r="5" fill="#2e2848"/><circle cx="296" cy="104" r="5" fill="#2e2848"/><circle cx="344" cy="104" r="5" fill="#2e2848"/>
+  <circle cx="56" cy="152" r="5" fill="#2e2848"/><circle cx="104" cy="152" r="5" fill="#2e2848"/><circle cx="152" cy="152" r="5" fill="#2e2848"/><circle cx="200" cy="152" r="5" fill="#2e2848"/><circle cx="248" cy="152" r="5" fill="#2e2848"/><circle cx="296" cy="152" r="5" fill="#2e2848"/><circle cx="344" cy="152" r="5" fill="#2e2848"/>
+  <circle cx="56" cy="200" r="5" fill="#2e2848"/><circle cx="104" cy="200" r="5" fill="#2e2848"/><circle cx="152" cy="200" r="5" fill="#2e2848"/><circle cx="200" cy="200" r="5" fill="#2e2848"/><circle cx="248" cy="200" r="5" fill="#2e2848"/><circle cx="296" cy="200" r="5" fill="#2e2848"/><circle cx="344" cy="200" r="5" fill="#2e2848"/>
+  <circle cx="56" cy="248" r="5" fill="#2e2848"/><circle cx="104" cy="248" r="5" fill="#2e2848"/><circle cx="152" cy="248" r="5" fill="#2e2848"/><circle cx="200" cy="248" r="5" fill="#2e2848"/><circle cx="248" cy="248" r="5" fill="#2e2848"/><circle cx="296" cy="248" r="5" fill="#2e2848"/><circle cx="344" cy="248" r="5" fill="#2e2848"/>
+  <circle cx="56" cy="296" r="5" fill="#2e2848"/><circle cx="104" cy="296" r="5" fill="#2e2848"/><circle cx="152" cy="296" r="5" fill="#2e2848"/><circle cx="200" cy="296" r="5" fill="#2e2848"/><circle cx="248" cy="296" r="5" fill="#2e2848"/><circle cx="296" cy="296" r="5" fill="#2e2848"/><circle cx="344" cy="296" r="5" fill="#2e2848"/>
+  <circle cx="56" cy="344" r="5" fill="#2e2848"/><circle cx="104" cy="344" r="5" fill="#2e2848"/><circle cx="152" cy="344" r="5" fill="#2e2848"/><circle cx="200" cy="344" r="5" fill="#2e2848"/><circle cx="248" cy="344" r="5" fill="#2e2848"/><circle cx="296" cy="344" r="5" fill="#2e2848"/><circle cx="344" cy="344" r="5" fill="#2e2848"/>
+
+  <!-- Rising bars — large, bold -->
+  <rect x="44" y="270" width="60" height="100" rx="8" fill="#9E7B5A"/>
+  <rect x="124" y="210" width="60" height="160" rx="8" fill="#C4622D"/>
+  <rect x="204" y="140" width="60" height="230" rx="8" fill="#8B3A1A"/>
+  <rect x="284" y="56" width="60" height="314" rx="8" fill="#D4A847"/>
+
+  <!-- Trend line -->
+  <polyline points="74,270 154,210 234,140 314,56" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+
+  <!-- Peak node with double ring -->
+  <circle cx="314" cy="56" r="22" fill="#D4A847" stroke="#ffffff" stroke-width="5"/>
+  <circle cx="314" cy="56" r="38" fill="none" stroke="#D4A847" stroke-width="3" opacity="0.35"/>
+
+  <!-- AI badge bottom right -->
+  <rect x="278" y="336" width="90" height="44" rx="12" fill="#D4A847"/>
+  <text x="323" y="366" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="2" fill="#1E1A2E">AI</text>
+</svg>
