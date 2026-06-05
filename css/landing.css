@@ -1,10 +1,18 @@
 /* ===================== LANDING PAGE ===================== */
 .landing-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13, 27, 42, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;
   padding: 20px 60px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
   gap: 16px;
+  transition: background var(--transition), padding var(--transition), border-color var(--transition);
 }
 .landing-nav .logo-mark { display: flex; align-items: center; gap: 10px; }
 .landing-nav-links { display: flex; gap: 32px; margin-left: auto; margin-right: 32px; }
