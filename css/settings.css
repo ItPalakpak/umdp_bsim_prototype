@@ -206,6 +206,52 @@
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+/* ===================== RESPONSIVE: MOBILE (≤ 600px) ===================== */
+@media (max-width: 600px) {
+  /* Reduce card padding so content isn't cramped */
+  .settings-card,
+  .card {
+    padding: 16px;
+  }
+
+  /* API key row: stack the input and button vertically */
+  .api-key-container {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .api-key-container .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Toggle row: allow text to wrap naturally, keep toggle pinned right */
+  .toggle-switch-row {
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .toggle-switch {
+    margin-top: 2px; /* align thumb with first line of text */
+    flex-shrink: 0;
+  }
+
+  /* Actions bar: stack buttons full-width */
+  .settings-actions-bar {
+    flex-direction: column-reverse; /* primary action on top */
+    gap: 8px;
+  }
+  .settings-actions-bar .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Details info row: allow wrapping on very narrow screens */
+  .details-info-row {
+    flex-wrap: wrap;
+    gap: 2px;
+  }
+}
+
 /* Font scale scaling classes */
 body.large-font-scale {
   font-size: 15px;

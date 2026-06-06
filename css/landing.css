@@ -393,18 +393,110 @@
   padding: 4px 8px;
 }
 
+/* ===================== RESPONSIVE: TABLET (≤ 992px) ===================== */
 @media (max-width: 992px) {
+  /* Nav */
   .landing-nav { padding: 16px 24px; }
   .landing-nav-links { display: none !important; }
-  .features-strip { grid-template-columns: 1fr; padding: 0 24px 40px; }
-  .login-portals { grid-template-columns: 1fr; padding: 0 24px 60px; }
-  .pricing-grid { grid-template-columns: 1fr; gap: 24px; }
-  .faculty-grid { grid-template-columns: 1fr; }
-  .stats-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Hero — stack into single column */
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 48px 24px 40px;
+  }
+  .hero-title { font-size: 40px; }
+  .hero-desc { max-width: 100%; }
+
+  /* Hero visual — shrink and centre below content */
+  .hero-visual { height: 300px; }
+  .hero-orb-1 { width: 200px; height: 200px; }
+  .hero-orb-2 { width: 130px; height: 130px; }
+
+  /* Features */
+  .features-strip {
+    grid-template-columns: 1fr;
+    padding: 0 24px 40px;
+  }
+
+  /* Faculty */
+  .faculty-grid { grid-template-columns: 1fr; gap: 20px; }
+
+  /* Pricing */
+  .pricing-grid { grid-template-columns: 1fr; gap: 24px; max-width: 100%; }
+
+  /* Research stats — 2 columns on tablet */
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Login portals */
+  .login-portals {
+    grid-template-columns: 1fr;
+    padding: 0 24px 60px;
+    max-width: 480px;
+  }
+
+  /* Sections */
+  .landing-section { padding: 56px 24px; }
+  .landing-section-title { font-size: 30px; }
 }
 
-@media (max-width: 768px) {
-  .landing-section { padding: 40px 24px; }
-  .stats-grid { grid-template-columns: 1fr; }
-}
+/* ===================== RESPONSIVE: MOBILE (≤ 600px) ===================== */
+@media (max-width: 600px) {
+  /* Nav */
+  .landing-nav { padding: 14px 16px; gap: 10px; }
 
+  /* Hero */
+  .hero { padding: 36px 16px 32px; gap: 32px; }
+  .hero-title { font-size: 32px; letter-spacing: -1px; }
+  .hero-tagline { font-size: 15px; }
+  .hero-desc { font-size: 13px; margin-bottom: 28px; }
+  .hero-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hero-actions .btn { width: 100%; text-align: center; }
+
+  /* Hero visual — hide the decorative visual on very small screens to avoid clutter */
+  .hero-visual { display: none; }
+
+  /* Features */
+  .features-strip { padding: 0 16px 32px; gap: 16px; }
+  .feature-card { padding: 20px; }
+
+  /* Faculty */
+  .faculty-card {
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px;
+  }
+  .faculty-card-icon { width: 48px; height: 48px; font-size: 22px; }
+
+  /* Pricing */
+  .pricing-card { padding: 28px 20px; }
+  .pricing-cost { font-size: 30px; }
+
+  /* Research stats — 1 column on phone */
+  .stats-grid { grid-template-columns: 1fr; gap: 14px; }
+  .stat-card { padding: 22px 16px; }
+  .stat-value { font-size: 26px; }
+
+  /* Login portals */
+  .login-portals { padding: 0 16px 48px; }
+  .portal-card { padding: 24px 20px; }
+
+  /* Sections */
+  .landing-section { padding: 40px 16px; }
+  .landing-section-title { font-size: 26px; }
+  .landing-section-header { margin-bottom: 32px; }
+
+  /* Demo modal — full-width on phone */
+  .modal {
+    margin: 12px;
+    padding: 24px 20px;
+    max-height: 90vh;
+    overflow-y: auto;
+    width: calc(100% - 24px);
+  }
+  .modal-actions { flex-direction: column; gap: 8px; }
+  .modal-action-btn { width: 100%; }
+}

@@ -1,45 +1,62 @@
 /* ===================== SCREEN NAV DEMO ===================== */
+
+/* Draggable pill — fixed to right edge, vertically draggable */
 .screen-nav-demo {
   position: fixed;
-  top: 72px;
-  right: 24px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 300;
   display: flex;
   flex-direction: column;
-  gap: 6px;
   align-items: flex-end;
+  gap: 0;
+  user-select: none;
+  touch-action: none; /* let JS handle touch drag */
 }
+
+/* The drag handle pill — flush to the right edge */
 .screen-nav-toggle {
   background: var(--teal);
   color: var(--navy);
   border: none;
-  border-radius: 24px;
-  padding: 10px 18px;
-  font-size: 12px;
+  border-radius: 24px 0 0 24px; /* flat on the right, rounded on the left */
+  padding: 12px 14px 12px 16px;
+  font-size: 18px;
   font-weight: 700;
-  cursor: pointer;
+  cursor: grab;
   display: flex;
   align-items: center;
-  gap: 6px;
-  box-shadow: 0 4px 20px var(--teal-glow);
-  transition: all var(--transition);
+  justify-content: center;
+  box-shadow: -4px 0 20px var(--teal-glow);
+  transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
+  line-height: 1;
 }
-.screen-nav-toggle:hover { background: #00DADF; }
+.screen-nav-toggle:active { cursor: grabbing; }
+.screen-nav-toggle:hover {
+  background: #00DADF;
+  box-shadow: -4px 0 28px var(--teal-glow);
+}
+
+/* Panel — pops out to the LEFT of the pill */
 .screen-nav-panel {
   display: none;
   position: absolute;
-  top: calc(100% + 6px);
-  right: 0;
+  top: 0;
+  right: calc(100% + 8px); /* appear to the left of the pill */
   background: var(--navy-2);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: var(--radius-lg);
   padding: 12px;
   min-width: 240px;
   box-shadow: var(--shadow);
-  max-height: 360px;
+  max-height: min(400px, 70vh);
   overflow-y: auto;
+  /* prevent the panel from being dragged with the pill */
+  cursor: default;
 }
 .screen-nav-panel.open { display: block; }
+
 .screen-nav-panel .nav-screen-btn {
   display: flex;
   align-items: center;
@@ -61,3 +78,12 @@
 .screen-nav-label { font-size: 10px; text-align: center; color: var(--gray-400); margin-bottom: 6px; font-weight: 600; letter-spacing: 0.5px; }
 .screen-group-header { font-size: 9px; font-weight: 700; color: var(--teal); text-transform: uppercase; letter-spacing: 1.5px; padding: 10px 12px 4px; border-top: 1px solid rgba(255, 255, 255, 0.05); margin-top: 4px; }
 .screen-group-header:first-of-type { border-top: none; margin-top: 0; padding-top: 4px; }
+
+/* Close the panel when clicking outside */
+.screen-nav-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 299;
+}
+.screen-nav-backdrop.open { display: block; }

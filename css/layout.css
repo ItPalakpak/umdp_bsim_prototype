@@ -1,13 +1,17 @@
 /* ===================== SCREEN SYSTEM ===================== */
 .screen { display: none; min-height: 100vh; }
 .screen.active { display: flex; flex-direction: column; }
-.screen.app-layout { flex-direction: row; }
+.screen.app-layout {
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+}
 
 /* Pre-allocate space for dynamic layout roots to prevent rendering shifts/flashes */
 .screen.app-layout #sidebar-root {
   width: var(--sidebar-w);
   flex-shrink: 0;
-  min-height: 100vh;
+  height: 100vh;
   background: var(--navy-2);
   border-right: 1px solid rgba(255,255,255,0.06);
 }
@@ -16,12 +20,23 @@
   background: var(--navy-2);
   border-bottom: 1px solid rgba(255,255,255,0.06);
   flex-shrink: 0;
+  /* Sticky so it never scrolls away with page content */
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* On mobile the top-bar grows taller when it wraps — let the root grow too */
+@media (max-width: 768px) {
+  .screen.app-layout #topbar-root {
+    height: auto;
+  }
 }
 
 /* ===================== SIDEBAR ===================== */
 .sidebar {
   width: var(--sidebar-w);
-  min-height: 100vh;
+  height: 100vh;
   background: var(--navy-2);
   border-right: 1px solid rgba(255,255,255,0.06);
   display: flex;
@@ -29,7 +44,6 @@
   flex-shrink: 0;
   position: sticky;
   top: 0;
-  height: 100vh;
   overflow-y: auto;
 }
 .sidebar-logo {
@@ -113,7 +127,7 @@
 /* ===================== MAIN CONTENT ===================== */
 .main-content {
   flex: 1;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -358,3 +372,42 @@
   opacity: 1;
 }
 
+/* CHANGED: Collapsed sidebar and sticky header styling for smaller screens placed at the end to correctly override earlier desktop overrides */
+@media (max-width: 768px) {
+  #sidebar-root.collapsed {
+    display: contents !important;
+  }
+  .sidebar.collapsed {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    bottom: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    width: 64px !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    z-index: 1000;
+  }
+  .sidebar.collapsed .nav-item,
+  .sidebar.collapsed .sidebar-section-label,
+  .sidebar.collapsed .sidebar-footer {
+    display: none !important;
+  }
+  #sidebar-root.collapsed + .main-content {
+    width: 100% !important;
+  }
+  #sidebar-root.collapsed + .main-content .top-bar {
+    margin-left: 64px;
+    width: calc(100% - 64px) !important;
+  }
+  .top-bar {
+    height: 118px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+    gap: 6px !important;
+    padding: 10px 14px !important;
+  }
+}
