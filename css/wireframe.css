@@ -275,6 +275,7 @@
   width: 95%;
   box-shadow: var(--shadow);
   animation: modalIn 0.25s cubic-bezier(.4,0,.2,1);
+  position: relative;
 }
 .zoom-modal-body {
   margin-top: 16px;
