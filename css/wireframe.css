@@ -107,22 +107,22 @@
   background-size: 100% 100% !important;
 }
 .wireframe-block-box-teal {
-  border-color: #00b4d8 !important;
+  border-color: #0098A6 !important;
   background-image: 
-    linear-gradient(to top right, transparent calc(50% - 0.75px), #d2f7f9 calc(50% - 0.75px), #d2f7f9 calc(50% + 0.75px), transparent calc(50% + 0.75px)), 
-    linear-gradient(to bottom right, transparent calc(50% - 0.75px), #d2f7f9 calc(50% - 0.75px), #d2f7f9 calc(50% + 0.75px), transparent calc(50% + 0.75px)) !important;
+    linear-gradient(to top right, transparent calc(50% - 0.75px), #EAF9FA calc(50% - 0.75px), #EAF9FA calc(50% + 0.75px), transparent calc(50% + 0.75px)), 
+    linear-gradient(to bottom right, transparent calc(50% - 0.75px), #EAF9FA calc(50% - 0.75px), #EAF9FA calc(50% + 0.75px), transparent calc(50% + 0.75px)) !important;
 }
 .wireframe-block-box-amber {
-  border-color: #f4a261 !important;
+  border-color: #E07B39 !important;
   background-image: 
-    linear-gradient(to top right, transparent calc(50% - 0.75px), #fdf2e9 calc(50% - 0.75px), #fdf2e9 calc(50% + 0.75px), transparent calc(50% + 0.75px)), 
-    linear-gradient(to bottom right, transparent calc(50% - 0.75px), #fdf2e9 calc(50% - 0.75px), #fdf2e9 calc(50% + 0.75px), transparent calc(50% + 0.75px)) !important;
+    linear-gradient(to top right, transparent calc(50% - 0.75px), #FEF3C7 calc(50% - 0.75px), #FEF3C7 calc(50% + 0.75px), transparent calc(50% + 0.75px)), 
+    linear-gradient(to bottom right, transparent calc(50% - 0.75px), #FEF3C7 calc(50% - 0.75px), #FEF3C7 calc(50% + 0.75px), transparent calc(50% + 0.75px)) !important;
 }
 .wireframe-block-box-green {
-  border-color: #2a9d8f !important;
+  border-color: #16A085 !important;
   background-image: 
-    linear-gradient(to top right, transparent calc(50% - 0.75px), #eaf7f5 calc(50% - 0.75px), #eaf7f5 calc(50% + 0.75px), transparent calc(50% + 0.75px)), 
-    linear-gradient(to bottom right, transparent calc(50% - 0.75px), #eaf7f5 calc(50% - 0.75px), #eaf7f5 calc(50% + 0.75px), transparent calc(50% + 0.75px)) !important;
+    linear-gradient(to top right, transparent calc(50% - 0.75px), #D1FAE5 calc(50% - 0.75px), #D1FAE5 calc(50% + 0.75px), transparent calc(50% + 0.75px)), 
+    linear-gradient(to bottom right, transparent calc(50% - 0.75px), #D1FAE5 calc(50% - 0.75px), #D1FAE5 calc(50% + 0.75px), transparent calc(50% + 0.75px)) !important;
 }
 
 /* Layout variants */
@@ -187,7 +187,7 @@
 }
 .wireframe-block-tab.active {
   border-color: var(--teal) !important;
-  background: #e6fcfe !important;
+  background: #EAF9FA !important;
 }
 .wireframe-block-list {
   display: flex;
@@ -432,6 +432,27 @@
 }
 .zoom-modal-close {
   padding: 4px 8px;
+}
+
+/* ===================== RESPONSIVE MANUAL CTA BUTTON ===================== */
+.btn-user-manual {
+  margin-right: 8px;
+}
+.btn-manual-text-short {
+  display: none;
+}
+@media (max-width: 768px) {
+  .wireframe-nav {
+    padding: 15px 20px;
+  }
+}
+@media (max-width: 600px) {
+  .btn-manual-text-long {
+    display: none;
+  }
+  .btn-manual-text-short {
+    display: inline;
+  }
 }
 
 

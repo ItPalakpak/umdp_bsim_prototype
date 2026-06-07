@@ -29,5 +29,10 @@ function closeSubmitModal() {
 /** Submits the decision and redirects to success page. */
 function submitDecision() {
   closeSubmitModal();
-  window.location.href = 'decision-success.html';
+  if (window.submitDecisions) {
+    window.submitDecisions();
+  } else {
+    window.location.href = 'decision-success.html';
+  }
 }
+

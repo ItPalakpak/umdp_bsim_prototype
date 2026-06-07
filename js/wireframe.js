@@ -30,18 +30,20 @@ var pageDetails = {
       "Formulate corporate operations allocations including pricing fees and marketing spends.",
       "Input workforce decisions (salesforce numbers, staff base salary rates, and training hours).",
       "Manage ESG & carbon offset parameters with safety warning metrics.",
+      "Toggle collapsible Market Benchmark panel showing last round averages, previous inputs, and ESG thresholds.",
       "Verify allocation constraints and perform final submission locks with toast feedback."
     ]
   },
   "pages/ai-feedback.html": {
     purpose: "Diagnostic feedback center rendering AI-driven performance audit reviews and forecast warnings.",
     functions: [
-      "Inspect chronological changes lists containing simulated quantitative financial audits.",
-      "Review qualitative green/amber/red audit boxes for Pricing, Operations, and HR categories.",
+      "Inspect Section A containing backward-looking diagnostic cards with severity tags (Critical, Warning, Opportunity).",
+      "Review Section B Playbook containing forward-looking recommendations for Pricing, Operations, and HR.",
       "Inspect competitor asset distributions and market share trends using dynamic charts.",
-      "Download summary feedback reports as PDF mock documents."
+      "Trigger transition to next round via the CTA button at the bottom of the Playbook."
     ]
   },
+
   "pages/leaderboard.html": {
     purpose: "Cohort ranking ledger displaying relative standing by financial and ESG metrics.",
     functions: [
@@ -119,7 +121,7 @@ var pageDetails = {
     functions: [
       "Track active student seat allocations, instructor counts, and overall resource usage.",
       "Inspect current course schedules, billing statuses, and license expiry details.",
-      "Review recent system activities list, showing coordinator configuration modifications.",
+      "Trigger interactive quick action links to access the Documentation Library, Support Center, and Usage Analytics.",
       "Initiate billing upgrades or view invoices log spreadsheets."
     ]
   },
@@ -169,14 +171,24 @@ var pageDetails = {
     ]
   },
   "pages/market-outlook.html": {
-    purpose: "Macroeconomic outlook briefing explaining regional indices, warnings, and interest rates.",
+    purpose: "Market Outlook (Gate) screen showing dynamic economic briefs, events, signals, and locking gateway control.",
     functions: [
-      "Read US, Europe, and Asia regional economic briefs for the current round.",
-      "Analyze multi-country stock indices trend performance on an interactive line chart.",
-      "Review current-round currency exchange rates and base interest rates grids.",
-      "Track macroeconomic warning flags (e.g., inflation warnings, regulatory alerts)."
+      "Review Market Conditions panel featuring Consumer Demand, Inflation, GDP Growth, and Raw Material Cost indicators.",
+      "Inspect anonymized strategic Competitor Signals from the previous round.",
+      "Acknowledge the dynamic Industry Event alert banner configured for the round.",
+      "Click the gateway Proceed to Decisions button to unlock the student Decision Submission form."
     ]
   },
+  "pages/results.html": {
+    purpose: "Dedicated Round Results screen displaying relative standings and cohort benchmark metrics.",
+    functions: [
+      "Acknowledge Round Complete hero banner and status verification indicator.",
+      "Compare Revenue, Net Profit, Market Share, and ESG score on a 3-column table showing Your Team / Market Average / Leading Team.",
+      "Review delta indicators on every KPI comparing the current round against the previous round.",
+      "Read What the Market Did summaries detailing collective competitor actions."
+    ]
+  },
+
   "pages/investment-strategy.html": {
     purpose: "Asset allocation planning board and tactical investment portfolio strategy panel.",
     functions: [
@@ -364,8 +376,8 @@ function downloadWireframeAsImage() {
     } else if (classes.indexOf('wireframe-block-tab') !== -1) {
       shouldDraw = true;
       if (classes.indexOf('active') !== -1) {
-        fillColor = '#e6fcfe';
-        strokeColor = '#00c2cb';
+        fillColor = '#EAF9FA';
+        strokeColor = '#0098A6';
       } else {
         fillColor = '#ffffff';
         strokeColor = '#444444';
@@ -386,21 +398,21 @@ function downloadWireframeAsImage() {
     } else if (classes.indexOf('wireframe-block-box-teal') !== -1) {
       shouldDraw = true;
       fillColor = '#ffffff';
-      strokeColor = '#00b4d8';
+      strokeColor = '#0098A6';
       drawDiagonals = true;
-      diagonalColor = '#d2f7f9';
+      diagonalColor = '#EAF9FA';
     } else if (classes.indexOf('wireframe-block-box-amber') !== -1) {
       shouldDraw = true;
       fillColor = '#ffffff';
-      strokeColor = '#f4a261';
+      strokeColor = '#E07B39';
       drawDiagonals = true;
-      diagonalColor = '#fdf2e9';
+      diagonalColor = '#FEF3C7';
     } else if (classes.indexOf('wireframe-block-box-green') !== -1) {
       shouldDraw = true;
       fillColor = '#ffffff';
-      strokeColor = '#2a9d8f';
+      strokeColor = '#16A085';
       drawDiagonals = true;
-      diagonalColor = '#eaf7f5';
+      diagonalColor = '#D1FAE5';
     } else if (classes.indexOf('wireframe-block-box') !== -1) {
       shouldDraw = true;
       fillColor = '#ffffff';

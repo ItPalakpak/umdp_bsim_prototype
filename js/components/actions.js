@@ -7,19 +7,19 @@
   // --- THEME & SCALE STATE PERSISTENCE APPLIER ---
   var themes = {
     teal: {
-      teal: '#00f0ff',
-      glow: 'rgba(0, 240, 255, 0.4)',
-      dim: 'rgba(0, 240, 255, 0.08)'
+      teal: '#0098A6',
+      glow: 'rgba(0, 152, 166, 0.15)',
+      dim: '#EAF9FA'
     },
     amber: {
-      teal: '#f4a261',
-      glow: 'rgba(244, 162, 97, 0.4)',
-      dim: 'rgba(244, 162, 97, 0.08)'
+      teal: '#E07B39',
+      glow: 'rgba(224, 123, 57, 0.15)',
+      dim: '#FEF3C7'
     },
     emerald: {
-      teal: '#2ec4b6',
-      glow: 'rgba(46, 196, 182, 0.4)',
-      dim: 'rgba(46, 196, 182, 0.08)'
+      teal: '#16A085',
+      glow: 'rgba(22, 160, 133, 0.15)',
+      dim: '#D1FAE5'
     }
   };
 
@@ -320,6 +320,42 @@
     window.showToast("Downloading Invoice", "Invoice DLSU-2025-Q4.pdf download started.", "success");
   };
 
+  window.openAdminDocsModal = function() {
+    window.openCustomModal({
+      title: '📖 Institutional Documentation Library',
+      body: '<p class="mb-10" style="color: var(--gray-200); font-size: 13px; margin-bottom: 16px;">Access official B-Sim AI guidebooks, technical manuals, and integration documentation customized for De La Salle University.</p>' +
+            '<div class="round-status-list" style="margin-top: 14px;">' +
+              '<div class="round-status-item" style="border-bottom: 1px solid rgba(0,0,0,0.06); padding-bottom: 10px; margin-bottom: 10px;">' +
+                '<div>' +
+                  '<div class="round-label" style="font-weight:600; color:var(--white);">University Admin Deployment Guide</div>' +
+                  '<div style="font-size:11px; color:var(--gray-200); margin-top:2px;">SSO configuration, license management, and security protocols (PDF, 2.4 MB)</div>' +
+                '</div>' +
+                '<button class="btn btn-sm btn-ghost" onclick="window.showToast(\'Downloading Guide\', \'DLSU_Admin_Deployment_Guide.pdf is downloading.\', \'success\')">Download</button>' +
+              '</div>' +
+              '<div class="round-status-item" style="border-bottom: 1px solid rgba(0,0,0,0.06); padding-bottom: 10px; margin-bottom: 10px;">' +
+                '<div>' +
+                  '<div class="round-label" style="font-weight:600; color:var(--white);">Instructor Portal Training Manual</div>' +
+                  '<div style="font-size:11px; color:var(--gray-200); margin-top:2px;">Course creation, grading rules, and AI strategic model configuration (PDF, 4.1 MB)</div>' +
+                '</div>' +
+                '<button class="btn btn-sm btn-ghost" onclick="window.showToast(\'Downloading Guide\', \'Instructor_Training_Manual.pdf is downloading.\', \'success\')">Download</button>' +
+              '</div>' +
+              '<div class="round-status-item" style="padding-bottom: 4px;">' +
+                '<div>' +
+                  '<div class="round-label" style="font-weight:600; color:var(--white);">Student Companion Strategy Guide</div>' +
+                  '<div style="font-size:11px; color:var(--gray-200); margin-top:2px;">Student portal navigation, economics index reading, and decision submissions (PDF, 1.8 MB)</div>' +
+                '</div>' +
+                '<button class="btn btn-sm btn-ghost" onclick="window.showToast(\'Downloading Guide\', \'Student_Strategy_Companion.pdf is downloading.\', \'success\')">Download</button>' +
+              '</div>' +
+            '</div>',
+      buttons: [
+        {
+          text: 'Close',
+          className: 'btn-secondary'
+        }
+      ]
+    });
+  };
+
   window.openAddInstructorModal = function() {
     window.openCustomModal({
       title: '+ Add New Instructor',
@@ -589,4 +625,173 @@
     window.showToast("Strategy Saved", "Dynamic tactical portfolio allocations saved successfully for processing.", "success");
   };
 
+  // --- STATE-DRIVEN LOOP MANAGEMENT ---
+  // Ensure default states exist
+  if (localStorage.getItem('bsim-round-number') === null) {
+    localStorage.setItem('bsim-round-number', '3');
+  }
+  if (localStorage.getItem('bsim-round-stage') === null) {
+    localStorage.setItem('bsim-round-stage', 'outlook');
+  }
+  if (localStorage.getItem('bsim-market-outlook-reviewed') === null) {
+    localStorage.setItem('bsim-market-outlook-reviewed', 'false');
+  }
+
+  window.getRoundNumber = function() {
+    return parseInt(localStorage.getItem('bsim-round-number') || '3', 10);
+  };
+
+  window.unlockDecisions = function() {
+    localStorage.setItem('bsim-market-outlook-reviewed', 'true');
+    localStorage.setItem('bsim-round-stage', 'decision');
+    window.showToast("Decisions Unlocked", "The Round " + window.getRoundNumber() + " Decision Form is now accessible.", "success");
+    setTimeout(function() {
+      window.location.href = 'decision.html';
+    }, 800);
+  };
+
+  window.submitDecisions = function() {
+    localStorage.setItem('bsim-round-stage', 'processing');
+    window.location.href = 'decision-success.html';
+  };
+
+  window.transitionToNextRound = function() {
+    var nextRound = window.getRoundNumber() + 1;
+    if (nextRound > 6) nextRound = 3; // loop back to 3 for demo purposes
+    localStorage.setItem('bsim-round-number', nextRound.toString());
+    localStorage.setItem('bsim-market-outlook-reviewed', 'false');
+    localStorage.setItem('bsim-round-stage', 'outlook');
+    
+    window.showToast("Preparing Next Round", "Advancing to Round " + nextRound + " Outlook...", "info");
+    setTimeout(function() {
+      window.location.href = 'market-outlook.html';
+    }, 1000);
+  };
+
+  window.handleLockedNav = function(event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    window.showToast("Access Locked", "You must review the Market Outlook before you can access the Decision Form.", "warning");
+  };
+
+  // --- STEPPER RENDERING ENGINE ---
+  window.renderRoundStepper = function() {
+    var pageContent = document.querySelector('.page-content');
+    if (!pageContent) return;
+
+    var path = window.location.pathname;
+    var filename = path.substring(path.lastIndexOf('/') + 1);
+    
+    // Determine if we should show the stepper on this page
+    var studentPages = [
+      'student-dashboard.html',
+      'market-outlook.html',
+      'decision.html',
+      'investment-strategy.html',
+      'decision-success.html',
+      'results.html',
+      'financial.html',
+      'class-financials.html',
+      'ai-feedback.html',
+      'leaderboard.html',
+      'resources.html',
+      'settings-student.html'
+    ];
+
+    var isStudentPage = false;
+    for (var i = 0; i < studentPages.length; i++) {
+      if (filename.indexOf(studentPages[i]) !== -1) {
+        isStudentPage = true;
+        break;
+      }
+    }
+
+    if (!isStudentPage) return;
+
+    // Determine step status based on current filename and global stage
+    var globalStage = localStorage.getItem('bsim-round-stage') || 'outlook';
+    var activeStepIdx = 1; // 1-indexed: 1 = Outlook, 2 = Decision, 3 = Processing, 4 = Results & AI
+
+    if (filename.indexOf('market-outlook.html') !== -1) {
+      activeStepIdx = 1;
+    } else if (filename.indexOf('decision.html') !== -1 || filename.indexOf('investment-strategy.html') !== -1) {
+      activeStepIdx = 2;
+    } else if (filename.indexOf('decision-success.html') !== -1) {
+      activeStepIdx = 3;
+    } else if (
+      filename.indexOf('results.html') !== -1 || 
+      filename.indexOf('financial.html') !== -1 || 
+      filename.indexOf('class-financials.html') !== -1 || 
+      filename.indexOf('ai-feedback.html') !== -1 || 
+      filename.indexOf('leaderboard.html') !== -1
+    ) {
+      activeStepIdx = 4;
+    } else {
+      // General landing pages display according to global stage
+      if (globalStage === 'outlook') activeStepIdx = 1;
+      else if (globalStage === 'decision') activeStepIdx = 2;
+      else if (globalStage === 'processing') activeStepIdx = 3;
+      else if (globalStage === 'results') activeStepIdx = 4;
+    }
+
+    var steps = [
+      { key: 'outlook', label: 'Market Outlook', href: 'market-outlook.html', stepNum: 1 },
+      { key: 'decision', label: 'Submit Decision', href: 'decision.html', stepNum: 2 },
+      { key: 'processing', label: 'Processing', href: 'decision-success.html', stepNum: 3 },
+      { key: 'results', label: 'Results & AI Recap', href: 'results.html', stepNum: 4 }
+    ];
+
+    // Build stepper HTML
+    var html = '<div class="round-stepper" id="roundStepper">';
+    for (var j = 0; j < steps.length; j++) {
+      var step = steps[j];
+      var stepIdx = j + 1;
+      
+      var stateClass = 'locked';
+      var circleContent = step.stepNum.toString();
+      var clickHandler = '';
+
+      // Determine step status relative to active step index
+      if (stepIdx < activeStepIdx) {
+        stateClass = 'completed';
+        circleContent = '✓';
+        clickHandler = 'onclick="window.location.href=\'' + step.href + '\'"';
+      } else if (stepIdx === activeStepIdx) {
+        stateClass = 'active';
+        clickHandler = 'onclick="window.location.href=\'' + step.href + '\'"';
+      } else {
+        stateClass = 'locked';
+        clickHandler = 'onclick="window.showToast(\'Stage Locked\', \'You must complete the current stage first.\', \'warning\')"';
+      }
+
+      html += '<div class="stepper-step ' + stateClass + '" ' + clickHandler + '>';
+      html += '<div class="step-circle">' + circleContent + '</div>';
+      html += '<div class="step-label">' + step.label + '</div>';
+      html += '</div>';
+
+      if (j < steps.length - 1) {
+        var lineCompleted = (stepIdx < activeStepIdx) ? ' completed' : '';
+        html += '<div class="stepper-line' + lineCompleted + '"></div>';
+      }
+    }
+    html += '</div>';
+
+    // Inject as first child of .page-content
+    var stepperRoot = document.getElementById('round-stepper-root');
+    if (!stepperRoot) {
+      stepperRoot = document.createElement('div');
+      stepperRoot.id = 'round-stepper-root';
+      pageContent.insertBefore(stepperRoot, pageContent.firstChild);
+    }
+    stepperRoot.innerHTML = html;
+  };
+
+  // Run render stepper automatically when DOM is ready
+  document.addEventListener('DOMContentLoaded', function() {
+    window.renderRoundStepper();
+  });
+
 })();
+

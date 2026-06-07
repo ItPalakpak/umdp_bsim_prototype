@@ -6,7 +6,7 @@
   <title>Investment Strategy — B-Sim AI</title>
   <meta name="description" content="Configure investment strategy allocations for government and corporate bonds across global currencies.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/tokens.css">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/layout.css">
@@ -106,11 +106,12 @@
           <!-- Automation override settings -->
           <div class="automation-row">
             <span class="automation-label">🤖 AI Portfolio Automation Agent</span>
-            <div class="toggle-group">
-              <button class="toggle-btn active" id="btn-auto-off" onclick="togglePortfolioAutomation(false)">Disabled</button>
-              <button class="toggle-btn" id="btn-auto-on" onclick="togglePortfolioAutomation(true)">Enabled</button>
-            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="automationSwitch" onchange="togglePortfolioAutomation(this.checked)">
+              <span class="toggle-slider"></span>
+            </label>
           </div>
+
 
           <div class="card card-no-padding mb-20">
             <div class="instructor-table-header">
@@ -293,29 +294,50 @@
     });
   }
 
+  var strategyAllocations = {
+    Dynamic: {
+      "gov-usd": 7.00, "gov-gbp": 3.50, "gov-eur": 4.50, "gov-chf": 1.00, "gov-jpy": 2.00,
+      "corp-usd": 5.00, "corp-gbp": 1.50, "corp-eur": 2.50
+    },
+    Conservative: {
+      "gov-usd": 25.00, "gov-gbp": 15.00, "gov-eur": 20.00, "gov-chf": 10.00, "gov-jpy": 5.00,
+      "corp-usd": 5.00, "corp-gbp": 3.00, "corp-eur": 4.00
+    }
+  };
+
   function switchStrategyMode(btn, mode) {
     var tabs = document.querySelectorAll('.decision-tab');
     tabs.forEach(function(t) { t.classList.remove('active'); });
     btn.classList.add('active');
     
     document.getElementById('strategy-title').textContent = mode + ' portfolio allocations (% of AuM)';
+    
+    // Load values
+    var vals = strategyAllocations[mode] || strategyAllocations.Dynamic;
+    var inputs = document.querySelectorAll('.strat-val');
+    inputs.forEach(function(input) {
+      var fieldId = input.getAttribute('data-field');
+      if (vals[fieldId] !== undefined) {
+        input.value = vals[fieldId].toFixed(2);
+      }
+    });
+    
+    calculateProjectedAllocations();
     showToast("Strategy Loaded", mode + " configuration model loaded.", "info");
   }
 
   function togglePortfolioAutomation(enabled) {
-    var btnOff = document.getElementById('btn-auto-off');
-    var btnOn = document.getElementById('btn-auto-on');
-    
+    var switchEl = document.getElementById('automationSwitch');
+    if (switchEl) {
+      switchEl.checked = enabled;
+    }
     if (enabled) {
-      btnOff.classList.remove('active');
-      btnOn.classList.add('active');
       showToast("Automation On", "AI automation agent will manage dynamic tactical rebalances.", "success");
     } else {
-      btnOn.classList.remove('active');
-      btnOff.classList.add('active');
       showToast("Automation Off", "Manual tactical asset allocation control active.", "info");
     }
   }
+
 </script>
 </body>
 </html>

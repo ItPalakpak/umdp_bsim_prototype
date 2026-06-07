@@ -6,7 +6,7 @@
   <title>University Admin — B-Sim AI</title>
   <meta name="description" content="Institutional admin dashboard — license management, billing, instructor table, usage analytics.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/tokens.css">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/layout.css">
@@ -73,17 +73,17 @@
 
       <!-- Quick Links -->
       <div class="grid-3">
-        <div class="card card-sm quick-link-card">
+        <div class="card card-sm quick-link-card" onclick="openAdminDocsModal()">
           <div class="quick-link-icon">📖</div>
           <div class="quick-link-title">Documentation</div>
           <div class="quick-link-desc">Instructor &amp; admin guides</div>
         </div>
-        <div class="card card-sm quick-link-card">
+        <div class="card card-sm quick-link-card" onclick="location.href='admin-support.html'">
           <div class="quick-link-icon">🆘</div>
           <div class="quick-link-title">Support Center</div>
           <div class="quick-link-desc">Tickets &amp; live chat</div>
         </div>
-        <div class="card card-sm quick-link-card">
+        <div class="card card-sm quick-link-card" onclick="location.href='admin-analytics.html'">
           <div class="quick-link-icon">📊</div>
           <div class="quick-link-title">Usage Analytics</div>
           <div class="quick-link-desc">Full engagement report</div>

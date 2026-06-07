@@ -29,7 +29,7 @@ function renderSidebar(config) {
       { key: 'outlook', label: 'Economic Outlook', href: prefix + 'market-outlook.html', icon: '<svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10zM2 12h20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
       { key: 'decision', label: 'Submit Decision', href: prefix + 'decision.html', icon: '<svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
       { key: 'strategy', label: 'Investment Strategy', href: prefix + 'investment-strategy.html', icon: '<svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1.7-1.95L12 4 4.05 6.05A2 2 0 003 8v8a2 2 0 001.05 1.75L12 20l7.95-4.25A2 2 0 0021 16z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 22V12M12 12l8.5-4.5M12 12L3.5 7.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
-      { key: 'results', label: 'My Results', href: prefix + 'financial.html', icon: '<svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
+      { key: 'results', label: 'My Results', href: prefix + 'results.html', icon: '<svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
       { key: 'comparison', label: 'Class Comparison', href: prefix + 'class-financials.html', icon: '<svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
       { key: 'ai-feedback', label: 'AI Feedback', href: prefix + 'ai-feedback.html', icon: '<svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
       { key: 'leaderboard', label: 'Leaderboard', href: prefix + 'leaderboard.html', icon: '<svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
@@ -64,8 +64,8 @@ function renderSidebar(config) {
   var sectionLabel = sectionLabels[variant] || 'Navigation';
 
   // Overwrite with dynamic user adjustments if they exist
-  var savedName = localStorage.getItem('user-profile-name');
-  var savedInitials = localStorage.getItem('user-profile-initials');
+  var savedName = localStorage.getItem(variant + '-profile-name');
+  var savedInitials = localStorage.getItem(variant + '-profile-initials');
   if (savedName) user.name = savedName;
   if (savedInitials) user.initials = savedInitials;
 
@@ -84,11 +84,26 @@ function renderSidebar(config) {
   for (var i = 0; i < items.length; i++) {
     var item = items[i];
     var isActive = item.key === activePage ? ' active' : '';
-    html += '<a class="nav-item' + isActive + '" href="' + item.href + '" data-tooltip="' + item.label + '">';
+    
+    var isDecisionLocked = variant === 'student' && item.key === 'decision' && localStorage.getItem('bsim-market-outlook-reviewed') !== 'true';
+    var hrefVal = item.href;
+    var extraClass = '';
+    var onclickAttr = '';
+    var labelText = item.label;
+
+    if (isDecisionLocked) {
+      hrefVal = 'javascript:void(0)';
+      extraClass = ' nav-item-locked';
+      onclickAttr = ' onclick="window.handleLockedNav(event)"';
+      labelText += ' 🔒';
+    }
+
+    html += '<a class="nav-item' + isActive + extraClass + '" href="' + hrefVal + '"' + onclickAttr + ' data-tooltip="' + item.label + '">';
     html += item.icon ? item.icon : '';
-    html += '<span class="nav-label">' + item.label + '</span>';
+    html += '<span class="nav-label">' + labelText + '</span>';
     html += '</a>';
   }
+
 
   // Footer / Profile
   html += '<div class="sidebar-footer">';

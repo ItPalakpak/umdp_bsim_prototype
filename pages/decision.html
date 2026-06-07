@@ -6,14 +6,66 @@
   <title>Submit Decision — B-Sim AI</title>
   <meta name="description" content="Submit your strategic decisions for pricing, operations, finance, HR, and sustainability.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/tokens.css">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/layout.css">
   <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/navigator.css">
   <link rel="stylesheet" href="../css/decision.css">
+  <style>
+    .decision-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 20px;
+      transition: grid-template-columns 0.3s cubic-bezier(.4,0,.2,1);
+    }
+    .decision-grid.sidebar-collapsed {
+      grid-template-columns: 1fr 48px;
+    }
+    .decision-sidebar {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: fit-content;
+      transition: all 0.3s cubic-bezier(.4,0,.2,1);
+      overflow: hidden;
+    }
+    .sidebar-toggle-btn {
+      width: 100%;
+      background: var(--navy-4);
+      border: 1px solid var(--gray-600);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 12px;
+      transition: all var(--transition);
+    }
+    .sidebar-toggle-btn:hover {
+      background: var(--teal-dim);
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+    .decision-grid.sidebar-collapsed .sidebar-collapsible-content {
+      display: none;
+    }
+    .decision-grid.sidebar-collapsed .sidebar-toggle-btn {
+      height: 180px;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      padding: 12px 6px;
+      margin-bottom: 0;
+    }
+  </style>
 </head>
+
 <body>
 <div class="screen active app-layout">
   <div id="sidebar-root"></div>
@@ -152,55 +204,77 @@
                 </select>
               </div>
               <div class="form-group">
-                <label class="form-label">Ethical Sourcing</label>
-                <div class="toggle-row">
-                  <button class="toggle-btn-on">ON ✓</button>
-                  <span class="toggle-hint">Enabled · +6 ESG points · +$0.80/unit cost</span>
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom: 6px;">
+                  <label class="form-label" style="margin-bottom:0;">Ethical Sourcing</label>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="ethicalSourcingSwitch" checked onchange="toggleEthicalSourcing(this.checked)">
+                    <span class="toggle-slider"></span>
+                  </label>
                 </div>
+                <div class="toggle-hint" id="ethicalSourcingHint">Enabled · +6 ESG points · +$0.80/unit cost</div>
               </div>
+
             </div>
           </div>
         </div>
 
-        <!-- Right: Checklist Sidebar -->
-        <div class="decision-sidebar">
-          <div class="card card-sm">
-            <div class="card-title">Decisions Checklist</div>
-            <div class="checklist-list">
-              <div class="checklist-item done">
-                <svg class="checklist-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--green)" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/></svg>
-                Pricing
-              </div>
-              <div class="checklist-item done">
-                <svg class="checklist-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--green)" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/></svg>
-                Operations
-              </div>
-              <div class="checklist-item active-item">
-                <svg class="checklist-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--teal)" stroke-width="1.5"/><circle cx="8" cy="8" r="2" fill="var(--teal)"/></svg>
-                Finance
-              </div>
-              <div class="checklist-item">
-                <svg class="checklist-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--gray-600)" stroke-width="1.5"/></svg>
-                HR
-              </div>
-              <div class="checklist-item">
-                <svg class="checklist-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--gray-600)" stroke-width="1.5"/></svg>
-                Sustainability
+        <!-- Right: Collapsible Sidebar -->
+        <div class="decision-sidebar" id="decisionSidebar">
+          <!-- Toggle button -->
+          <button class="sidebar-toggle-btn" onclick="toggleSidebarPanel()" id="sidebarToggleBtn" title="Toggle Reference panel">
+            <span>⦾ Collapse Reference Drawer</span>
+          </button>
+          
+          <div class="sidebar-collapsible-content">
+            <!-- Decisions Checklist Card -->
+            <div class="card card-sm mb-12">
+              <div class="card-title">Decisions Checklist</div>
+              <div class="checklist-list">
+                <div class="checklist-item done">
+                  <svg class="checklist-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--green)" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Pricing tab
+                </div>
+                <div class="checklist-item done">
+                  <svg class="checklist-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--green)" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Operations tab
+                </div>
+                <div class="checklist-item active-item">
+                  <svg class="checklist-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--teal)" stroke-width="1.5"/><circle cx="8" cy="8" r="2" fill="var(--teal)"/></svg>
+                  Finance tab
+                </div>
+                <div class="checklist-item">
+                  <svg class="checklist-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--gray-600)" stroke-width="1.5"/></svg>
+                  HR tab
+                </div>
+                <div class="checklist-item">
+                  <svg class="checklist-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--gray-600)" stroke-width="1.5"/></svg>
+                  Sustainability tab
+                </div>
               </div>
             </div>
-          </div>
-          <div class="card card-sm">
-            <div class="card-title">Round 3 Summary</div>
-            <div class="summary-list">
-              <div class="summary-row"><span>Price set</span><span class="text-mono">$109</span></div>
-              <div class="summary-row"><span>Production</span><span class="text-mono">12,000 u</span></div>
-              <div class="summary-row"><span>ESG Preview</span><span class="text-mono text-green">82/100</span></div>
-              <div class="summary-row"><span>Total OPEX est.</span><span class="text-mono text-amber">$9.4M</span></div>
+
+            <!-- Market Benchmarks Reference Card -->
+            <div class="card card-sm mb-12">
+              <div class="card-title" id="benchmarksTitle">📊 Market Benchmarks (Round 2)</div>
+              
+              <div id="benchmarkItems">
+                <!-- Dynamically Populated -->
+              </div>
+              
+              <!-- ESG Threshold Reminder -->
+              <div class="esg-threshold-info">
+                <div class="benchmark-cat" style="color:var(--green); margin-bottom: 2px;">🌿 ESG Minimum Threshold</div>
+                <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:2px;">60 / 100</div>
+                <div style="font-size:10px; color:var(--gray-100);" id="esgPrevNote">Your Previous Score: 72/100</div>
+              </div>
             </div>
-          </div>
-          <div class="card card-sm esg-warning-card">
-            <div class="esg-warning-title">⚠ ESG Warning</div>
-            <div class="esg-warning-text">Your carbon offset is below the class average. Consider upgrading to Premium Offset.</div>
+            
+            <div class="card card-sm esg-warning-card">
+              <div class="esg-warning-title">⚠ Benchmark Notice</div>
+              <div class="esg-warning-text" id="benchmarkNoticeText">
+                Your price is currently below market average. Consider lifting price slightly to boost margins.
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -220,7 +294,7 @@
   <div class="modal">
     <div class="modal-title">⚠️ Confirm Final Submission</div>
     <div class="modal-body">
-      You are about to submit your <strong>Round 3 decisions</strong> for NovaTech Corp. This action <strong>cannot be undone</strong>. All five decision categories will be locked and processed by the simulation engine.<br><br>
+      You are about to submit your decisions. This action <strong>cannot be undone</strong>. All five decision categories will be locked and processed by the simulation engine.<br><br>
       Make sure you have reviewed all tabs before confirming.
     </div>
     <div class="modal-actions">
@@ -238,13 +312,107 @@
 <script src="../js/components/navigator.js"></script>
 <script src="../js/decision.js"></script>
 <script>
+  function toggleSidebarPanel() {
+    var grid = document.querySelector('.decision-grid');
+    var btn = document.getElementById('sidebarToggleBtn');
+    if (grid) {
+      grid.classList.toggle('sidebar-collapsed');
+      if (grid.classList.contains('sidebar-collapsed')) {
+        btn.innerHTML = '<span>▶ Show Reference</span>';
+        localStorage.setItem('bsim-decision-sidebar-collapsed', 'true');
+      } else {
+        btn.innerHTML = '<span>⦾ Collapse Reference Drawer</span>';
+        localStorage.setItem('bsim-decision-sidebar-collapsed', 'false');
+      }
+    }
+  }
+
+  function initBenchmarkPanel() {
+    var roundNum = window.getRoundNumber ? window.getRoundNumber() : 3;
+    
+    // Set top bar title dynamically
+    if (window.renderTopBar) {
+      window.renderTopBar({
+        title: 'Submit Decision',
+        subtitle: 'Round ' + roundNum + ' of 6 · Enter pricing, marketing, CapEx, HR and ESG details',
+        badges: [{ text: '⏳ Draft Saved', variant: 'amber' }]
+      });
+    }
+
+    var prevRound = roundNum - 1;
+    document.getElementById("benchmarksTitle").textContent = "📊 Market Benchmarks (Round " + prevRound + ")";
+
+    var benchmarkData = [];
+    var prevEsg = "72/100";
+    var notice = "";
+
+    if (roundNum === 3) {
+      prevEsg = "72/100";
+      notice = "Your price ($109) is below the last round average ($118). Consider raising it slightly to capture more margin since brand equity is strong.";
+      benchmarkData = [
+        { cat: "💰 Pricing Strategy", avg: "$118", yours: "$105" },
+        { cat: "⚙️ Operations & Prod", avg: "11,200 u", yours: "10,000 u" },
+        { cat: "🏦 Finance (CapEx)", avg: "$500K", yours: "$400K" },
+        { cat: "👥 Human Resources", avg: "$4,000 wage", yours: "$3,900 wage" },
+        { cat: "🌿 Sustainability (ESG)", avg: "$140K", yours: "$120K" }
+      ];
+    } else {
+      prevEsg = "78/100";
+      notice = "Under Round 4 stimulative event conditions, market demand is up. Review your operations capacity to avoid stockouts.";
+      benchmarkData = [
+        { cat: "💰 Pricing Strategy", avg: "$120", yours: "$109" },
+        { cat: "⚙️ Operations & Prod", avg: "11,800 u", yours: "12,000 u" },
+        { cat: "🏦 Finance (CapEx)", avg: "$620K", yours: "$800K" },
+        { cat: "👥 Human Resources", avg: "$4,100 wage", yours: "$4,200 wage" },
+        { cat: "🌿 Sustainability (ESG)", avg: "$165K", yours: "$180K" }
+      ];
+    }
+
+    // Render Benchmarks
+    var benchHtml = "";
+    benchmarkData.forEach(function(b) {
+      benchHtml += '<div class="benchmark-section">';
+      benchHtml += '  <div class="benchmark-cat">' + b.cat + '</div>';
+      benchHtml += '  <div class="benchmark-comparison">';
+      benchHtml += '    <div>Class Avg: <strong>' + b.avg + '</strong></div>';
+      benchHtml += '    <div>Your LR: <strong>' + b.yours + '</strong></div>';
+      benchHtml += '  </div>';
+      benchHtml += '</div>';
+    });
+
+    document.getElementById("benchmarkItems").innerHTML = benchHtml;
+    document.getElementById("esgPrevNote").textContent = "Your Previous Score: " + prevEsg;
+    document.getElementById("benchmarkNoticeText").textContent = notice;
+
+    // Check saved collapsed state
+    if (localStorage.getItem('bsim-decision-sidebar-collapsed') === 'true') {
+      var grid = document.querySelector('.decision-grid');
+      var btn = document.getElementById('sidebarToggleBtn');
+      if (grid) {
+        grid.classList.add('sidebar-collapsed');
+        btn.innerHTML = '<span>▶ Show Reference</span>';
+      }
+    }
+  }
+
+  function toggleEthicalSourcing(enabled) {
+    var hint = document.getElementById('ethicalSourcingHint');
+    if (enabled) {
+      if (hint) hint.textContent = "Enabled · +6 ESG points · +$0.80/unit cost";
+      showToast("Ethical Sourcing Active", "Ethical sourcing parameters applied to supply chain operations.", "success");
+    } else {
+      if (hint) hint.textContent = "Disabled · ESG score may decrease · -$0.80/unit cost";
+      showToast("Ethical Sourcing Inactive", "Supply chain sourcing reverted to default standards.", "warning");
+    }
+  }
+
   renderSidebar({ variant: 'student', activePage: 'decision' });
-  renderTopBar({
-    title: 'Submit Decision',
-    subtitle: 'Round 3 of 6 · Deadline in 2d 14h',
-    badges: [{ text: '⏳ Draft Saved', variant: 'amber' }]
-  });
   renderNavigator();
+  document.addEventListener('DOMContentLoaded', function() {
+    initBenchmarkPanel();
+  });
 </script>
+
+
 </body>
 </html>

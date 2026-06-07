@@ -6,7 +6,7 @@
   <title>Decision Submitted — B-Sim AI</title>
   <meta name="description" content="Your Round 3 decisions have been submitted successfully.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/tokens.css">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/layout.css">
@@ -20,20 +20,19 @@
     <div id="topbar-root"></div>
     <div class="page-content">
       <div class="success-state">
-        <div class="success-icon">✓</div>
-        <div class="success-title">Decision Submitted!</div>
-        <div class="success-sub">Your Round 3 decisions for NovaTech Corp have been locked and submitted. The AI simulation engine will process all team decisions and results will be available within 24 hours.</div>
-        <div class="success-actions">
-          <a class="btn btn-secondary" href="student-dashboard.html">← Back to Dashboard</a>
-          <a class="btn btn-ghost" href="ai-feedback.html">Preview Last Feedback</a>
+      <div class="success-icon" id="successIcon" style="background: var(--amber-dim); border-color: var(--amber); color: var(--amber);">⏳</div>
+      <div class="success-title" id="successTitle">Processing decisions...</div>
+      <div class="success-sub" id="successSub">Your Round 3 decisions have been submitted. The AI simulation engine is currently processing segment demand, pricing elasticities, and ESG multipliers.</div>
+      
+      <div class="success-processing" id="successProcessing" style="margin-top: 20px;">
+        <div class="progress-bar" style="max-width: 320px; margin: 20px auto; background: var(--navy-4); height: 8px; border-radius: 4px; overflow: hidden;">
+          <div id="progressFill" style="width: 0%; height: 100%; background: var(--teal); transition: width 0.1s linear;"></div>
         </div>
-        <div class="success-processing">
-          <div class="nodes-viz nodes-viz-sm">
-            <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
-            <div class="node-line"></div><div class="node-line"></div><div class="node-line"></div><div class="node-line"></div><div class="node-line"></div><div class="node-line"></div>
-          </div>
-          <div class="loading-sub mt-12">Processing simulation engine…</div>
-        </div>
+        <div class="loading-sub mt-12" id="progressText" style="font-family: var(--mono); font-size:12px;">0% complete</div>
+      </div>
+
+      <div class="success-actions" id="successActions" style="margin-top: 24px; display: none;">
+        <a class="btn btn-primary" href="results.html" onclick="handleViewResults()">View Round Results →</a>
       </div>
     </div>
   </div>
@@ -47,8 +46,57 @@
 <script src="../js/components/navigator.js"></script>
 <script>
   renderSidebar({ variant: 'student', activePage: 'decision' });
-  renderTopBar({ title: 'Decision Submitted' });
   renderNavigator();
+
+  var roundNum = window.getRoundNumber ? window.getRoundNumber() : 3;
+  
+  if (window.renderTopBar) {
+    window.renderTopBar({ 
+      title: 'Processing Decisions',
+      subtitle: 'Round ' + roundNum + ' submission calculations in progress'
+    });
+  }
+
+  document.getElementById("successSub").textContent = "Your Round " + roundNum + " decisions have been submitted. The AI simulation engine is currently processing segment demand, pricing elasticities, and ESG multipliers.";
+
+  // Run progress timer
+  var progress = 0;
+  var fill = document.getElementById("progressFill");
+  var txt = document.getElementById("progressText");
+  
+  var interval = setInterval(function() {
+    progress += 4;
+    if (progress > 100) progress = 100;
+    fill.style.width = progress + "%";
+    txt.textContent = progress + "% complete";
+
+    if (progress >= 100) {
+      clearInterval(interval);
+      
+      // Update topbar title
+      if (window.renderTopBar) {
+        window.renderTopBar({ 
+          title: 'Processing Complete',
+          subtitle: 'Round ' + roundNum + ' ledger finalized'
+        });
+      }
+
+      // Calculation complete
+      document.getElementById("successIcon").textContent = "✓";
+      document.getElementById("successIcon").style.background = "var(--green-dim)";
+      document.getElementById("successIcon").style.borderColor = "var(--green)";
+      document.getElementById("successIcon").style.color = "var(--green)";
+      document.getElementById("successTitle").textContent = "Calculation Complete!";
+      document.getElementById("successSub").textContent = "Ledgers are reconciled and competitive KPI rankings have been generated. Click below to view the results.";
+      document.getElementById("successProcessing").style.display = "none";
+      document.getElementById("successActions").style.display = "block";
+    }
+  }, 100);
+
+  function handleViewResults() {
+    localStorage.setItem('bsim-round-stage', 'results');
+  }
 </script>
+
 </body>
 </html>

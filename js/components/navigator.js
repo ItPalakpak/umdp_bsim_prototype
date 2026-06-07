@@ -38,7 +38,9 @@ function renderNavigator() {
         { num: '20', label: 'Investment Strategy',   href: pagesPrefix + 'investment-strategy.html',match: 'investment-strategy.html' },
         { num: '3',  label: 'Decision Submission',   href: pagesPrefix + 'decision.html',           match: 'decision.html' },
         { num: '9',  label: 'Financial Dashboard',   href: pagesPrefix + 'financial.html',          match: 'financial.html' },
+        { num: '9b', label: 'Round Results Event',   href: pagesPrefix + 'results.html',            match: 'results.html' },
         { num: '21', label: 'Class Comparison',      href: pagesPrefix + 'class-financials.html',   match: 'class-financials.html' },
+
         { num: '4',  label: 'AI Feedback Report',    href: pagesPrefix + 'ai-feedback.html',        match: 'ai-feedback.html' },
         { num: '5',  label: 'Leaderboard',           href: pagesPrefix + 'leaderboard.html',        match: 'leaderboard.html' },
         { num: '11', label: 'Resources Page',        href: pagesPrefix + 'resources.html',          match: 'resources.html' },

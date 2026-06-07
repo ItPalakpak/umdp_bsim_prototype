@@ -40,7 +40,7 @@ input, select, textarea { font-family: var(--font); outline: none; }
 .text-green { color: var(--green); }
 .text-red { color: var(--red); }
 .text-gray { color: var(--gray-400); }
-.text-mono { font-family: var(--mono); }
+.text-mono { font-family: var(--mono); font-weight: 500; }
 .font-bold { font-weight: 700; }
 .font-semibold { font-weight: 600; }
 .section-header {
@@ -54,7 +54,7 @@ input, select, textarea { font-family: var(--font); outline: none; }
   color: var(--gray-400);
   margin-bottom: 16px;
 }
-.divider { height: 1px; background: rgba(255,255,255,0.06); margin: 20px 0; }
+.divider { height: 1px; background: var(--navy-4); margin: 20px 0; }
 
 /* ===================== SCROLLBAR ===================== */
 ::-webkit-scrollbar { width: 5px; height: 5px; }

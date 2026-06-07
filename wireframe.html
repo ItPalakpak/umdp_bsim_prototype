@@ -6,7 +6,7 @@
   <title>Wireframe — B-Sim AI</title>
   <meta name="description" content="B-Sim AI Prototype Wireframe — Visual sitemap of all screens and user flows.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -22,6 +22,10 @@
     <span class="logo-text">B-Sim <span>AI</span></span>
   </div>
   <div class="wireframe-nav-spacer"></div>
+  <button class="btn btn-primary btn-sm btn-user-manual" onclick="document.getElementById('user-manual-section').scrollIntoView({behavior: 'smooth'})">
+    <span class="btn-manual-text-long">📖 User Manual &amp; Guide</span>
+    <span class="btn-manual-text-short">📖 Manual</span>
+  </button>
   <a class="btn btn-ghost btn-sm" href="index.html">← Back to Home</a>
 </nav>
 
@@ -92,7 +96,7 @@
         </div>
         <div class="wireframe-card-number">2</div>
         <div class="wireframe-card-title">Student Dashboard</div>
-        <div class="wireframe-card-desc">Top alerts banner, KPI performance metrics, revenue/profit chart, and round status.</div>
+        <div class="wireframe-card-desc">Top alerts banner, KPI performance metrics, revenue/profit chart, round status, and step-by-step progress stepper.</div>
       </a>
       <a class="wireframe-card" href="pages/decision.html">
         <div class="mini-wireframe">
@@ -120,7 +124,26 @@
         </div>
         <div class="wireframe-card-number">3</div>
         <div class="wireframe-card-title">Decision Submission</div>
-        <div class="wireframe-card-desc">Form tabbed layout covering pricing, operations, finance, HR, and sustainability metrics.</div>
+        <div class="wireframe-card-desc">Form tabbed layout (pricing, operations, finance, HR, sustainability) featuring a collapsible Market Benchmark sidebar.</div>
+      </a>
+      <a class="wireframe-card" href="pages/results.html">
+        <div class="mini-wireframe">
+          <button class="wireframe-zoom-btn" onclick="zoomWireframe(event, this)">🔍 Zoom</button>
+          <div class="wireframe-block-sidebar"></div>
+          <div class="wireframe-block-main">
+            <div class="wireframe-block-topbar"></div>
+            <div class="wireframe-block-content">
+              <div class="wireframe-block-box height-18 wireframe-block-box-teal"></div>
+              <div class="wireframe-block-split">
+                <div class="wireframe-block-box height-38"></div>
+                <div class="wireframe-block-box height-38"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wireframe-card-number">9b</div>
+        <div class="wireframe-card-title">Round Results Event</div>
+        <div class="wireframe-card-desc">Round Complete hero banner, three-column KPI comparison table showing deltas vs last round, and What the Market Did cohort behavior summary.</div>
       </a>
       <a class="wireframe-card" href="pages/ai-feedback.html">
         <div class="mini-wireframe">
@@ -144,7 +167,8 @@
         </div>
         <div class="wireframe-card-number">4</div>
         <div class="wireframe-card-title">AI Feedback Report</div>
-        <div class="wireframe-card-desc">Quantitative financial changes list, qualitative AI audit diagnostic blocks, and market share charts.</div>
+        <div class="wireframe-card-desc">Quantitative changes, Section A backward diagnosis cards, and Section B forward-looking Playbook with round transition CTA.</div>
+
       </a>
       <a class="wireframe-card" href="pages/leaderboard.html">
         <div class="mini-wireframe">
@@ -266,9 +290,10 @@
           </div>
         </div>
         <div class="wireframe-card-number">19</div>
-        <div class="wireframe-card-title">Economic Outlook</div>
-        <div class="wireframe-card-desc">Global macroeconomic briefs, regional reports list, equity indices line chart, and interest rates matrix.</div>
+        <div class="wireframe-card-title">Economic Outlook (Gate)</div>
+        <div class="wireframe-card-desc">Macro conditions, competitor signals list, industry event banner, and round gate button to unlock decision forms.</div>
       </a>
+
 
       <a class="wireframe-card" href="pages/investment-strategy.html">
         <div class="mini-wireframe">
@@ -449,12 +474,17 @@
                 <div class="wireframe-block-box"></div>
                 <div class="wireframe-block-box"></div>
               </div>
+              <div class="wireframe-block-split-3" style="height:12px; margin-top:4px;">
+                <div class="wireframe-block-box-teal"></div>
+                <div class="wireframe-block-box-teal"></div>
+                <div class="wireframe-block-box-teal"></div>
+              </div>
             </div>
           </div>
         </div>
         <div class="wireframe-card-number">13</div>
         <div class="wireframe-card-title">University Admin</div>
-        <div class="wireframe-card-desc">Institutional billing metrics, usage metrics, license status, and instructor seats logs.</div>
+        <div class="wireframe-card-desc">Institutional billing metrics, license status, instructor seats logs, and interactive quick action links to Documentation, Support, and Analytics.</div>
       </a>
       
       <a class="wireframe-card" href="pages/admin-users.html">
@@ -577,6 +607,85 @@
         <div class="wireframe-card-title">Admin Settings</div>
         <div class="wireframe-card-desc">Admin profile credentials, color templates selector, SAML/Google SSO integration toggle, and alert checkboxes.</div>
       </a>
+    </div>
+  </div>
+
+  <!-- Prototype User Manual & Guide -->
+  <div class="wireframe-section" id="user-manual-section" style="margin-top: 60px;">
+    <div class="wireframe-section-title">📘 B-Sim AI Prototype User Manual &amp; Interactive Guide</div>
+    <div style="padding: 40px; background: var(--navy-2); box-shadow: var(--shadow); border: 1px solid var(--navy-4); border-radius: var(--radius-lg);">
+      <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 12px; color: var(--white); font-family: var(--font);">Welcome to B-Sim AI</h2>
+      <p style="font-size: 14px; color: var(--gray-200); line-height: 1.6; margin-bottom: 24px; font-family: var(--font);">
+        B-Sim AI is a state-of-the-art business simulation platform that teaches macroeconomic strategy, corporate finance, operational sustainability, and workforce logistics. 
+        This interactive guide walks you through the active flows, user roles, and core functions implemented in this high-fidelity prototype. 
+        Teammates and evaluators can use the <strong>action buttons</strong> below to jump directly to any active screen.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 20px; font-family: var(--font);">
+        
+        <!-- SECTION: User Roles & Access -->
+        <div style="background: var(--teal-dim); border: 1px solid var(--navy-4); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 16px; font-weight: 700; color: var(--teal); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">👥 User Roles &amp; Profiles</h3>
+            <p style="font-size: 13px; color: var(--gray-200); line-height: 1.6; margin-bottom: 16px;">
+              The platform is structured around three distinct user roles, each with fully isolated preferences, alerts, and settings profiles:
+            </p>
+            <ul style="font-size: 13px; color: var(--gray-200); padding-left: 18px; line-height: 1.6; margin-bottom: 24px;">
+              <li style="margin-bottom: 10px;"><strong>Student (Jamie Dela Cruz)</strong>: Accesses the active company dashboard, evaluates economic briefing statistics, sets dynamic allocation policies, and submits quarterly operational choices.</li>
+              <li style="margin-bottom: 10px;"><strong>Instructor (Dr. Ana Reyes)</strong>: Creates and initiates simulation sessions, monitors cross-cohort performance stats, overrides scores, and manages active rosters.</li>
+              <li style="margin-bottom: 10px;"><strong>Institutional Admin</strong>: Audits institutional enterprise licensing details, manages credit card payments, configures campus SAML/Google SSO, and views system telemetry logs.</li>
+            </ul>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto;">
+            <a class="btn btn-sm btn-ghost" href="pages/student-dashboard.html" style="background: var(--navy-2); border-color: var(--navy-4);">Student Dashboard →</a>
+            <a class="btn btn-sm btn-ghost" href="pages/class-monitor.html" style="background: var(--navy-2); border-color: var(--navy-4);">Instructor Monitor →</a>
+            <a class="btn btn-sm btn-ghost" href="pages/admin.html" style="background: var(--navy-2); border-color: var(--navy-4);">Admin Console →</a>
+          </div>
+        </div>
+
+        <!-- SECTION: Core Student Loop -->
+        <div style="background: var(--teal-dim); border: 1px solid var(--navy-4); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 16px; font-weight: 700; color: var(--teal); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">🔄 The Student Strategy Loop</h3>
+            <p style="font-size: 13px; color: var(--gray-200); line-height: 1.6; margin-bottom: 16px;">
+              Students navigate through a stateful simulation cycle. A progress stepper at the top of all pages tracks this four-stage flow:
+            </p>
+            <ol style="font-size: 13px; color: var(--gray-200); padding-left: 18px; line-height: 1.6; margin-bottom: 24px;">
+              <li style="margin-bottom: 10px;"><strong>Market Outlook Gate</strong>: Analyze macroeconomic indicators and competitor events. Submitting decisions is locked until review is complete.</li>
+              <li style="margin-bottom: 10px;"><strong>Decision Submission</strong>: Fill in pricing, operations, and sustainability fields with collapsible benchmark stats shown.</li>
+              <li style="margin-bottom: 10px;"><strong>Processing Phase</strong>: Watch the live 2.5s calculation loader run.</li>
+              <li style="margin-bottom: 10px;"><strong>Results &amp; AI Feedback</strong>: Review KPI scores (deltas vs. averages) and read Section A (Diagnosis) and Section B (Playbook) recommendations.</li>
+            </ol>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto;">
+            <a class="btn btn-sm btn-ghost" href="pages/market-outlook.html" style="background: var(--navy-2); border-color: var(--navy-4);">1. Outlook Gate →</a>
+            <a class="btn btn-sm btn-ghost" href="pages/decision.html" style="background: var(--navy-2); border-color: var(--navy-4);">2. Decision Form →</a>
+            <a class="btn btn-sm btn-ghost" href="pages/results.html" style="background: var(--navy-2); border-color: var(--navy-4);">3. Round Results →</a>
+            <a class="btn btn-sm btn-ghost" href="pages/ai-feedback.html" style="background: var(--navy-2); border-color: var(--navy-4);">4. AI Feedback →</a>
+          </div>
+        </div>
+
+        <!-- SECTION: High Fidelity Controls -->
+        <div style="background: var(--teal-dim); border: 1px solid var(--navy-4); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 16px; font-weight: 700; color: var(--teal); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">⚙️ Key Interactive Features</h3>
+            <p style="font-size: 13px; color: var(--gray-200); line-height: 1.6; margin-bottom: 16px;">
+              Several premium controls have been integrated to demonstrate modern user experience standards:
+            </p>
+            <ul style="font-size: 13px; color: var(--gray-200); padding-left: 18px; line-height: 1.6; margin-bottom: 24px;">
+              <li style="margin-bottom: 10px;"><strong>LMS Sync &amp; SSO Toggles</strong>: Try enabling/disabling connections in settings pages. All checkboxes and save/reset behaviors are fully functional.</li>
+              <li style="margin-bottom: 10px;"><strong>Ethical Sourcing &amp; AI Automation Switches</strong>: Replace simple inputs with CSS slider toggle switches.</li>
+              <li style="margin-bottom: 10px;"><strong>Dynamic Portfolios</strong>: Choose Dynamic vs. Conservative strategies to automatically adjust allocation ratios.</li>
+              <li style="margin-bottom: 10px;"><strong>Collapsible Benchmark Drawer</strong>: Open or close details side-panel on the Decision Form to save screen space.</li>
+            </ul>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto;">
+            <a class="btn btn-sm btn-ghost" href="pages/investment-strategy.html" style="background: var(--navy-2); border-color: var(--navy-4);">Dynamic Portfolios →</a>
+            <a class="btn btn-sm btn-ghost" href="pages/settings-student.html" style="background: var(--navy-2); border-color: var(--navy-4);">Roster Settings →</a>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>

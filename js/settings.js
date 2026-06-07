@@ -17,9 +17,9 @@
     var defaultEmail = role === 'student' ? 'jamie.dc@student.dlsu.edu.ph' : (role === 'admin' ? 'admin@dlsu.edu.ph' : 'dr.reyes@dlsu.edu.ph');
     var defaultInitials = role === 'student' ? 'JD' : (role === 'admin' ? 'UA' : 'DR');
 
-    document.getElementById('profileName').value = localStorage.getItem('user-profile-name') || defaultName;
-    document.getElementById('profileEmail').value = localStorage.getItem('user-profile-email') || defaultEmail;
-    document.getElementById('profileInitials').value = localStorage.getItem('user-profile-initials') || defaultInitials;
+    document.getElementById('profileName').value = localStorage.getItem(role + '-profile-name') || defaultName;
+    document.getElementById('profileEmail').value = localStorage.getItem(role + '-profile-email') || defaultEmail;
+    document.getElementById('profileInitials').value = localStorage.getItem(role + '-profile-initials') || defaultInitials;
 
     // 2. Theme select
     var savedTheme = localStorage.getItem('ui-theme-preset') || 'teal';
@@ -90,9 +90,9 @@
     }
 
     // Save profile data
-    localStorage.setItem('user-profile-name', name);
-    localStorage.setItem('user-profile-email', email);
-    localStorage.setItem('user-profile-initials', initials);
+    localStorage.setItem(role + '-profile-name', name);
+    localStorage.setItem(role + '-profile-email', email);
+    localStorage.setItem(role + '-profile-initials', initials);
 
     // Save visual preferences
     var theme = document.getElementById('themePreset').value;
@@ -147,9 +147,9 @@
           className: 'btn-danger',
           onclick: function(overlay) {
             // Remove storage items
-            localStorage.removeItem('user-profile-name');
-            localStorage.removeItem('user-profile-email');
-            localStorage.removeItem('user-profile-initials');
+            localStorage.removeItem(role + '-profile-name');
+            localStorage.removeItem(role + '-profile-email');
+            localStorage.removeItem(role + '-profile-initials');
             localStorage.removeItem('ui-theme-preset');
             localStorage.removeItem('ui-text-scale');
             localStorage.removeItem('ai-feedback-verbosity');

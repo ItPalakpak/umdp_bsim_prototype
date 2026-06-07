@@ -5,9 +5,9 @@
  */
 
 // Global Chart.js defaults
-Chart.defaults.color = '#8A9BAD';
-Chart.defaults.borderColor = 'rgba(255,255,255,0.06)';
-Chart.defaults.font.family = "'DM Mono', monospace";
+Chart.defaults.color = '#5A6A7A';
+Chart.defaults.borderColor = '#E2E8F0';
+Chart.defaults.font.family = "'JetBrains Mono', 'Courier New', monospace";
 Chart.defaults.font.size = 11;
 
 var chartInstances = {};
@@ -30,8 +30,8 @@ function initDashboardCharts() {
     data: {
       labels: ['R1', 'R2', 'R3'],
       datasets: [
-        { label: 'Revenue', data: [12.8, 16.4, 18.4], borderColor: '#00C2CB', backgroundColor: 'rgba(0,194,203,0.1)', tension: 0.4, fill: true, pointBackgroundColor: '#00C2CB' },
-        { label: 'Net Profit', data: [2.9, 3.9, 4.2], borderColor: '#2EC4B6', backgroundColor: 'rgba(46,196,182,0.08)', tension: 0.4, fill: true, pointBackgroundColor: '#2EC4B6' }
+        { label: 'Revenue', data: [12.8, 16.4, 18.4], borderColor: '#0098A6', backgroundColor: 'rgba(0,152,166,0.1)', tension: 0.4, fill: true, pointBackgroundColor: '#0098A6' },
+        { label: 'Net Profit', data: [2.9, 3.9, 4.2], borderColor: '#16A085', backgroundColor: 'rgba(22,160,133,0.08)', tension: 0.4, fill: true, pointBackgroundColor: '#16A085' }
       ]
     },
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top', labels: { boxWidth: 10, usePointStyle: true } } }, scales: { y: { beginAtZero: false, ticks: { callback: function(v) { return '$' + v + 'M'; } } } } }
@@ -44,7 +44,7 @@ function initFeedbackCharts() {
     type: 'doughnut',
     data: {
       labels: ['NovaTech', 'TeamAlpha', 'Stratosphere', 'Others'],
-      datasets: [{ data: [23.4, 26.8, 21.1, 28.7], backgroundColor: ['#00C2CB', '#F4A261', '#2EC4B6', '#162C44'], borderColor: '#0D1B2A', borderWidth: 3 }]
+      datasets: [{ data: [23.4, 26.8, 21.1, 28.7], backgroundColor: ['#0098A6', '#E07B39', '#16A085', '#5A6A7A'], borderColor: '#FFFFFF', borderWidth: 3 }]
     },
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, usePointStyle: true } } } }
   });
@@ -53,8 +53,8 @@ function initFeedbackCharts() {
     data: {
       labels: ['R1', 'R2', 'R3'],
       datasets: [
-        { label: 'NovaTech', data: [2.9, 3.9, 4.2], borderColor: '#00C2CB', tension: 0.4, pointBackgroundColor: '#00C2CB' },
-        { label: 'Class Avg', data: [2.1, 2.8, 3.0], borderColor: '#8A9BAD', borderDash: [4,4], tension: 0.4 }
+        { label: 'NovaTech', data: [2.9, 3.9, 4.2], borderColor: '#0098A6', tension: 0.4, pointBackgroundColor: '#0098A6' },
+        { label: 'Class Avg', data: [2.1, 2.8, 3.0], borderColor: '#5A6A7A', borderDash: [4,4], tension: 0.4 }
       ]
     },
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top', labels: { boxWidth: 10, usePointStyle: true } } }, scales: { y: { ticks: { callback: function(v) { return '$' + v + 'M'; } } } } }
@@ -67,7 +67,7 @@ function initClassMonitorCharts() {
     type: 'pie',
     data: {
       labels: ['TeamAlpha', 'NovaTech', 'Stratosphere', 'Omega', 'BlueStar', 'Others'],
-      datasets: [{ data: [26.8, 23.4, 21.1, 18.9, 5.4, 4.4], backgroundColor: ['#F4A261', '#00C2CB', '#2EC4B6', '#162C44', '#E63946', '#4A6077'], borderColor: '#0D1B2A', borderWidth: 2 }]
+      datasets: [{ data: [26.8, 23.4, 21.1, 18.9, 5.4, 4.4], backgroundColor: ['#E07B39', '#0098A6', '#16A085', '#5A6A7A', '#E63946', '#4A6077'], borderColor: '#FFFFFF', borderWidth: 2 }]
     },
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, usePointStyle: true, font: { size: 10 } } } } }
   });
@@ -75,7 +75,7 @@ function initClassMonitorCharts() {
     type: 'line',
     data: {
       labels: ['R1', 'R2', 'R3'],
-      datasets: [{ label: 'Class Avg Profit', data: [2.1, 2.8, 3.0], borderColor: '#00C2CB', backgroundColor: 'rgba(0,194,203,0.1)', tension: 0.4, fill: true }]
+      datasets: [{ label: 'Class Avg Profit', data: [2.1, 2.8, 3.0], borderColor: '#0098A6', backgroundColor: 'rgba(0,152,166,0.1)', tension: 0.4, fill: true }]
     },
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { ticks: { callback: function(v) { return '$' + v + 'M'; } } } } }
   });
@@ -88,8 +88,8 @@ function initFinancialCharts() {
     data: {
       labels: ['Round 1', 'Round 2', 'Round 3'],
       datasets: [
-        { label: 'Revenue', data: [12.8, 16.4, 18.4], backgroundColor: 'rgba(0,194,203,0.6)', borderRadius: 6 },
-        { label: 'Net Profit', data: [2.9, 3.9, 4.2], backgroundColor: 'rgba(46,196,182,0.6)', borderRadius: 6 }
+        { label: 'Revenue', data: [12.8, 16.4, 18.4], backgroundColor: 'rgba(0,152,166,0.6)', borderRadius: 6 },
+        { label: 'Net Profit', data: [2.9, 3.9, 4.2], backgroundColor: 'rgba(22,160,133,0.6)', borderRadius: 6 }
       ]
     },
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top', labels: { boxWidth: 10, usePointStyle: true } } }, scales: { y: { ticks: { callback: function(v) { return '$' + v + 'M'; } } } } }
@@ -102,7 +102,7 @@ function initAdminCharts() {
     type: 'bar',
     data: {
       labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-      datasets: [{ label: 'Active Users', data: [120, 198, 245, 271, 284, 260], backgroundColor: 'rgba(0,194,203,0.55)', borderRadius: 5 }]
+      datasets: [{ label: 'Active Users', data: [120, 198, 245, 271, 284, 260], backgroundColor: 'rgba(0,152,166,0.55)', borderRadius: 5 }]
     },
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
   });
@@ -115,8 +115,8 @@ function initAdminAnalyticsCharts() {
     data: {
       labels: ['Wk 1', 'Wk 2', 'Wk 3', 'Wk 4', 'Wk 5', 'Wk 6'],
       datasets: [
-        { label: 'Avg Session Time (min)', data: [18, 24, 32, 28, 41, 35], borderColor: '#00C2CB', tension: 0.4, fill: false, pointBackgroundColor: '#00C2CB' },
-        { label: 'Submissions Rate %', data: [65, 80, 92, 85, 96, 90], borderColor: '#2EC4B6', tension: 0.4, fill: false, pointBackgroundColor: '#2EC4B6', yAxisID: 'y1' }
+        { label: 'Avg Session Time (min)', data: [18, 24, 32, 28, 41, 35], borderColor: '#0098A6', tension: 0.4, fill: false, pointBackgroundColor: '#0098A6' },
+        { label: 'Submissions Rate %', data: [65, 80, 92, 85, 96, 90], borderColor: '#16A085', tension: 0.4, fill: false, pointBackgroundColor: '#16A085', yAxisID: 'y1' }
       ]
     },
     options: {
@@ -138,9 +138,9 @@ function initOutlookCharts() {
     data: {
       labels: ['12M', '10M', '8M', '6M', '4M', '2M', 'Now'],
       datasets: [
-        { label: 'United States', data: [100, 102, 105, 103, 108, 107, 114], borderColor: '#00C2CB', backgroundColor: 'rgba(0,194,203,0.05)', tension: 0.3, pointRadius: 2 },
-        { label: 'United Kingdom', data: [100, 101, 100, 98, 102, 99, 97], borderColor: '#F4A261', backgroundColor: 'transparent', tension: 0.3, pointRadius: 2 },
-        { label: 'Eurozone', data: [100, 103, 102, 104, 105, 110, 109], borderColor: '#2EC4B6', backgroundColor: 'transparent', tension: 0.3, pointRadius: 2 },
+        { label: 'United States', data: [100, 102, 105, 103, 108, 107, 114], borderColor: '#0098A6', backgroundColor: 'rgba(0,152,166,0.05)', tension: 0.3, pointRadius: 2 },
+        { label: 'United Kingdom', data: [100, 101, 100, 98, 102, 99, 97], borderColor: '#E07B39', backgroundColor: 'transparent', tension: 0.3, pointRadius: 2 },
+        { label: 'Eurozone', data: [100, 103, 102, 104, 105, 110, 109], borderColor: '#16A085', backgroundColor: 'transparent', tension: 0.3, pointRadius: 2 },
         { label: 'Switzerland', data: [100, 104, 103, 106, 102, 108, 112], borderColor: '#E63946', backgroundColor: 'transparent', tension: 0.3, pointRadius: 2 },
         { label: 'Japan', data: [100, 99, 97, 96, 99, 98, 102], borderColor: '#9B5DE5', backgroundColor: 'transparent', tension: 0.3, pointRadius: 2 }
       ]
@@ -161,8 +161,8 @@ function initStrategyCharts() {
     data: {
       labels: ['R1', 'R2', 'R3', 'R4', 'R5'],
       datasets: [
-        { label: 'Team Nova', data: [0.0, 5.0, 0.5, -2.2, -4.5], borderColor: '#00C2CB', backgroundColor: 'rgba(0,194,203,0.05)', tension: 0.3, fill: true },
-        { label: 'Market Avg', data: [0.0, 3.5, 0.8, -0.2, 1.5], borderColor: '#8A9BAD', borderDash: [4, 4], backgroundColor: 'transparent', tension: 0.3 }
+        { label: 'Team Nova', data: [0.0, 5.0, 0.5, -2.2, -4.5], borderColor: '#0098A6', backgroundColor: 'rgba(0,152,166,0.05)', tension: 0.3, fill: true },
+        { label: 'Market Avg', data: [0.0, 3.5, 0.8, -0.2, 1.5], borderColor: '#5A6A7A', borderDash: [4, 4], backgroundColor: 'transparent', tension: 0.3 }
       ]
     },
     options: {
@@ -173,5 +173,3 @@ function initStrategyCharts() {
     }
   });
 }
-
-

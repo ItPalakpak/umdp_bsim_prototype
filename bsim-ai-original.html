@@ -5,37 +5,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>B-Sim AI — Where Strategy Meets Consequence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
 /* ===================== DESIGN TOKENS ===================== */
 :root {
-  --navy:     #0D1B2A;
-  --navy-2:   #112236;
-  --navy-3:   #162C44;
-  --navy-4:   #1E3A52;
-  --teal:     #00C2CB;
-  --teal-dim: rgba(0,194,203,0.15);
-  --teal-glow:rgba(0,194,203,0.35);
-  --white:    #FFFFFF;
-  --gray-100: #F4F6F9;
-  --gray-200: #D1D9E0;
-  --gray-400: #8A9BAD;
-  --gray-600: #4A6077;
-  --amber:    #F4A261;
-  --amber-dim:rgba(244,162,97,0.15);
-  --green:    #2EC4B6;
+  --navy:     #F7F9FC;
+  --navy-2:   #FFFFFF;
+  --navy-3:   #FFFFFF;
+  --navy-4:   #E2E8F0;
+  --teal:     #0098A6;
+  --teal-dim: #EAF9FA;
+  --teal-glow:rgba(0,152,166,0.15);
+  --white:    #0D1B2A;
+  --gray-100: #5A6A7A;
+  --gray-200: #5A6A7A;
+  --gray-400: #5A6A7A;
+  --gray-600: #CBD5E1;
+  --amber:    #E07B39;
+  --amber-dim:#FEF3C7;
+  --green:    #16A085;
   --red:      #E63946;
-  --red-dim:  rgba(230,57,70,0.15);
-  --green-dim:rgba(46,196,182,0.15);
+  --red-dim:  #FEE2E2;
+  --green-dim:#D1FAE5;
   --sidebar-w:240px;
   --radius:   8px;
   --radius-lg:14px;
   --transition:0.22s cubic-bezier(.4,0,.2,1);
-  --font: 'Sora', sans-serif;
-  --mono: 'DM Mono', monospace;
-  --shadow: 0 4px 24px rgba(0,0,0,0.35);
-  --shadow-sm:0 2px 10px rgba(0,0,0,0.25);
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+  --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  --shadow-sm:0 4px 16px rgba(0,0,0,0.1);
 }
 
 /* ===================== RESET & BASE ===================== */
@@ -63,7 +63,7 @@ input, select, textarea { font-family: var(--font); outline: none; }
   width: var(--sidebar-w);
   min-height: 100vh;
   background: var(--navy-2);
-  border-right: 1px solid rgba(255,255,255,0.06);
+  border-right: 1px solid var(--navy-4);
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -74,7 +74,7 @@ input, select, textarea { font-family: var(--font); outline: none; }
 }
 .sidebar-logo {
   padding: 24px 20px 18px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid var(--navy-4);
 }
 .sidebar-logo .logo-mark {
   display: flex;
@@ -114,18 +114,18 @@ input, select, textarea { font-family: var(--font); outline: none; }
   position: relative;
   user-select: none;
 }
-.nav-item:hover { background: rgba(255,255,255,0.04); color: var(--white); }
+.nav-item:hover { background: rgba(0, 152, 166, 0.04); color: var(--white); }
 .nav-item.active {
   background: var(--teal-dim);
   color: var(--teal);
-  border-right: 2px solid var(--teal);
+  border-left: 3px solid var(--teal);
 }
 .nav-item .nav-icon { width: 16px; height: 16px; flex-shrink: 0; opacity: 0.7; }
 .nav-item.active .nav-icon { opacity: 1; }
 .sidebar-footer {
   margin-top: auto;
   padding: 16px 20px;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid var(--navy-4);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -135,7 +135,7 @@ input, select, textarea { font-family: var(--font); outline: none; }
   border-radius: 50%;
   background: linear-gradient(135deg, var(--teal), var(--green));
   display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 700; color: var(--navy);
+  font-size: 11px; font-weight: 700; color: #FFFFFF;
   flex-shrink: 0;
 }
 .avatar-info { flex: 1; min-width: 0; }
@@ -153,7 +153,7 @@ input, select, textarea { font-family: var(--font); outline: none; }
 .top-bar {
   height: 56px;
   background: var(--navy-2);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid var(--navy-4);
   display: flex;
   align-items: center;
   padding: 0 24px;
@@ -176,10 +176,10 @@ input, select, textarea { font-family: var(--font); outline: none; }
   gap: 5px;
 }
 .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid var(--teal-glow); }
-.badge-amber { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(244,162,97,0.3); }
-.badge-green { background: var(--green-dim); color: var(--green); border: 1px solid rgba(46,196,182,0.3); }
-.badge-red { background: var(--red-dim); color: var(--red); border: 1px solid rgba(230,57,70,0.3); }
-.badge-gray { background: rgba(255,255,255,0.06); color: var(--gray-400); border: 1px solid rgba(255,255,255,0.08); }
+.badge-amber { background: var(--amber-dim); color: #92400E; border: 1px solid rgba(224,123,57,0.15); }
+.badge-green { background: var(--green-dim); color: #065F46; border: 1px solid rgba(22,160,133,0.15); }
+.badge-red { background: var(--red-dim); color: #B91C1C; border: 1px solid rgba(230,57,70,0.15); }
+.badge-gray { background: #F1F5F9; color: var(--gray-400); border: 1px solid var(--navy-4); }
 
 .page-content {
   flex: 1;
@@ -190,9 +190,10 @@ input, select, textarea { font-family: var(--font); outline: none; }
 /* ===================== CARDS ===================== */
 .card {
   background: var(--navy-2);
-  border: 1px solid rgba(255,255,255,0.07);
+  border: 1px solid var(--navy-4);
   border-radius: var(--radius-lg);
   padding: 20px;
+  box-shadow: var(--shadow);
 }
 .card-sm { padding: 14px 16px; }
 .card-title {
@@ -208,11 +209,12 @@ input, select, textarea { font-family: var(--font); outline: none; }
 .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
 .kpi-card {
   background: var(--navy-2);
-  border: 1px solid rgba(255,255,255,0.07);
+  border: 1px solid var(--navy-4);
   border-radius: var(--radius-lg);
   padding: 18px;
   transition: all var(--transition);
   cursor: default;
+  box-shadow: var(--shadow);
 }
 .kpi-card:hover { border-color: var(--teal-glow); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
 .kpi-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray-400); margin-bottom: 8px; }
@@ -234,19 +236,19 @@ input, select, textarea { font-family: var(--font); outline: none; }
 }
 .btn-primary {
   background: var(--teal);
-  color: var(--navy);
+  color: #FFFFFF;
 }
-.btn-primary:hover { background: #00DADF; box-shadow: 0 0 20px var(--teal-glow); }
+.btn-primary:hover { background: #00838F; box-shadow: 0 0 20px var(--teal-glow); }
 .btn-secondary {
-  background: rgba(255,255,255,0.07);
-  color: var(--white);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: transparent;
+  color: var(--teal);
+  border: 1px solid var(--teal);
 }
-.btn-secondary:hover { background: rgba(255,255,255,0.12); }
+.btn-secondary:hover { background: var(--teal-dim); }
 .btn-ghost {
   background: transparent;
   color: var(--teal);
-  border: 1px solid var(--teal-glow);
+  border: 1px solid var(--teal);
 }
 .btn-ghost:hover { background: var(--teal-dim); }
 .btn-danger {
@@ -263,7 +265,7 @@ input, select, textarea { font-family: var(--font); outline: none; }
 .form-input {
   width: 100%;
   background: var(--navy-3);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid #CBD5E1;
   border-radius: var(--radius);
   padding: 10px 14px;
   color: var(--white);
@@ -271,11 +273,11 @@ input, select, textarea { font-family: var(--font); outline: none; }
   font-size: 13px;
   transition: border-color var(--transition);
 }
-.form-input:focus { border-color: var(--teal); background: rgba(0,194,203,0.04); }
+.form-input:focus { border-color: var(--teal); background: transparent; }
 .form-select {
   width: 100%;
   background: var(--navy-3);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid #CBD5E1;
   border-radius: var(--radius);
   padding: 10px 14px;
   color: var(--white);
@@ -301,7 +303,7 @@ input, select, textarea { font-family: var(--font); outline: none; }
   color: var(--gray-400);
   padding: 10px 14px;
   text-align: left;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid var(--navy-4);
   cursor: pointer;
   user-select: none;
 }
@@ -320,7 +322,7 @@ input, select, textarea { font-family: var(--font); outline: none; }
 .tab-bar {
   display: flex;
   gap: 0;
-  background: var(--navy-3);
+  background: #F1F5F9;
   border-radius: var(--radius);
   padding: 4px;
   width: fit-content;
@@ -386,7 +388,7 @@ input, select, textarea { font-family: var(--font); outline: none; }
 .text-green { color: var(--green); }
 .text-red { color: var(--red); }
 .text-gray { color: var(--gray-400); }
-.text-mono { font-family: var(--mono); }
+.text-mono { font-family: var(--mono); font-weight: 500; }
 .font-bold { font-weight: 700; }
 .font-semibold { font-weight: 600; }
 .section-header {
@@ -400,7 +402,7 @@ input, select, textarea { font-family: var(--font); outline: none; }
   color: var(--gray-400);
   margin-bottom: 16px;
 }
-.divider { height: 1px; background: rgba(255,255,255,0.06); margin: 20px 0; }
+.divider { height: 1px; background: var(--navy-4); margin: 20px 0; }
 
 /* ===================== CHART CONTAINER ===================== */
 .chart-wrap { position: relative; }
@@ -423,8 +425,10 @@ canvas { max-width: 100%; }
 }
 .modal-overlay.open { display: flex; }
 .modal {
-  background: var(--navy-2);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 152, 166, 0.15);
   border-radius: var(--radius-lg);
   padding: 32px;
   max-width: 440px;
@@ -455,7 +459,7 @@ canvas { max-width: 100%; }
   max-width: 95vw;
   height: 100vh;
   background: var(--navy-2);
-  border-left: 1px solid rgba(255,255,255,0.08);
+  border-left: 1px solid rgba(0, 152, 166, 0.15);
   box-shadow: -8px 0 40px rgba(0,0,0,0.4);
   overflow-y: auto;
   padding: 28px;
@@ -500,7 +504,7 @@ canvas { max-width: 100%; }
   position: absolute;
   top: 50%; left: 50%;
   height: 1px;
-  background: linear-gradient(90deg, var(--teal-glow), transparent);
+  background: linear-gradient(90deg, rgba(0,152,166,0.2), transparent);
   transform-origin: left center;
   animation: linePulse 2s ease-in-out infinite;
 }
@@ -541,7 +545,7 @@ canvas { max-width: 100%; }
   display: flex;
   align-items: center;
   padding: 20px 60px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid var(--navy-4);
   gap: 16px;
 }
 .landing-nav .logo-mark { display: flex; align-items: center; gap: 10px; }
@@ -584,14 +588,14 @@ canvas { max-width: 100%; }
 }
 .hero-orb-1 {
   width: 280px; height: 280px;
-  background: radial-gradient(circle at 40% 40%, rgba(0,194,203,0.25), transparent 70%);
-  border: 1px solid rgba(0,194,203,0.2);
+  background: radial-gradient(circle at 40% 40%, rgba(0,152,166,0.15), transparent 70%);
+  border: 1px solid rgba(0,152,166,0.15);
   animation: orbFloat 6s ease-in-out infinite;
 }
 .hero-orb-2 {
   width: 180px; height: 180px;
-  background: radial-gradient(circle, rgba(244,162,97,0.15), transparent 70%);
-  border: 1px solid rgba(244,162,97,0.15);
+  background: radial-gradient(circle, rgba(224,123,57,0.1), transparent 70%);
+  border: 1px solid rgba(224,123,57,0.1);
   top: 30px; right: 30px;
   animation: orbFloat 8s ease-in-out infinite reverse;
 }
@@ -620,7 +624,7 @@ canvas { max-width: 100%; }
   position: absolute;
   top: 50%; left: 50%;
   height: 1px;
-  background: linear-gradient(90deg, var(--teal-glow), transparent);
+  background: linear-gradient(90deg, rgba(0,152,166,0.2), transparent);
   transform-origin: left center;
 }
 .hero-line:nth-child(8) { width: 110px; transform: rotate(-95deg); }
@@ -631,8 +635,8 @@ canvas { max-width: 100%; }
 .hero-line:nth-child(13) { width: 110px; transform: rotate(-32deg); }
 .hero-mini-card {
   position: absolute;
-  background: rgba(17,34,54,0.9);
-  border: 1px solid rgba(0,194,203,0.25);
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,152,166,0.15);
   border-radius: var(--radius);
   padding: 10px 14px;
   backdrop-filter: blur(8px);
@@ -726,7 +730,7 @@ canvas { max-width: 100%; }
   position: sticky;
   bottom: 0;
   background: var(--navy-2);
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid var(--navy-4);
   padding: 14px 24px;
   display: flex;
   align-items: center;
@@ -771,7 +775,7 @@ canvas { max-width: 100%; }
 .collapsible-header {
   display: flex; align-items: center; justify-content: space-between;
   cursor: pointer; padding: 14px 0;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid var(--navy-4);
   user-select: none;
 }
 .collapsible-header h3 { font-size: 14px; font-weight: 600; }
@@ -905,8 +909,8 @@ canvas { max-width: 100%; }
 
 /* ============== ROUND TIMER ============== */
 .timer-widget {
-  background: var(--navy-3);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: #FFFFFF;
+  border: 1px solid var(--navy-4);
   border-radius: var(--radius);
   padding: 12px 16px;
   display: flex;
@@ -2455,9 +2459,9 @@ function sortTable(th, colIdx) {
 }
 
 // ==================== CHARTS ====================
-Chart.defaults.color = '#8A9BAD';
-Chart.defaults.borderColor = 'rgba(255,255,255,0.06)';
-Chart.defaults.font.family = "'DM Mono', monospace";
+Chart.defaults.color = '#5A6A7A';
+Chart.defaults.borderColor = '#E2E8F0';
+Chart.defaults.font.family = "'JetBrains Mono', 'Courier New', monospace";
 Chart.defaults.font.size = 11;
 
 const chartInstances = {};
@@ -2475,8 +2479,8 @@ function initChartsForScreen(screenId) {
       data: {
         labels: ['R1', 'R2', 'R3'],
         datasets: [
-          { label: 'Revenue', data: [12.8, 16.4, 18.4], borderColor: '#00C2CB', backgroundColor: 'rgba(0,194,203,0.1)', tension: 0.4, fill: true, pointBackgroundColor: '#00C2CB' },
-          { label: 'Net Profit', data: [2.9, 3.9, 4.2], borderColor: '#2EC4B6', backgroundColor: 'rgba(46,196,182,0.08)', tension: 0.4, fill: true, pointBackgroundColor: '#2EC4B6' }
+          { label: 'Revenue', data: [12.8, 16.4, 18.4], borderColor: '#0098A6', backgroundColor: 'rgba(0,152,166,0.1)', tension: 0.4, fill: true, pointBackgroundColor: '#0098A6' },
+          { label: 'Net Profit', data: [2.9, 3.9, 4.2], borderColor: '#16A085', backgroundColor: 'rgba(22,160,133,0.08)', tension: 0.4, fill: true, pointBackgroundColor: '#16A085' }
         ]
       },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top', labels: { boxWidth: 10, usePointStyle: true } } }, scales: { y: { beginAtZero: false, ticks: { callback: v => '$' + v + 'M' } } } }
@@ -2487,7 +2491,7 @@ function initChartsForScreen(screenId) {
       type: 'doughnut',
       data: {
         labels: ['NovaTech', 'TeamAlpha', 'Stratosphere', 'Others'],
-        datasets: [{ data: [23.4, 26.8, 21.1, 28.7], backgroundColor: ['#00C2CB', '#F4A261', '#2EC4B6', '#162C44'], borderColor: '#0D1B2A', borderWidth: 3 }]
+        datasets: [{ data: [23.4, 26.8, 21.1, 28.7], backgroundColor: ['#0098A6', '#E07B39', '#16A085', '#5A6A7A'], borderColor: '#FFFFFF', borderWidth: 3 }]
       },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, usePointStyle: true } } } }
     });
@@ -2496,8 +2500,8 @@ function initChartsForScreen(screenId) {
       data: {
         labels: ['R1', 'R2', 'R3'],
         datasets: [
-          { label: 'NovaTech', data: [2.9, 3.9, 4.2], borderColor: '#00C2CB', tension: 0.4, pointBackgroundColor: '#00C2CB' },
-          { label: 'Class Avg', data: [2.1, 2.8, 3.0], borderColor: '#8A9BAD', borderDash: [4,4], tension: 0.4 }
+          { label: 'NovaTech', data: [2.9, 3.9, 4.2], borderColor: '#0098A6', tension: 0.4, pointBackgroundColor: '#0098A6' },
+          { label: 'Class Avg', data: [2.1, 2.8, 3.0], borderColor: '#5A6A7A', borderDash: [4,4], tension: 0.4 }
         ]
       },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top', labels: { boxWidth: 10, usePointStyle: true } } }, scales: { y: { ticks: { callback: v => '$' + v + 'M' } } } }
@@ -2508,7 +2512,7 @@ function initChartsForScreen(screenId) {
       type: 'pie',
       data: {
         labels: ['TeamAlpha', 'NovaTech', 'Stratosphere', 'Omega', 'BlueStar', 'Others'],
-        datasets: [{ data: [26.8, 23.4, 21.1, 18.9, 5.4, 4.4], backgroundColor: ['#F4A261', '#00C2CB', '#2EC4B6', '#162C44', '#E63946', '#4A6077'], borderColor: '#0D1B2A', borderWidth: 2 }]
+        datasets: [{ data: [26.8, 23.4, 21.1, 18.9, 5.4, 4.4], backgroundColor: ['#E07B39', '#0098A6', '#16A085', '#5A6A7A', '#E63946', '#4A6077'], borderColor: '#FFFFFF', borderWidth: 2 }]
       },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, usePointStyle: true, font: { size: 10 } } } } }
     });
@@ -2516,7 +2520,7 @@ function initChartsForScreen(screenId) {
       type: 'line',
       data: {
         labels: ['R1', 'R2', 'R3'],
-        datasets: [{ label: 'Class Avg Profit', data: [2.1, 2.8, 3.0], borderColor: '#00C2CB', backgroundColor: 'rgba(0,194,203,0.1)', tension: 0.4, fill: true }]
+        datasets: [{ label: 'Class Avg Profit', data: [2.1, 2.8, 3.0], borderColor: '#0098A6', backgroundColor: 'rgba(0,152,166,0.1)', tension: 0.4, fill: true }]
       },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { ticks: { callback: v => '$' + v + 'M' } } } }
     });
@@ -2527,8 +2531,8 @@ function initChartsForScreen(screenId) {
       data: {
         labels: ['Round 1', 'Round 2', 'Round 3'],
         datasets: [
-          { label: 'Revenue', data: [12.8, 16.4, 18.4], backgroundColor: 'rgba(0,194,203,0.6)', borderRadius: 6 },
-          { label: 'Net Profit', data: [2.9, 3.9, 4.2], backgroundColor: 'rgba(46,196,182,0.6)', borderRadius: 6 }
+          { label: 'Revenue', data: [12.8, 16.4, 18.4], backgroundColor: 'rgba(0,152,166,0.6)', borderRadius: 6 },
+          { label: 'Net Profit', data: [2.9, 3.9, 4.2], backgroundColor: 'rgba(22,160,133,0.6)', borderRadius: 6 }
         ]
       },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top', labels: { boxWidth: 10, usePointStyle: true } } }, scales: { y: { ticks: { callback: v => '$' + v + 'M' } } } }
@@ -2539,7 +2543,7 @@ function initChartsForScreen(screenId) {
       type: 'bar',
       data: {
         labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        datasets: [{ label: 'Active Users', data: [120, 198, 245, 271, 284, 260], backgroundColor: 'rgba(0,194,203,0.55)', borderRadius: 5 }]
+        datasets: [{ label: 'Active Users', data: [120, 198, 245, 271, 284, 260], backgroundColor: 'rgba(0,152,166,0.55)', borderRadius: 5 }]
       },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
     });

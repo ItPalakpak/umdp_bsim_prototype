@@ -6,7 +6,7 @@
   <title>Economic Outlook — B-Sim AI</title>
   <meta name="description" content="View global economic report, US/Europe/Asia outlook briefs, and equity market indices trends.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/tokens.css">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/layout.css">
@@ -16,11 +16,112 @@
   <style>
     .outlook-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 20px; align-items: start; }
     @media (max-width: 992px) { .outlook-grid { grid-template-columns: 1fr; } }
-    .outlook-section { margin-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 16px; }
-    .outlook-section:last-child { border-bottom: none; padding-bottom: 0; }
-    .outlook-section-title { font-size: 15px; font-weight: 700; color: var(--teal); margin-bottom: 8px; }
-    .outlook-section-body { font-size: 13px; color: var(--gray-300); line-height: 1.6; }
-    .outlook-highlight { background: rgba(0, 194, 203, 0.05); border-left: 3px solid var(--teal); padding: 12px 16px; border-radius: 0 4px 4px 0; margin-bottom: 20px; font-size: 13px; color: var(--teal); font-weight: 500; }
+    
+    /* New Market Outlook Styles */
+    .event-banner {
+      background: var(--amber-dim);
+      border: 1px solid rgba(224, 123, 57, 0.3);
+      border-left: 4px solid var(--amber);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+    .event-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--amber);
+      margin-bottom: 4px;
+    }
+    .event-desc {
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    
+    .macro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 10px;
+    }
+    .macro-card {
+      background: var(--navy);
+      border: 1px solid var(--navy-4);
+      border-radius: var(--radius);
+      padding: 12px;
+    }
+    .macro-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gray-100);
+      text-transform: uppercase;
+    }
+    .macro-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      margin: 4px 0;
+      font-family: var(--mono);
+    }
+    .macro-trend {
+      font-size: 11px;
+      font-weight: 600;
+    }
+    
+    .signal-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .signal-item {
+      background: var(--navy);
+      border: 1px solid var(--navy-4);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--white);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .signal-icon {
+      font-size: 14px;
+    }
+    
+    .gateway-card {
+      background: var(--navy-2);
+      border: 1px solid var(--navy-4);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+    .gateway-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .status-dot-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .status-dot-pulse.red {
+      background: var(--red);
+      box-shadow: 0 0 0 3px var(--red-dim);
+    }
+    .status-dot-pulse.green {
+      background: var(--green);
+      box-shadow: 0 0 0 3px var(--green-dim);
+    }
   </style>
 </head>
 <body>
@@ -30,58 +131,51 @@
     <div id="topbar-root"></div>
     <div class="page-content">
 
-      <!-- Course alert warning -->
-      <div class="outlook-highlight">
-        ⚠ WARNING! Your course simulation is currently active. Decisions must be locked before round processing begins.
-      </div>
-
       <div class="outlook-grid">
-        <!-- Left: Economic Briefings -->
-        <div class="card">
-          <div class="card-title" style="border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom:12px; margin-bottom:16px;">Global Economic Report — H1 / 2028</div>
-          
-          <div class="outlook-section">
-            <div class="outlook-section-title">Investment Perspectives</div>
-            <div class="outlook-section-body">
-              A revolutionary hydrogen-based energy solution has now been confirmed, promising virtually unlimited clean energy production. Companies worldwide are racing to pivot away from fossil fuels — converting transportation, manufacturing, and logistics systems to run on hydrogen — fueling a wave of optimism and massive new investment in this technology.
+        <!-- Left Column: Economic Briefings, Event, Conditions, Signals -->
+        <div>
+          <!-- Industry Event Banner -->
+          <div class="event-banner" id="eventBanner">
+            <div class="event-title">📢 Industry Event</div>
+            <div class="event-desc" id="eventDesc">Loading market events...</div>
+          </div>
+
+          <!-- Market Conditions Panel -->
+          <div class="card mb-20">
+            <div class="card-title">📊 Market Conditions — Macroeconomic Indicators</div>
+            <div class="macro-grid" id="macroGrid">
+              <!-- Dynamically populated -->
             </div>
           </div>
 
-          <div class="outlook-section">
-            <div class="outlook-section-title">US Economic Outlook</div>
-            <div class="outlook-section-body">
-              The US economy continues on an upward trajectory, with GDP expanding steadily. Inflation, which had been subdued, is now expected to climb back toward the 2% target level — an encouraging sign of balanced growth that indicates demand is strengthening in tandem with supply.
-            </div>
-          </div>
-
-          <div class="outlook-section">
-            <div class="outlook-section-title">Europe Economic Outlook</div>
-            <div class="outlook-section-body">
-              Europe's economic performance remains very strong, although a subtle downtrend in consumer and business confidence has emerged. Despite the solid growth figures, this dip in sentiment suggests that some in the region are growing cautious about the sustainability of the current boom and are bracing for possible challenges ahead.
-            </div>
-          </div>
-
-          <div class="outlook-section">
-            <div class="outlook-section-title">Asia Economic Outlook</div>
-            <div class="outlook-section-body">
-              Japan's economy is expected to keep growing at a modest pace, and its currency continues to appreciate against the US dollar. The yen's persistent strength reflects global investors' confidence in Japan's stability and performance, as the country navigates the worldwide shift toward renewable energy.
-            </div>
-          </div>
-
-          <div class="outlook-section">
-            <div class="outlook-section-title">Global Industry and Factor Outlook</div>
-            <div class="outlook-section-body">
-              Value-focused strategies are likely to continue underperforming as the market rewards bold growth themes. Meanwhile, alternative investments stand out as big winners in the ongoing renewable energy transition — they are attracting huge capital inflows and are poised to benefit significantly from the shift to hydrogen and other green technologies.
+          <!-- Competitor Signals -->
+          <div class="card mb-20">
+            <div class="card-title">🕵️ Competitor Signals (Anonymized hints from L.R.)</div>
+            <div class="signal-list" id="signalList">
+              <!-- Dynamically populated -->
             </div>
           </div>
         </div>
 
-        <!-- Right: Charts & Rates -->
+        <!-- Right Column: Decisions Gateway, Interest Rates, Performance Chart -->
         <div>
+          <!-- Decisions Gateway Card -->
+          <div class="gateway-card">
+            <div class="card-title" style="margin-bottom: 6px;">Round Gateway</div>
+            <div class="gateway-status" id="gatewayStatus">
+              <span class="status-dot-pulse red"></span>
+              <span>Status: Locked</span>
+            </div>
+            <p style="font-size:12px; color:var(--gray-100); line-height:1.5; margin-bottom:16px;">
+              Students must review the Round economic reports, industry events, and competitor signals before decision templates can be submitted.
+            </p>
+            <button class="btn btn-primary w-full" id="gateButton" onclick="handleGateClick()">Proceed to Decisions →</button>
+          </div>
+
           <!-- Equity market performance chart -->
           <div class="card mb-20">
             <div class="card-title">Equity Market Performance</div>
-            <div class="chart-wrap" style="height: 200px;">
+            <div class="chart-wrap" style="height: 180px;">
               <canvas id="equityMarketChart"></canvas>
             </div>
           </div>
@@ -152,13 +246,101 @@
 <script src="../js/components/navigator.js"></script>
 <script src="../js/charts.js"></script>
 <script>
-  renderSidebar({ variant: 'student', activePage: 'outlook' });
-  renderTopBar({ 
-    title: 'Economic Outlook Briefing', 
-    subtitle: 'Global economic indices, currencies yields reports, and interest rates trends' 
-  });
+  function initDynamicOutlook() {
+    var roundNum = window.getRoundNumber ? window.getRoundNumber() : 3;
+    
+    // Set top bar title dynamically
+    if (window.renderTopBar) {
+      window.renderTopBar({ 
+        title: 'Economic Outlook Briefing', 
+        subtitle: 'Round ' + roundNum + ' of 6 · Global economic indices and interest rates trends',
+        badges: [{ text: '● Round ' + roundNum + ' active', variant: 'teal' }]
+      });
+    }
+
+    // Render sidebar
+    renderSidebar({ variant: 'student', activePage: 'outlook' });
+
+    // Dynamic Event Data
+    var eventText = "";
+    var macroData = [];
+    var signals = [];
+
+    if (roundNum === 3) {
+      eventText = "Supply chain disruption: Raw material inputs cost +15% this round across all operational tiers.";
+      macroData = [
+        { label: "Consumer Demand Index", val: "108.4 pts", trend: "▲ +2.3%", trendClass: "text-green" },
+        { label: "Inflation Rate", val: "2.4%", trend: "▲ +0.2%", trendClass: "text-green" },
+        { label: "GDP Growth Rate", val: "3.1%", trend: "Flat", trendClass: "text-gray" },
+        { label: "Raw Material Index", val: "115.0 pts", trend: "▲ +15.0%", trendClass: "text-red" }
+      ];
+      signals = [
+        "A leading competitor significantly expanded marketing promo budgets last round.",
+        "Strategic shifts indicate teams are pivoting towards premium ethical sourcing.",
+        "One competitor undercut the average price by over 8% in Round 2, compressing segment margins."
+      ];
+    } else {
+      eventText = "Economic Stimulus: Government announced a 10% boost to consumer confidence; market demand forecast +8%.";
+      macroData = [
+        { label: "Consumer Demand Index", val: "119.2 pts", trend: "▲ +10.0%", trendClass: "text-green" },
+        { label: "Inflation Rate", val: "2.6%", trend: "▲ +0.2%", trendClass: "text-green" },
+        { label: "GDP Growth Rate", val: "3.4%", trend: "▲ +0.3%", trendClass: "text-green" },
+        { label: "Raw Material Index", val: "100.0 pts", trend: "▼ -13.0%", trendClass: "text-green" }
+      ];
+      signals = [
+        "A competitor has upgraded to Supplier C (Premium Quality) to gain ESG advantage.",
+        "Training budgets rose by an average of 12% last round, increasing workforce efficiency.",
+        "Total industry supply is projected to grow by 10% this round based on capacity expansions."
+      ];
+    }
+
+    // Render Event
+    document.getElementById("eventDesc").textContent = eventText;
+
+    // Render Macro
+    var macroHtml = "";
+    macroData.forEach(function(m) {
+      macroHtml += '<div class="macro-card">';
+      macroHtml += '  <div class="macro-label">' + m.label + '</div>';
+      macroHtml += '  <div class="macro-value">' + m.val + '</div>';
+      macroHtml += '  <div class="macro-trend ' + m.trendClass + '">' + m.trend + '</div>';
+      macroHtml += '</div>';
+    });
+    document.getElementById("macroGrid").innerHTML = macroHtml;
+
+    // Render Signals
+    var signalHtml = "";
+    signals.forEach(function(s) {
+      signalHtml += '<div class="signal-item">';
+      signalHtml += '  <span class="signal-icon">🕵️</span>';
+      signalHtml += '  <span>' + s + '</span>';
+      signalHtml += '</div>';
+    });
+    document.getElementById("signalList").innerHTML = signalHtml;
+
+    // Render Gateway Status
+    var reviewed = localStorage.getItem('bsim-market-outlook-reviewed') === 'true';
+    var statusDiv = document.getElementById("gatewayStatus");
+    var gateBtn = document.getElementById("gateButton");
+
+    if (reviewed) {
+      statusDiv.innerHTML = '<span class="status-dot-pulse green"></span><span>Status: Unlocked</span>';
+      gateBtn.textContent = "Go to Decision Form →";
+      gateBtn.className = "btn btn-secondary w-full";
+      gateBtn.onclick = function() { window.location.href = 'decision.html'; };
+    } else {
+      statusDiv.innerHTML = '<span class="status-dot-pulse red"></span><span>Status: Locked</span>';
+      gateBtn.textContent = "Proceed to Decisions →";
+      gateBtn.className = "btn btn-primary w-full";
+      gateBtn.onclick = function() { window.unlockDecisions(); };
+    }
+  }
+
   renderNavigator();
-  document.addEventListener('DOMContentLoaded', initOutlookCharts);
+  document.addEventListener('DOMContentLoaded', function() {
+    initOutlookCharts();
+    initDynamicOutlook();
+  });
 </script>
 </body>
 </html>
